@@ -1,4 +1,5 @@
 # Procedencia y delimitación del dataset — MCDI500
+# Entendería que esta base de datos la vamos a reemplazar por las Fallas del SEN emitidas por el CEN
 
 **Fuente:** NYC 311 / NYC Open Data (organismo público municipal).
 
