@@ -1,0 +1,41 @@
+﻿N°,grupo,prueba,estado,observacion
+1,NORMALIZACION,Normalización de caracteres acentuados,APROBADA,La normalización reconoce caracteres acentuados.
+2,NORMALIZACION,Coincidencia de región individual,APROBADA,Se reconoce una región individual válida.
+3,NORMALIZACION,Reconocimiento de regiones múltiples,APROBADA,Se identifica la región oficial dentro de una lista.
+4,NORMALIZACION,Rechazo de región no coincidente,APROBADA,No se asigna una coincidencia regional inexistente.
+5,NORMALIZACION,Tratamiento de región faltante,APROBADA,Los valores nulos no generan coincidencias falsas.
+6,AUDITORIA_GEOGRAFICA,Coincidencia regional con denominaciones alternativas,APROBADA,Se reconoce una denominación regional equivalente.
+7,AUDITORIA_GEOGRAFICA,Detección de diferencia regional,APROBADA,Se identifica una incompatibilidad regional.
+8,AUDITORIA_GEOGRAFICA,Identificación de zona faltante,APROBADA,Se clasifica correctamente la ausencia de zona.
+9,AUDITORIA_GEOGRAFICA,Detección de denominación no reconocida,APROBADA,Se identifica una denominación regional desconocida.
+10,CLASIFICACION_OPERACIONAL,Reconocimiento de estado válido,APROBADA,Se conserva una categoría administrativa válida.
+11,CLASIFICACION_OPERACIONAL,Reconocimiento de consumo válido,APROBADA,Se conserva una clasificación de consumo reconocida.
+12,CLASIFICACION_OPERACIONAL,Tratamiento de valor nulo,APROBADA,Los valores nulos se clasifican explícitamente.
+13,CLASIFICACION_OPERACIONAL,Tratamiento de cadena vacía,APROBADA,Las cadenas vacías se identifican como datos faltantes.
+14,CLASIFICACION_OPERACIONAL,Detección de categoría desconocida,APROBADA,Las categorías no previstas se identifican para revisión.
+15,CONVERSION_TEMPORAL,Conversión de fecha ISO,APROBADA,Se reconoce una fecha con formato ISO.
+16,CONVERSION_TEMPORAL,Conversión de fecha día/mes/año,APROBADA,Se reconoce una fecha con formato día/mes/año.
+17,CONVERSION_TEMPORAL,Identificación de fecha inexistente,APROBADA,Las fechas inexistentes se clasifican como inválidas.
+18,CONVERSION_TEMPORAL,Tratamiento de fecha faltante,APROBADA,Las fechas faltantes se conservan como NaT.
+19,CONVERSION_TEMPORAL,Detección de intervalo negativo,APROBADA,Se reconoce un término anterior a la perturbación.
+20,CONTROL_EXCEPCIONES,Rechazo de integración con claves duplicadas,APROBADA,Pandas impide una integración many_to_one inconsistente.
+21,INTEGRIDAD_DOCUMENTAL,Conservación de informes originales,APROBADA,Se conservaron los 18.019 informes del CEN.
+22,INTEGRIDAD_DOCUMENTAL,Unicidad de informes originales,APROBADA,Los informes poseen identificadores únicos y completos.
+23,INTEGRIDAD_DOCUMENTAL,Conservación de base temporal,APROBADA,La transformación temporal no eliminó informes.
+24,INTEGRIDAD_DOCUMENTAL,Conservación de columnas originales,APROBADA,Las variables originales permanecen intactas.
+25,INTEGRIDAD_TERRITORIAL,Conservación de asociaciones,APROBADA,Se conservaron las 23.284 asociaciones.
+26,INTEGRIDAD_TERRITORIAL,Ausencia de asociaciones duplicadas,APROBADA,No existen relaciones informe-comuna duplicadas.
+27,INTEGRIDAD_TERRITORIAL,Completitud de homologación comunal,APROBADA,Todas las asociaciones tienen código comunal oficial.
+28,INTEGRIDAD_TERRITORIAL,Consistencia geográfica,APROBADA,Todas las asociaciones presentan coincidencia regional.
+29,CONJUNTO_PRIORITARIO,Cantidad de comunas prioritarias,APROBADA,La selección contiene 15 comunas.
+30,CONJUNTO_PRIORITARIO,Unicidad de códigos comunales,APROBADA,No existen comunas prioritarias duplicadas.
+31,CONJUNTO_PRIORITARIO,Conservación de informes prioritarios,APROBADA,Se identificaron 1.834 informes distintos.
+32,CONJUNTO_PRIORITARIO,Conservación de asociaciones prioritarias,APROBADA,Se conservaron 1.915 asociaciones prioritarias.
+33,CONJUNTO_PRIORITARIO,Consistencia del conjunto cruzado,APROBADA,La integración técnica conserva las asociaciones.
+34,CALIDAD_TEMPORAL,Validez de fechas de perturbación,APROBADA,Se reconocieron las fechas de perturbación originales.
+35,CALIDAD_TEMPORAL,Identificación de fechas de término faltantes,APROBADA,Se identificaron 7.214 informes sin fecha de término.
+36,CALIDAD_TEMPORAL,Ausencia de intervalos negativos válidos,APROBADA,Los intervalos utilizados no presentan valores negativos.
+37,CONSISTENCIA_CAUSAL,Conservación de informes analizados,APROBADA,El análisis causal conserva los informes únicos.
+38,CONSISTENCIA_CAUSAL,Identificación de causas no determinadas,APROBADA,Se identificaron 1.109 informes sin causa determinada.
+39,CONSISTENCIA_CAUSAL,Conservación de informes con descripción causal,APROBADA,Se conservaron los 725 informes con descripción específica.
+40,CONSISTENCIA_CAUSAL,Coherencia de causas definitivas,APROBADA,Se identificaron 385 informes con descripción definitiva.

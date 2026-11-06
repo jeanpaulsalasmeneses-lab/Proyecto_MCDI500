@@ -1,0 +1,16 @@
+﻿posicion_demografica,codigo_comuna,comuna_oficial,region_oficial,poblacion_2024,asociaciones,informes_distintos,informes_subestacion,informes_linea,informes_central,causas_presuntas,causas_en_investigacion,referencias_blackout,consumo_categoria_asociada,informes_25_febrero,asociaciones_multicomunales,pct_subestacion,pct_causas_presuntas,pct_consumo_categoria_asociada,pct_25_febrero
+1,13201,Puente Alto,Metropolitana de Santiago,568086.0,157,157,90,38,29,120,109,4,95,14,18,57.32,76.43,60.51,8.92
+2,13119,Maipú,Metropolitana de Santiago,503635.0,36,36,35,1,0,29,17,1,28,3,9,97.22,80.56,77.78,8.33
+3,13101,Santiago,Metropolitana de Santiago,438856.0,73,73,62,9,2,48,25,2,48,4,10,84.93,65.75,65.75,5.48
+4,02101,Antofagasta,Antofagasta,401096.0,547,547,395,91,61,314,264,41,327,82,0,72.21,57.4,59.78,14.99
+5,13110,La Florida,Metropolitana de Santiago,374836.0,88,88,40,6,42,64,62,6,28,5,17,45.45,72.73,31.82,5.68
+6,05109,Viña del Mar,Valparaíso,334871.0,68,68,56,12,0,58,47,6,57,11,17,82.35,85.29,83.82,16.18
+7,13401,San Bernardo,Metropolitana de Santiago,306371.0,75,75,58,12,5,60,50,1,56,9,16,77.33,80.0,74.67,12.0
+8,13114,Las Condes,Metropolitana de Santiago,296134.0,38,38,32,6,0,32,25,1,28,3,6,84.21,84.21,73.68,7.89
+9,09101,Temuco,La Araucanía,292518.0,107,107,73,33,1,84,53,3,62,14,1,68.22,78.5,57.94,13.08
+10,05101,Valparaíso,Valparaíso,284938.0,105,105,83,19,3,82,66,15,77,19,17,79.05,78.1,73.33,18.1
+11,10101,Puerto Montt,Los Lagos,277040.0,59,59,50,2,7,29,12,3,41,4,1,84.75,49.15,69.49,6.78
+12,04102,Coquimbo,Coquimbo,263719.0,128,128,80,30,18,105,94,1,52,15,20,62.5,82.03,40.62,11.72
+13,06101,Rancagua,Libertador General Bernardo O'Higgins,257744.0,148,148,76,27,45,109,88,3,65,19,0,51.35,73.65,43.92,12.84
+14,04101,La Serena,Coquimbo,250141.0,106,106,84,19,3,89,76,9,72,9,20,79.25,83.96,67.92,8.49
+15,15101,Arica,Arica y Parinacota,241653.0,180,180,137,25,18,127,120,14,139,26,0,76.11,70.56,77.22,14.44

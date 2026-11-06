@@ -1,0 +1,182 @@
+﻿codigo_comuna,comuna_oficial,descripcion_causa,informes,total_asociaciones,pct_comunal,posicion
+02101,Antofagasta,Desconexión debido a falla en instalaciones de terceros.,118,547,21.57,1
+02101,Antofagasta,Balckout del sistema,41,547,7.5,2
+02101,Antofagasta,Baja frecuencia,19,547,3.47,3
+02101,Antofagasta,Baja tensión en subestación,12,547,2.19,4
+02101,Antofagasta,Falla en equipo,8,547,1.46,5
+02101,Antofagasta,"Falla ocasionada por animales, roedores o pájaros (por contacto directo u otro)",6,547,1.1,6
+02101,Antofagasta,Conductor cortado,5,547,0.91,7
+02101,Antofagasta,"Falla originada en terceros (accidentes, interferencias, rodado, deslizamiento de tierra)",5,547,0.91,8
+02101,Antofagasta,"Elemento dañado, corrosión",4,547,0.73,9
+02101,Antofagasta,"Evento catastrófico ( inundaciones, terremoto, aluvión, etc. )",4,547,0.73,10
+02101,Antofagasta,"Evento climático ( viento, lluvia, temporal, etc. )",4,547,0.73,11
+02101,Antofagasta,Falla de pararrayos,4,547,0.73,12
+02101,Antofagasta,Falla eléctrica a tierra,4,547,0.73,13
+02101,Antofagasta,Falla en sistema de control,4,547,0.73,14
+02101,Antofagasta,Flash - over en línea,4,547,0.73,15
+02101,Antofagasta,Desconexión debido a operación de esquema de baja frecuencia.,3,547,0.55,16
+02101,Antofagasta,Desconexión debido a operación protección de sobretensión.,3,547,0.55,17
+02101,Antofagasta,Error de personal u opeador,3,547,0.55,18
+02101,Antofagasta,Flashover/arco eléctrico,3,547,0.55,19
+02101,Antofagasta,Falla en subestación,2,547,0.37,20
+02101,Antofagasta,Error operativo en central,1,547,0.18,21
+02101,Antofagasta,Falla causada por atentados o vandalismo.,1,547,0.18,22
+02101,Antofagasta,Falla de equipo interruptor o reconectador,1,547,0.18,23
+02101,Antofagasta,Falta de alimentación a instalaciones,1,547,0.18,24
+02101,Antofagasta,Intempestivas de generación,1,547,0.18,25
+15101,Arica,Balckout del sistema,14,180,7.78,1
+15101,Arica,Desconexión debido a falla en instalaciones de terceros.,10,180,5.56,2
+15101,Arica,Falla causada por atentados o vandalismo.,7,180,3.89,3
+15101,Arica,Conductor cortado,5,180,2.78,4
+15101,Arica,Baja frecuencia,4,180,2.22,5
+15101,Arica,Falla en sensor de temperatura,2,180,1.11,6
+15101,Arica,"Falla originada en terceros (accidentes, interferencias, rodado, deslizamiento de tierra)",2,180,1.11,7
+15101,Arica,Baja tensión en subestación,1,180,0.56,8
+15101,Arica,Desconexión debido a operación de esquema de baja frecuencia.,1,180,0.56,9
+15101,Arica,"Evento climático ( viento, lluvia, temporal, etc. )",1,180,0.56,10
+15101,Arica,Falla en equipo,1,180,0.56,11
+15101,Arica,"Falla ocasionada por animales, roedores o pájaros (por contacto directo u otro)",1,180,0.56,12
+15101,Arica,Flash - over en línea,1,180,0.56,13
+04102,Coquimbo,Desconexión debido a falla en instalaciones de terceros.,22,128,17.19,1
+04102,Coquimbo,Baja frecuencia,2,128,1.56,2
+04102,Coquimbo,"Evento catastrófico ( inundaciones, terremoto, aluvión, etc. )",2,128,1.56,3
+04102,Coquimbo,"Evento climático ( viento, lluvia, temporal, etc. )",2,128,1.56,4
+04102,Coquimbo,Baja tensión en subestación,1,128,0.78,5
+04102,Coquimbo,Balckout del sistema,1,128,0.78,6
+04102,Coquimbo,Error de personal u opeador,1,128,0.78,7
+04102,Coquimbo,Falla en equipo,1,128,0.78,8
+04102,Coquimbo,"Falla originada en terceros (accidentes, interferencias, rodado, deslizamiento de tierra)",1,128,0.78,9
+04102,Coquimbo,Flash - over en línea,1,128,0.78,10
+13110,La Florida,Balckout del sistema,6,88,6.82,1
+13110,La Florida,Falla en equipo,4,88,4.55,2
+13110,La Florida,Baja tensión en subestación,3,88,3.41,3
+13110,La Florida,Desconexión debido a falla en instalaciones de terceros.,3,88,3.41,4
+13110,La Florida,Falla en subestación,3,88,3.41,5
+13110,La Florida,"Elemento dañado, corrosión",2,88,2.27,6
+13110,La Florida,Falla debido accidentes,2,88,2.27,7
+13110,La Florida,Baja frecuencia,1,88,1.14,8
+13110,La Florida,"Evento climático ( viento, lluvia, temporal, etc. )",1,88,1.14,9
+13110,La Florida,Intempestivas de generación,1,88,1.14,10
+04101,La Serena,Balckout del sistema,9,106,8.49,1
+04101,La Serena,Baja tensión en subestación,6,106,5.66,2
+04101,La Serena,Desconexión debido a falla en instalaciones de terceros.,5,106,4.72,3
+04101,La Serena,Error de personal u opeador,3,106,2.83,4
+04101,La Serena,Baja frecuencia,1,106,0.94,5
+04101,La Serena,Conductor cortado,1,106,0.94,6
+04101,La Serena,Desconexión debido a operación protección de sobretensión.,1,106,0.94,7
+04101,La Serena,"Evento catastrófico ( inundaciones, terremoto, aluvión, etc. )",1,106,0.94,8
+04101,La Serena,Falta de alimentación a instalaciones,1,106,0.94,9
+13114,Las Condes,Baja frecuencia,4,38,10.53,1
+13114,Las Condes,Falla de equipo interruptor o reconectador,2,38,5.26,2
+13114,Las Condes,Baja tensión en subestación,1,38,2.63,3
+13114,Las Condes,Balckout del sistema,1,38,2.63,4
+13114,Las Condes,Desconexión debido a falla en instalaciones de terceros.,1,38,2.63,5
+13114,Las Condes,Desconexión debido a puesta en servicio de equipos o instalaciones nuevas.,1,38,2.63,6
+13114,Las Condes,"Elemento dañado, corrosión",1,38,2.63,7
+13114,Las Condes,"Evento climático ( viento, lluvia, temporal, etc. )",1,38,2.63,8
+13119,Maipú,Baja frecuencia,5,36,13.89,1
+13119,Maipú,Desconexión debido a falla en instalaciones de terceros.,3,36,8.33,2
+13119,Maipú,Baja tensión en subestación,2,36,5.56,3
+13119,Maipú,Falla en equipo,2,36,5.56,4
+13119,Maipú,Balckout del sistema,1,36,2.78,5
+13119,Maipú,Causa no determinada. Conexión manual debido a requerimiento operacional,1,36,2.78,6
+13119,Maipú,Conductor cortado,1,36,2.78,7
+13119,Maipú,"Evento climático ( viento, lluvia, temporal, etc. )",1,36,2.78,8
+13119,Maipú,Falla de equipo interruptor o reconectador,1,36,2.78,9
+13201,Puente Alto,Desconexión debido a falla en instalaciones de terceros.,10,157,6.37,1
+13201,Puente Alto,Baja frecuencia,9,157,5.73,2
+13201,Puente Alto,Balckout del sistema,4,157,2.55,3
+13201,Puente Alto,Baja tensión en subestación,3,157,1.91,4
+13201,Puente Alto,Desconexión debido a operación de esquema de baja frecuencia.,3,157,1.91,5
+13201,Puente Alto,"Evento climático ( viento, lluvia, temporal, etc. )",3,157,1.91,6
+13201,Puente Alto,"Falla ocasionada por animales, roedores o pájaros (por contacto directo u otro)",2,157,1.27,7
+13201,Puente Alto,"Falla originada en terceros (accidentes, interferencias, rodado, deslizamiento de tierra)",2,157,1.27,8
+13201,Puente Alto,Incendio bajo la línea o en proximidades de ella (natural o provocado),2,157,1.27,9
+13201,Puente Alto,"Elemento dañado, corrosión",1,157,0.64,10
+13201,Puente Alto,Falla causada por atentados o vandalismo.,1,157,0.64,11
+13201,Puente Alto,Falla en barra,1,157,0.64,12
+13201,Puente Alto,Falla en servicios auxiliares de la central,1,157,0.64,13
+13201,Puente Alto,Falla en sistema de control,1,157,0.64,14
+13201,Puente Alto,Falla en subestación,1,157,0.64,15
+13201,Puente Alto,Intempestivas de generación,1,157,0.64,16
+10101,Puerto Montt,Baja frecuencia,16,59,27.12,1
+10101,Puerto Montt,Desconexión debido a falla en instalaciones de terceros.,9,59,15.25,2
+10101,Puerto Montt,Incendio bajo la línea o en proximidades de ella (natural o provocado),4,59,6.78,3
+10101,Puerto Montt,Balckout del sistema,3,59,5.08,4
+10101,Puerto Montt,Caída de árbol sobre línea o instalación,3,59,5.08,5
+10101,Puerto Montt,"Evento climático ( viento, lluvia, temporal, etc. )",2,59,3.39,6
+10101,Puerto Montt,Falla en sistema de control,2,59,3.39,7
+10101,Puerto Montt,Baja tensión en subestación,1,59,1.69,8
+10101,Puerto Montt,Desconexión debido a operación protección de sobretensión.,1,59,1.69,9
+10101,Puerto Montt,Error operativo en central,1,59,1.69,10
+10101,Puerto Montt,Falla de equipo interruptor o reconectador,1,59,1.69,11
+10101,Puerto Montt,Falla en equipo,1,59,1.69,12
+06101,Rancagua,Desconexión debido a falla en instalaciones de terceros.,27,148,18.24,1
+06101,Rancagua,Baja frecuencia,6,148,4.05,2
+06101,Rancagua,Falla en equipo,5,148,3.38,3
+06101,Rancagua,Balckout del sistema,3,148,2.03,4
+06101,Rancagua,Falla en servicios auxiliares de la central,3,148,2.03,5
+06101,Rancagua,Falla causada por atentados o vandalismo.,2,148,1.35,6
+06101,Rancagua,Falla en sistema de control,2,148,1.35,7
+06101,Rancagua,Causa no determinada. Conexión manual debido a requerimiento operacional,1,148,0.68,8
+06101,Rancagua,Caída de árbol sobre línea o instalación,1,148,0.68,9
+06101,Rancagua,Conductor cortado,1,148,0.68,10
+06101,Rancagua,Desconexión debido a operación de esquema de baja frecuencia.,1,148,0.68,11
+06101,Rancagua,"Elemento dañado, corrosión",1,148,0.68,12
+06101,Rancagua,Error de personal u opeador,1,148,0.68,13
+06101,Rancagua,"Evento climático ( viento, lluvia, temporal, etc. )",1,148,0.68,14
+06101,Rancagua,Falla en desconectador,1,148,0.68,15
+13401,San Bernardo,Baja frecuencia,5,75,6.67,1
+13401,San Bernardo,"Falla de material, por fatiga de material o mala calidad",3,75,4.0,2
+13401,San Bernardo,Error de personal u opeador,2,75,2.67,3
+13401,San Bernardo,"Accidentes causados por vehículos, aviones o eventos similares",1,75,1.33,4
+13401,San Bernardo,Balckout del sistema,1,75,1.33,5
+13401,San Bernardo,Conductor cortado,1,75,1.33,6
+13401,San Bernardo,Desconexión debido a falla en instalaciones de terceros.,1,75,1.33,7
+13401,San Bernardo,"Elemento dañado, corrosión",1,75,1.33,8
+13401,San Bernardo,"Evento climático ( viento, lluvia, temporal, etc. )",1,75,1.33,9
+13401,San Bernardo,Falla de TT/CC,1,75,1.33,10
+13401,San Bernardo,Falla de equipo interruptor o reconectador,1,75,1.33,11
+13401,San Bernardo,"Falla originada en terceros (accidentes, interferencias, rodado, deslizamiento de tierra)",1,75,1.33,12
+13401,San Bernardo,Incendio bajo la línea o en proximidades de ella (natural o provocado),1,75,1.33,13
+13101,Santiago,Baja frecuencia,8,73,10.96,1
+13101,Santiago,Falla en sistema de control,6,73,8.22,2
+13101,Santiago,Error de personal u opeador,5,73,6.85,3
+13101,Santiago,Baja tensión en subestación,4,73,5.48,4
+13101,Santiago,"Evento climático ( viento, lluvia, temporal, etc. )",4,73,5.48,5
+13101,Santiago,Falla de equipo interruptor o reconectador,3,73,4.11,6
+13101,Santiago,"Falla originada en terceros (accidentes, interferencias, rodado, deslizamiento de tierra)",3,73,4.11,7
+13101,Santiago,Balckout del sistema,2,73,2.74,8
+13101,Santiago,Desconexión debido a falla en instalaciones de terceros.,2,73,2.74,9
+13101,Santiago,Falla en equipo,2,73,2.74,10
+13101,Santiago,Causa no determinada. Conexión manual debido a requerimiento operacional,1,73,1.37,11
+13101,Santiago,Caída de árbol sobre línea o instalación,1,73,1.37,12
+13101,Santiago,Desconexión debido a operación de esquema de baja frecuencia.,1,73,1.37,13
+13101,Santiago,"Falla de material, por fatiga de material o mala calidad",1,73,1.37,14
+13101,Santiago,Falla eléctrica a tierra,1,73,1.37,15
+13101,Santiago,Falla en subestación,1,73,1.37,16
+13101,Santiago,"Falla ocasionada por animales, roedores o pájaros (por contacto directo u otro)",1,73,1.37,17
+09101,Temuco,Desconexión debido a falla en instalaciones de terceros.,26,107,24.3,1
+09101,Temuco,Falta de alimentación a instalaciones,9,107,8.41,2
+09101,Temuco,"Evento climático ( viento, lluvia, temporal, etc. )",5,107,4.67,3
+09101,Temuco,Baja frecuencia,3,107,2.8,4
+09101,Temuco,Balckout del sistema,3,107,2.8,5
+09101,Temuco,Caída de árbol sobre línea o instalación,3,107,2.8,6
+09101,Temuco,Falla de equipo interruptor o reconectador,1,107,0.93,7
+05101,Valparaíso,Balckout del sistema,15,105,14.29,1
+05101,Valparaíso,Baja frecuencia,8,105,7.62,2
+05101,Valparaíso,Desconexión debido a falla en instalaciones de terceros.,6,105,5.71,3
+05101,Valparaíso,Incendio bajo la línea o en proximidades de ella (natural o provocado),3,105,2.86,4
+05101,Valparaíso,"Evento climático ( viento, lluvia, temporal, etc. )",2,105,1.9,5
+05101,Valparaíso,Falla de equipo interruptor o reconectador,2,105,1.9,6
+05101,Valparaíso,Falla en desconectador,1,105,0.95,7
+05101,Valparaíso,Falla en equipo,1,105,0.95,8
+05101,Valparaíso,"Falla ocasionada por animales, roedores o pájaros (por contacto directo u otro)",1,105,0.95,9
+05109,Viña del Mar,Balckout del sistema,6,68,8.82,1
+05109,Viña del Mar,Incendio bajo la línea o en proximidades de ella (natural o provocado),6,68,8.82,2
+05109,Viña del Mar,Baja frecuencia,3,68,4.41,3
+05109,Viña del Mar,Desconexión debido a falla en instalaciones de terceros.,2,68,2.94,4
+05109,Viña del Mar,"Evento catastrófico ( inundaciones, terremoto, aluvión, etc. )",1,68,1.47,5
+05109,Viña del Mar,Falla causada por atentados o vandalismo.,1,68,1.47,6
+05109,Viña del Mar,Falla de equipo interruptor o reconectador,1,68,1.47,7
+05109,Viña del Mar,Falla en subestación,1,68,1.47,8
