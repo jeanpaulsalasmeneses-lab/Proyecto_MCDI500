@@ -34,40 +34,51 @@ Caracterizar la **exposición operacional documentada** en las **15 comunas con 
 Proyecto_MCDI500/
 ├── F1/
 │   └── F1_Definición.ipynb
-├── F2/                              # Notebook de preprocesamiento por desarrollar
+├── F2/
+│   └── F2_Exploracion_y_Preprocesamiento.ipynb
 ├── src/
 │   └── consolidar_fallas_2024_2026.py
 ├── docs/
 │   └── mapa_conceptual_F1_impacto_comunal.png  # Generado ejecutando F1
 ├── data/
-│   ├── raw/                         # ZIP mensuales CEN (pueden estar excluidos de Git)
-│   ├── processed/
-│   │   └── cen_fallas_2024_2026_eventos.csv    # Archivo reconstruible
+│   ├── raw/                         # ZIP mensuales CEN: NO se versionan (ver data/raw/README.md)
+│   ├── processed/                   # SÍ se versiona: lo leen F1 y F2
+│   │   ├── cen_fallas_2024_2026_eventos.csv        # un registro por id_falla
+│   │   └── cen_fallas_2024_2026_publicaciones.csv  # todas las filas publicadas
 │   └── external/                    # Fuente comunal INE (F2)
 ├── requirements.txt
 └── README.md
 ```
 
-### Ejecución local en Windows / PowerShell
+### Ejecución local
+
+Los consolidados del CEN ya vienen en `data/processed/`, así que basta con clonar, crear el entorno y ejecutar los notebooks. El proyecto se probó con **Python 3.13**.
 
 1. Clonar el repositorio y abrir la carpeta en Visual Studio Code.
-2. Crear y activar entorno virtual:
+2. Crear y activar el entorno virtual e instalar las dependencias.
 
-```powershell
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-python -m pip install -r requirements.txt
-```
+   **Windows (PowerShell):**
 
-3. Obtener los ZIP de informes de falla en la fuente oficial CEN y guardarlos en las rutas que acepte el consolidador. Ejecutar:
+   ```powershell
+   python -m venv .venv
+   .\.venv\Scripts\Activate.ps1
+   python -m pip install -r requirements.txt
+   ```
 
-```powershell
-python src/consolidar_fallas_2024_2026.py
-```
+   **Linux / macOS (bash o zsh):**
 
-   **Nota:** revisar el uso de parámetros y carpetas del script original antes de ejecutarlo. Debe producir `data/processed/cen_fallas_2024_2026_eventos.csv`. No se debe incluir `.venv` en el repositorio.
-4. Abrir `F1/F1_Definición.ipynb`, seleccionar kernel `.venv` y **Ejecutar todas**. F1 requiere el CSV consolidado; la figura comunal se crea en `docs/`.
-5. La descarga de tabla INE, homologación territorial y preparación de resultados se desarrollarán en F2. **No hay resultados comunales finales hasta su validación**.
+   ```bash
+   python3 -m venv .venv
+   source .venv/bin/activate
+   python -m pip install -r requirements.txt
+   ```
+
+   `pywinpty` solo se instala en Windows; en Linux y macOS pip lo omite automáticamente.
+
+3. Abrir `F1/F1_Definición.ipynb`, seleccionar el kernel `.venv` y usar **Restart Kernel and Run All Cells**. La figura del mapa conceptual se genera en `docs/`.
+4. Repetir con `F2/F2_Exploracion_y_Preprocesamiento.ipynb`.
+5. *(Opcional)* Reconstruir los consolidados desde la fuente original: descargar los 33 ZIP del CEN en `data/raw/` (ver `data/raw/README.md`) y ejecutar `python src/consolidar_fallas_2024_2026.py`.
+6. La descarga de la tabla INE, la homologación territorial y la preparación de resultados se desarrollarán en F2. **No hay resultados comunales finales hasta su validación**.
 
 ### Criterios de calidad
 
