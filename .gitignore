@@ -1,7 +1,26 @@
+# --- Entorno virtual: se reconstruye con requirements.txt ---
 .venv/
+
+# --- Archivos generados por Python y Jupyter ---
 __pycache__/
 *.pyc
 .ipynb_checkpoints/
+
+# --- Credenciales y configuración local ---
 .env
-data/raw/
-data/processed/
+
+# --- Archivos del sistema operativo (Windows, macOS, Linux) ---
+Thumbs.db
+desktop.ini
+.DS_Store
+*~
+
+# --- Datos ---
+# data/raw/: los ZIP originales del CEN no se versionan (son pesados y se
+# descargan de la fuente oficial). Solo se versiona el README que explica
+# cómo obtenerlos.
+data/raw/*
+!data/raw/README.md
+
+# data/processed/: SÍ se versiona. Contiene el consolidado que leen F1 y F2,
+# para que cualquier integrante pueda ejecutar los notebooks tras clonar.
