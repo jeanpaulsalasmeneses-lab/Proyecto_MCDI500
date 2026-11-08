@@ -82,3 +82,17 @@ Cada decisión metodológica o técnica que cambie datos, resultados o la forma 
 - **Decisión:** el título pasa a ser «Exposición operacional documentada de las 15 comunas más pobladas de Chile a las fallas del Sistema Eléctrico Nacional (2024–2026)». «Comunas prioritarias» se mantiene en el texto como término definido: designa **solo** a las 15 comunas más pobladas. Se agrega una pregunta analítica explícita (F1 §3), distinta de la pregunta metodológica del mapa (§9.1).
 - **Alternativas:** reemplazar «prioritarias» en todo F2 (cientos de apariciones en código y texto, con mucho riesgo y poco beneficio); definir prioridad con otro criterio (vulnerabilidad, criticidad), que no tiene un indicador externo verificable (F1 §4.2).
 - **Motivo:** que el título diga exactamente lo que se mide y cómo se eligieron las comunas.
+
+## D-08 · Los intervalos atípicos se conservan y la duración se resume con la mediana
+
+- **Fecha:** 2026-11-08 · **Estado:** Propuesta · **Evidencia:** F2 §6.10.6
+- **Contexto:** la duración documental de los informes finalizados es muy asimétrica. La guía de la Sumativa pide diagnosticar los atípicos y comparar alternativas antes de decidir.
+- **Evidencia:**
+  - Regla IQR (Q3 + 1,5 × IQR): 1.076 de 10.802 intervalos son atípicos en el conjunto completo (10,0 %), y 69 de 954 en las 15 comunas (7,2 %).
+  - En las 15 comunas, eliminar los atípicos baja la media un 62,1 % y la mediana un 17,5 %.
+  - Acotar al p99 baja la media un 43,8 % y no cambia la mediana (0,0 %).
+- **Decisión propuesta:** conservar todos los intervalos; resumir con mediana y percentiles; informar la media solo junto con su versión acotada al p99; en F3, contar los atípicos por comuna.
+- **Alternativas descartadas:**
+  - Eliminar los atípicos: borra eventos reales documentados y sesga la mediana.
+  - Winsorizar los datos exportados: modifica valores originales sin un error de registro que lo justifique.
+- **Motivo:** los extremos son informes finalizados con fechas válidas, no errores de captura. La mediana es robusta frente a ellos.
