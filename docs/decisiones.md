@@ -41,3 +41,20 @@ Cada decisión metodológica o técnica que cambie datos, resultados o la forma 
 - **Contexto:** Git en Windows cambiaba `\r\n` por `\n` dentro de los CSV al hacer commit, y el SHA-256 de `manifest_f2.json` no coincidía en otro equipo.
 - **Decisión:** `.gitattributes` con `*.csv -text`, y `lineterminator="\n"` en todos los `to_csv`.
 - **Motivo:** que la prueba de ejecución en un segundo equipo dé archivos idénticos byte a byte.
+
+## D-05 · La duración solo se calcula con informes finalizados; los anulados se excluyen
+
+- **Fecha:** 2026-11-08 · **Estado:** Propuesta (issue #10) · **Evidencia:** F2 §6.10.5
+- **Contexto:** el 40 % de los informes no tiene `Fecha Efectiva Fin`. El profe pidió analizar el patrón antes de decidir.
+- **Evidencia:** la ausencia la explica por completo el estado. Finalizados: 10.802 con fecha y 0 sin fecha. Pendientes: 0 con fecha y 6.138 sin fecha. Anulados: 3 con fecha y 1.076 sin fecha. En 2025 hay un 51 % de pendientes, por el apagón del 25-02-2025 (83,5 % de sus 218 informes prioritarios sigue pendiente). La duración es muy asimétrica: mediana de 1,6 h, promedio de 6,7 h y máximo de 1.073 h.
+- **Decisión propuesta:**
+  1. Duración solo con informes FINALIZADOS e intervalo no negativo, sin imputar fechas.
+  2. Resumir con mediana y percentiles, no con el promedio.
+  3. Los PENDIENTES cuentan para frecuencia y recurrencia, pero no para la duración, e informar cuántos quedan fuera por comuna.
+  4. Los ANULADOS se excluyen de todos los indicadores de exposición, pero se conservan en los datos.
+  5. Declarar que la duración subrepresenta el apagón del 25-02-2025.
+- **Alternativas:**
+  - Imputar la fecha de fin con la mediana: inventa cierres que no ocurrieron.
+  - Usar `Fechas Estimada Retorno`: es una estimación, no un cierre.
+  - Usar la fecha de publicación como fin: mide un trámite administrativo, no el evento.
+- **Motivo:** no hay forma documentada de conocer la duración de un evento sin cerrar. Imputarla crearía datos sin respaldo.
