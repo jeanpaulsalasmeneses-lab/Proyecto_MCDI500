@@ -1,6 +1,6 @@
 # Proyecto MCDI500 — Grupo 7
 
-## Análisis del impacto operacional documentado de las fallas del SEN sobre comunas prioritarias de Chile
+## Exposición operacional documentada de las 15 comunas más pobladas de Chile a las fallas del SEN (2024–2026)
 
 **Curso:** Programación para la Ciencia de Datos · Magíster en Ciencia de Datos e Inteligencia Artificial · UNAB  
 **Grupo 7:** Jairo Barraza Salazar · Javier Huamanni Barrera · Jean Salas Meneses · Pavel Chávez San Martín
@@ -37,15 +37,22 @@ Proyecto_MCDI500/
 ├── F2/
 │   └── F2_Exploracion_y_Preprocesamiento.ipynb
 ├── src/
-│   └── consolidar_fallas_2024_2026.py
+│   ├── descargar_cen.py             # paso 0: descarga los 33 ZIP del CEN a data/raw/
+│   └── consolidar_fallas_2024_2026.py  # paso 1: ZIP → data/processed/
 ├── docs/
+│   ├── fuente_dataset.md            # procedencia de las fuentes CEN e INE
+│   ├── decisiones.md                # registro de decisiones (D-01, D-02, ...)
+│   ├── descargas_cen.csv            # URL, SHA-256 y fecha de cada ZIP descargado
 │   └── mapa_conceptual_F1_impacto_comunal.png  # Generado ejecutando F1
 ├── data/
 │   ├── raw/                         # ZIP mensuales CEN: NO se versionan (ver data/raw/README.md)
-│   ├── processed/                   # SÍ se versiona: lo leen F1 y F2
-│   │   ├── cen_fallas_2024_2026_eventos.csv        # un registro por id_falla
-│   │   └── cen_fallas_2024_2026_publicaciones.csv  # todas las filas publicadas
-│   └── external/                    # Fuente comunal INE (F2)
+│   ├── external/                    # Censo 2024 INE (ver data/external/README.md)
+│   ├── reference/                   # Tablas de equivalencias CEN↔INE (las lee F2)
+│   └── processed/                   # SÍ se versiona: lo leen F1 y F2
+│       ├── cen_fallas_2024_2026_eventos.csv        # un registro por id_falla
+│       ├── cen_fallas_2024_2026_publicaciones.csv  # todas las filas publicadas
+│       ├── f2/                      # salidas de F2 + manifest_f2.json (SHA-256)
+│       └── homologacion/            # nombres homologados por equivalencia / no homologados
 ├── requirements.txt
 └── README.md
 ```
@@ -77,8 +84,14 @@ Los consolidados del CEN ya vienen en `data/processed/`, así que basta con clon
 
 3. Abrir `F1/F1_Definición.ipynb`, seleccionar el kernel `.venv` y usar **Restart Kernel and Run All Cells**. La figura del mapa conceptual se genera en `docs/`.
 4. Repetir con `F2/F2_Exploracion_y_Preprocesamiento.ipynb`.
-5. *(Opcional)* Reconstruir los consolidados desde la fuente original: descargar los 33 ZIP del CEN en `data/raw/` (ver `data/raw/README.md`) y ejecutar `python src/consolidar_fallas_2024_2026.py`.
-6. La descarga de la tabla INE, la homologación territorial y la preparación de resultados se desarrollarán en F2. **No hay resultados comunales finales hasta su validación**.
+5. *(Opcional)* Reconstruir los consolidados **desde la fuente original**:
+
+   ```bash
+   python src/descargar_cen.py                 # 33 ZIP (~80 MB) → data/raw/ y docs/descargas_cen.csv
+   python src/consolidar_fallas_2024_2026.py   # data/raw/ → data/processed/
+   ```
+
+   El 2026-11-08 esta reconstrucción dio un contenido idéntico al versionado (ver `docs/fuente_dataset.md`). El Excel del INE ya viene en `data/external/`; su origen y su SHA-256 están en `data/external/README.md`.
 
 ### Criterios de calidad
 

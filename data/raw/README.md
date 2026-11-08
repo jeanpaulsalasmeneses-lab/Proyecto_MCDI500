@@ -21,6 +21,33 @@ La lista completa, con el número de registros de cada ZIP, está en `docs/inven
 Coordinador Eléctrico Nacional, *Desconexiones e intervenciones / informes de falla / limitaciones*:
 https://www.coordinador.cl/operacion/graficos/desconexiones-e-intervenciones/
 
+La página muestra una tabla con las columnas Año, Mes y Descarga, con un enlace «Descargar» por mes. Cada enlace apunta a un ZIP con este patrón:
+
+```text
+https://cen-datalake-public.s3.amazonaws.com/conexiones_intervenciones/AAAA/MM/AAAA_MM_conexiones_intervenciones.zip
+```
+
+Cada ZIP trae tres CSV: solicitudes de trabajo, limitaciones e **informe de fallas**. Solo se usa el último.
+
+### Opción A: script (recomendada)
+
+Desde la raíz del proyecto, con el entorno virtual activo:
+
+```bash
+python src/descargar_cen.py
+```
+
+- Descarga los 33 ZIP (~80 MB, 1 a 2 minutos).
+- Verifica que cada ZIP esté sano y traiga el informe de fallas.
+- No vuelve a descargar los que ya existen; para forzar la descarga, usar `--forzar`.
+- Escribe `docs/descargas_cen.csv` con la URL, el tamaño, el SHA-256, la fecha de publicación del CEN y la fecha de descarga de cada archivo. Ese registro sí se versiona: es la evidencia de **qué versión** de los datos se usó.
+
+### Opción B: manual
+
+1. Abrir la página del CEN indicada arriba.
+2. En la tabla, usar **Descargar** en cada mes desde enero de 2024 hasta septiembre de 2026.
+3. Guardar los 33 ZIP en esta carpeta **sin cambiarles el nombre** (`AAAA_MM_conexiones_intervenciones.zip`).
+
 ## Cómo se procesan
 
 Desde la raíz del proyecto, con el entorno virtual activo:
