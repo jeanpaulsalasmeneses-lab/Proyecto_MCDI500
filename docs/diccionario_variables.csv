@@ -1,0 +1,29 @@
+﻿variable,rol,pct_nulos,valores_distintos,decision,justificacion,propuesta_jairo,concuerda_con_propuesta
+Número,identificador,0.0,18019,procedencia,Origen de id_falla (clave única).,conservar,True
+Tipo,nominal (3),0.0,3,analizar,Tipo de instalación (§6.12).,conservar,True
+Estado,nominal (3),0.0,3,analizar,Explica el 100 % de las fechas de término faltantes y define los anulados (D-05).,descartar,False
+Empresa,nominal alta cardinalidad,0.0,423,F3: propuesta,Perfil por empresa (propuesta de Jairo).,conservar,True
+Id Coordinado,identificador,1.6,347,F3: propuesta,Alternativa anónima a Empresa en gráficos (propuesta de Jairo).,conservar,True
+Origen,binaria,0.0,2,analizar,Origen de la falla (§6.12).,conservar,True
+SubEstación,nominal alta cardinalidad,50.8,923,F3: propuesta,"Tabla 9-3 de la NTSyCS (propuesta de Jairo); 50,8 % de nulos.",conservar,True
+Elemento(s),texto libre,63.6,3255,descartar,"Repite en parte SubEstación; 63,6 % de nulos.",descartar,True
+Zona Afectada,territorial,6.1,43,analizar,Validación regional de la homologación (§6.7).,conservar,True
+Comuna,territorial,6.4,1229,analizar,"Unidad de análisis (§5, §6.5-§6.13).",conservar,True
+Tipo Causa,binaria,0.0,2,analizar,Distingue causa presunta y definitiva (§6.12).,descartar,False
+Causa,binaria,0.0,2,descartar,Solo se usa en el diagnóstico; no aporta a los indicadores.,descartar,True
+Causa Definitiva,nominal (49),11.9,49,analizar,"Recurrencia causal por comuna (§6.12, §6.13).",descartar,False
+Causa Fenomeno Físico,texto libre,7.2,6591,F3: propuesta,Detalle del componente (propuesta de Jairo); lectura cualitativa.,conservar,True
+Causa Elementos,texto libre,7.3,6715,descartar,Repite en parte Causa Fenomeno Físico.,descartar,True
+Causa Fenomeno Eléctrico,texto libre,8.1,6318,descartar,Repite en parte Causa Fenomeno Físico.,descartar,True
+Causa Modo,nominal (12),1.6,12,descartar,No se usa en los objetivos actuales.,descartar,True
+Observaciones,texto libre,0.3,11868,descartar,Detalle técnico narrativo.,descartar,True
+Acciones Inmediatas,texto libre,0.3,8919,descartar,"Describe hechos, no aporta medición.",descartar,True
+Hechos Sucedidos,texto libre,0.3,11435,descartar,"Describe hechos, no aporta medición.",descartar,True
+Acciones Correctivas a Corto Plazo,texto libre,2.5,4621,descartar,Reparaciones puntuales.,descartar,True
+Acciones Correctivas a Largo Plazo,texto libre,4.3,2444,F3: propuesta,"Medidas para eliminar la causa (propuesta de Jairo, para conclusiones).",conservar,True
+Consumo,nominal (4),1.6,4,analizar,Afectación de consumo reportada (§6.9; OE4).,conservar,True
+Distribuidoras Afectadas,nominal alta cardinalidad,62.2,492,F3: propuesta,"Contexto de afectación; 62,2 % de nulos.",conservar,True
+Fecha Perturbación,fecha,0.0,9155,analizar,Inicio del evento; recurrencia temporal (§6.10).,conservar,True
+Fechas Estimada Retorno,fecha,0.0,12598,descartar,"Es una estimación, no un cierre (D-05).",descartar,True
+Fecha Efectiva Fin,fecha,40.0,9191,analizar,Término del evento; duración solo en finalizados (D-05).,conservar,True
+Retorno Automático Falla,nominal (6),1.6,6,descartar,Detalle técnico fuera de los objetivos.,descartar,True

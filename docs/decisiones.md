@@ -96,3 +96,18 @@ Cada decisión metodológica o técnica que cambie datos, resultados o la forma 
   - Eliminar los atípicos: borra eventos reales documentados y sesga la mediana.
   - Winsorizar los datos exportados: modifica valores originales sin un error de registro que lo justifique.
 - **Motivo:** los extremos son informes finalizados con fechas válidas, no errores de captura. La mediana es robusta frente a ellos.
+
+## D-09 · Rol y selección de las 28 variables originales; categóricas como `category`, sin one-hot
+
+- **Fecha:** 2026-11-08 · **Estado:** Propuesta (concilia el issue #7) · **Evidencia:** F2 §4.5, `docs/diccionario_variables.csv`
+- **Contexto:** la propuesta de Jairo («Depuración data 06.11.26») sugería qué columnas conservar. F2 no tenía una selección documentada por rol, y la guía de la Sumativa pide transformar según el rol de cada variable.
+- **Decisión propuesta:**
+  - Cada una de las 28 columnas originales queda con rol, perfil medido (% de nulos, valores distintos) y decisión: 10 se analizan, 6 se conservan como propuesta para F3, 11 se descartan del análisis y 1 queda como procedencia.
+  - La selección **no borra columnas** de los CSV exportados: todo se conserva para la trazabilidad.
+  - Las 6 categóricas analizadas pasan a `category`. La memoria baja un 98,4 % (de 6,93 a 0,11 MB) y los valores no cambian.
+  - No se aplica one-hot, porque no hay modelos. No se declara ninguna variable ordinal, porque ninguna tiene un orden natural.
+- **Conciliación con la propuesta de Jairo:** coincide en 25 de 28 columnas. Las 3 diferencias se resuelven con la evidencia de F2:
+  - `Estado`: explica el 100 % de las fechas faltantes y define los anulados (D-05).
+  - `Tipo Causa`: distingue la causa presunta de la definitiva (§6.12).
+  - `Causa Definitiva`: es la base de la recurrencia causal (§6.12–6.13).
+- **Motivo:** decidir columna por columna con evidencia, y conservar las propuestas de análisis de Jairo para F3 (empresa, subestación, tabla 9-3 de la NTSyCS).
