@@ -58,3 +58,19 @@ Cada decisión metodológica o técnica que cambie datos, resultados o la forma 
   - Usar `Fechas Estimada Retorno`: es una estimación, no un cierre.
   - Usar la fecha de publicación como fin: mide un trámite administrativo, no el evento.
 - **Motivo:** no hay forma documentada de conocer la duración de un evento sin cerrar. Imputarla crearía datos sin respaldo.
+
+## D-06 · Denominador para comparar la exposición entre comunas
+
+- **Fecha:** 2026-11-08 · **Estado:** Propuesta, **requiere decisión del grupo** (issue #9) · **Evidencia:** F2 §6.13.7
+- **Contexto:** el conteo de informes por comuna es absoluto. El profe pidió definir un denominador para comparar.
+- **Evidencia:** el conteo no crece con la población (Spearman = −0,27). Con la tasa por 100.000 hab-año, 10 de 15 comunas cambian de posición; Puente Alto baja del 3.º al 8.º lugar y Antofagasta es 1.ª en ambos.
+- **Decisión propuesta:**
+  - **Indicador de comparación:** informes únicos no anulados / (población 2024 / 100.000) / años observados.
+  - **Contexto:** informar siempre también el conteo anual (informes / años observados).
+  - **Años observados:** 33 meses / 12 = 2,75.
+- **Alternativas:**
+  - Solo conteo: no permite comparar comunas de distinto tamaño.
+  - Solo tasa: oculta que la exposición se concentra donde hay infraestructura.
+  - Instalaciones o clientes por comuna: es el ideal, pero no está en las fuentes actuales.
+- **Motivo:** responde el feedback sin ocultar que el ranking depende del denominador. La población es el mismo criterio con que se eligieron las comunas y es un dato oficial; no se interpreta como clientes afectados.
+- **Pregunta abierta:** ¿la tasa es el indicador principal y el conteo el contexto, o al revés?
