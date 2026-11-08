@@ -74,3 +74,11 @@ Cada decisión metodológica o técnica que cambie datos, resultados o la forma 
   - Instalaciones o clientes por comuna: es el ideal, pero no está en las fuentes actuales.
 - **Motivo:** responde el feedback sin ocultar que el ranking depende del denominador. La población es el mismo criterio con que se eligieron las comunas y es un dato oficial; no se interpreta como clientes afectados.
 - **Pregunta abierta:** ¿la tasa es el indicador principal y el conteo el contexto, o al revés?
+
+## D-07 · Título y pregunta analítica alineados con el criterio de selección
+
+- **Fecha:** 2026-11-08 · **Estado:** Propuesta (issue #8)
+- **Contexto:** el título decía «impacto» y «comunas prioritarias». El proyecto no mide impacto, y el único criterio de selección es la población. La entrega solo mostraba la pregunta metodológica del mapa.
+- **Decisión:** el título pasa a ser «Exposición operacional documentada de las 15 comunas más pobladas de Chile a las fallas del Sistema Eléctrico Nacional (2024–2026)». «Comunas prioritarias» se mantiene en el texto como término definido: designa **solo** a las 15 comunas más pobladas. Se agrega una pregunta analítica explícita (F1 §3), distinta de la pregunta metodológica del mapa (§9.1).
+- **Alternativas:** reemplazar «prioritarias» en todo F2 (cientos de apariciones en código y texto, con mucho riesgo y poco beneficio); definir prioridad con otro criterio (vulnerabilidad, criticidad), que no tiene un indicador externo verificable (F1 §4.2).
+- **Motivo:** que el título diga exactamente lo que se mide y cómo se eligieron las comunas.

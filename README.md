@@ -1,6 +1,6 @@
 # Proyecto MCDI500 — Grupo 7
 
-## Análisis del impacto operacional documentado de las fallas del SEN sobre comunas prioritarias de Chile
+## Exposición operacional documentada de las 15 comunas más pobladas de Chile a las fallas del SEN (2024–2026)
 
 **Curso:** Programación para la Ciencia de Datos · Magíster en Ciencia de Datos e Inteligencia Artificial · UNAB  
 **Grupo 7:** Jairo Barraza Salazar · Javier Huamanni Barrera · Jean Salas Meneses · Pavel Chávez San Martín

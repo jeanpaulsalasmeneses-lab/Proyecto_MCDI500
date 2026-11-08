@@ -1,12 +1,12 @@
 {
     "proyecto": "Proyecto MCDI500 - Grupo 7",
     "fase": "F2 - Exploración y Preprocesamiento",
-    "objetivo": "Análisis del impacto operacional documentado de las fallas del Sistema Eléctrico Nacional sobre las 15 comunas prioritarias de Chile",
+    "objetivo": "Exposición operacional documentada de las 15 comunas más pobladas de Chile (Censo 2024) a las fallas del Sistema Eléctrico Nacional (2024-2026)",
     "fuentes": [
         "Coordinador Eléctrico Nacional",
         "Instituto Nacional de Estadísticas - Censo 2024"
     ],
-    "fecha_exportacion": "2026-11-08T11:20:19.779865-03:00",
+    "fecha_exportacion": "2026-11-08T11:21:50.292999-03:00",
     "codificacion": "utf-8-sig",
     "informes_originales": 18019,
     "asociaciones_territoriales": 23284,
