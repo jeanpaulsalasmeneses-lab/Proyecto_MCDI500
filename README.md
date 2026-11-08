@@ -23,8 +23,8 @@ Caracterizar la **exposición operacional documentada** en las **15 comunas con 
 
 | Fase | Alcance | Estado |
 |---|---|---|
-| **F1** | Planteamiento territorial, objetivos, verificación de campos, pruebas y mapa conceptual | Notebook reformulado; **requiere ejecución con datos locales** |
-| **F2** | Exploración, limpieza, códigos comunales INE, tabla informe–comuna y validación | **Pendiente de implementación** |
+| **F1** | Planteamiento territorial, objetivos, verificación del entorno, pruebas y mapa conceptual | **Desarrollada** · corre completa con *Restart & Run All* |
+| **F2** | Obtención, exploración, limpieza, homologación INE (100 %), transformación y 40 pruebas | **Desarrollada** · exporta 7 CSV con SHA-256 a `data/processed/f2/` |
 | **F3** | Indicadores comunales y comparaciones por período, consumo, causa y duración | Proyectado |
 | **F4** | Visualizaciones, informe, conclusiones y límites de inferencia | Proyectado |
 
@@ -38,12 +38,18 @@ Proyecto_MCDI500/
 │   └── F2_Exploracion_y_Preprocesamiento.ipynb
 ├── src/
 │   ├── descargar_cen.py             # paso 0: descarga los 33 ZIP del CEN a data/raw/
-│   └── consolidar_fallas_2024_2026.py  # paso 1: ZIP → data/processed/
+│   ├── consolidar_fallas_2024_2026.py  # paso 1: ZIP → data/processed/
+│   └── trazabilidad.py              # entorno, versiones, commit y semilla (lo usan F1 y F2)
 ├── docs/
 │   ├── fuente_dataset.md            # procedencia de las fuentes CEN e INE
-│   ├── decisiones.md                # registro de decisiones (D-01, D-02, ...)
+│   ├── decisiones.md                # registro de decisiones (D-01 a D-09)
+│   ├── diccionario_variables.csv    # rol y decisión de las 28 variables originales
+│   ├── verificacion_entorno.md      # registro de ejecuciones en un segundo equipo
 │   ├── descargas_cen.csv            # URL, SHA-256 y fecha de cada ZIP descargado
-│   └── mapa_conceptual_F1_impacto_comunal.png  # Generado ejecutando F1
+│   ├── mapa_conceptual_F1_impacto_comunal.png  # Generado ejecutando F1
+│   └── entregas/
+│       ├── formativa1/              # PDF entregado en la Formativa 1
+│       └── sumativa1/               # informe técnico (fuente .md, generador y PDF)
 ├── data/
 │   ├── raw/                         # ZIP mensuales CEN: NO se versionan (ver data/raw/README.md)
 │   ├── external/                    # Censo 2024 INE (ver data/external/README.md)
@@ -92,6 +98,22 @@ Los consolidados del CEN ya vienen en `data/processed/`, así que basta con clon
    ```
 
    El 2026-11-08 esta reconstrucción dio un contenido idéntico al versionado (ver `docs/fuente_dataset.md`). El Excel del INE ya viene en `data/external/`; su origen y su SHA-256 están en `data/external/README.md`.
+
+### Informe técnico (Sumativa 1)
+
+El texto del informe se edita **solo** en `docs/entregas/sumativa1/informe_sumativa1.md`. El PDF (`mcdi500_s1_grupo7.pdf`) se genera con un script que hace lo siguiente:
+
+- arma la portada institucional y el índice automático;
+- usa tamaño carta y Arial 11 pt;
+- calcula desde Git los commits por integrante;
+- verifica que ningún texto quede bajo 11 pt.
+
+```bash
+python -m pip install -r docs/entregas/sumativa1/requirements-informe.txt   # reportlab y pypdf
+python docs/entregas/sumativa1/generar_informe.py
+```
+
+Estas dos dependencias están separadas de `requirements.txt` porque los notebooks no las usan.
 
 ### Criterios de calidad
 
