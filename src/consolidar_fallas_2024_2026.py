@@ -208,7 +208,8 @@ publicaciones.loc[
 publicaciones.to_csv(
     SALIDA / "cen_fallas_2024_2026_publicaciones.csv",
     index=False,
-    encoding="utf-8-sig"
+    encoding="utf-8-sig",
+    lineterminator="\n"
 )
 
 
@@ -315,7 +316,8 @@ eventos["fuera_de_periodo"] = (
 eventos.to_csv(
     SALIDA / "cen_fallas_2024_2026_eventos.csv",
     index=False,
-    encoding="utf-8-sig"
+    encoding="utf-8-sig",
+    lineterminator="\n"
 )
 
 # Guardar inventario de fuentes.
@@ -325,7 +327,8 @@ pd.DataFrame(inventario).sort_values(
 ).to_csv(
     DOCS / "inventario_fallas_2024_2026.csv",
     index=False,
-    encoding="utf-8-sig"
+    encoding="utf-8-sig",
+    lineterminator="\n"
 )
 
 

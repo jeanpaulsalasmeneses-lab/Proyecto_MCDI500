@@ -1,0 +1,5 @@
+# Los CSV se guardan byte a byte: sin conversión de saltos de línea.
+# Sin esta regla, Git en Windows (core.autocrlf) cambia \r\n por \n al hacer commit,
+# el archivo del repo deja de ser el que generó el notebook y el SHA-256 del
+# manifiesto (data/processed/f2/manifest_f2.json) no coincide en otro equipo.
+*.csv -text
