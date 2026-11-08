@@ -82,3 +82,32 @@ Cada decisión metodológica o técnica que cambie datos, resultados o la forma 
 - **Decisión:** el título pasa a ser «Exposición operacional documentada de las 15 comunas más pobladas de Chile a las fallas del Sistema Eléctrico Nacional (2024–2026)». «Comunas prioritarias» se mantiene en el texto como término definido: designa **solo** a las 15 comunas más pobladas. Se agrega una pregunta analítica explícita (F1 §3), distinta de la pregunta metodológica del mapa (§9.1).
 - **Alternativas:** reemplazar «prioritarias» en todo F2 (cientos de apariciones en código y texto, con mucho riesgo y poco beneficio); definir prioridad con otro criterio (vulnerabilidad, criticidad), que no tiene un indicador externo verificable (F1 §4.2).
 - **Motivo:** que el título diga exactamente lo que se mide y cómo se eligieron las comunas.
+
+## D-08 · Los intervalos atípicos se conservan y la duración se resume con la mediana
+
+- **Fecha:** 2026-11-08 · **Estado:** Propuesta · **Evidencia:** F2 §6.10.6
+- **Contexto:** la duración documental de los informes finalizados es muy asimétrica. La guía de la Sumativa pide diagnosticar los atípicos y comparar alternativas antes de decidir.
+- **Evidencia:**
+  - Regla IQR (Q3 + 1,5 × IQR): 1.076 de 10.802 intervalos son atípicos en el conjunto completo (10,0 %), y 69 de 954 en las 15 comunas (7,2 %).
+  - En las 15 comunas, eliminar los atípicos baja la media un 62,1 % y la mediana un 17,5 %.
+  - Acotar al p99 baja la media un 43,8 % y no cambia la mediana (0,0 %).
+- **Decisión propuesta:** conservar todos los intervalos; resumir con mediana y percentiles; informar la media solo junto con su versión acotada al p99; en F3, contar los atípicos por comuna.
+- **Alternativas descartadas:**
+  - Eliminar los atípicos: borra eventos reales documentados y sesga la mediana.
+  - Winsorizar los datos exportados: modifica valores originales sin un error de registro que lo justifique.
+- **Motivo:** los extremos son informes finalizados con fechas válidas, no errores de captura. La mediana es robusta frente a ellos.
+
+## D-09 · Rol y selección de las 28 variables originales; categóricas como `category`, sin one-hot
+
+- **Fecha:** 2026-11-08 · **Estado:** Propuesta (concilia el issue #7) · **Evidencia:** F2 §4.5, `docs/diccionario_variables.csv`
+- **Contexto:** la propuesta de Jairo («Depuración data 06.11.26») sugería qué columnas conservar. F2 no tenía una selección documentada por rol, y la guía de la Sumativa pide transformar según el rol de cada variable.
+- **Decisión propuesta:**
+  - Cada una de las 28 columnas originales queda con rol, perfil medido (% de nulos, valores distintos) y decisión: 10 se analizan, 6 se conservan como propuesta para F3, 11 se descartan del análisis y 1 queda como procedencia.
+  - La selección **no borra columnas** de los CSV exportados: todo se conserva para la trazabilidad.
+  - Las 6 categóricas analizadas pasan a `category`. La memoria baja un 98,4 % (de 6,93 a 0,11 MB) y los valores no cambian.
+  - No se aplica one-hot, porque no hay modelos. No se declara ninguna variable ordinal, porque ninguna tiene un orden natural.
+- **Conciliación con la propuesta de Jairo:** coincide en 25 de 28 columnas. Las 3 diferencias se resuelven con la evidencia de F2:
+  - `Estado`: explica el 100 % de las fechas faltantes y define los anulados (D-05).
+  - `Tipo Causa`: distingue la causa presunta de la definitiva (§6.12).
+  - `Causa Definitiva`: es la base de la recurrencia causal (§6.12–6.13).
+- **Motivo:** decidir columna por columna con evidencia, y conservar las propuestas de análisis de Jairo para F3 (empresa, subestación, tabla 9-3 de la NTSyCS).
