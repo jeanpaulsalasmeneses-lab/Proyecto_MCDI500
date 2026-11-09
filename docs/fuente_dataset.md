@@ -1,35 +1,39 @@
 # Procedencia y delimitación del dataset — MCDI500
-# Entendería que esta base de datos la vamos a reemplazar por las Fallas del SEN emitidas por el CEN
 
-**Fuente:** NYC 311 / NYC Open Data (organismo público municipal).
+## 1. Identificación de fuentes oficiales
 
-**Ficha oficial:** https://data.cityofnewyork.us/d/erm2-nwe9
+### Fuente primaria: Coordinador Eléctrico Nacional (CEN)
+* **Organismo:** Coordinador Eléctrico Nacional (organismo técnico e independiente encargado de coordinar la operación del Sistema Eléctrico Nacional, SEN).
+* **Portal oficial:** [CEN - Desconexiones e Intervenciones](https://www.coordinador.cl/operacion/graficos/desconexiones-e-intervenciones/)
+* **Intervalo temporal:** Enero 2024 a Septiembre 2026 (33 publicaciones mensuales consolidadas).
+* **Archivos procesados:** `data/processed/cen_fallas_2024_2026_eventos.csv` (18.019 registros únicos por falla, 40 variables) y `cen_fallas_2024_2026_publicaciones.csv`.
+* **Variables fundamentales:** `id_falla`, `Comuna`, `Zona Afectada`, `Consumo`, `Estado`, `Causa Definitiva`, `Fecha Perturbación` y `Fecha Efectiva Fin`.
 
-**Condición:** `complaint_type = 'Street Light Condition'`.
+### Fuente secundaria: Instituto Nacional de Estadísticas (INE)
+* **Organismo:** Instituto Nacional de Estadísticas de Chile.
+* **Portal oficial:** [Resultados Oficiales Censo 2024](https://censo2024.ine.gob.cl/resultados/)
+* **Criterio de selección territorial:** Selección algorítmica de las **15 comunas con mayor población censada del país**. La selección es estrictamente poblacional (demográfica), no condicionada a la cantidad de fallas reportadas.
+* **Archivo de referencia:** `data/external/ine_censo2024_poblacion_comunal.xlsx`.
 
-**Intervalo:** del 01-01-2025 al 31-10-2026.
+---
 
-**Extracción:** hasta 5000 registros por periodo (2025 y 2026), ordenados por fecha descendente. No es una muestra probabilística: las inferencias se limitan a esta selección de casos.
+## 2. Tratamiento de datos y advertencias metodológicas
 
-**Descargado el:** 2026-11-04 00:48 UTC.
+1. **Exposición operacional vs. Cortes de suministro:**
+   * La mención de una comuna en un informe del CEN documenta una **afectación o contingencia operacional** en la infraestructura de transporte o distribución.
+   * **No equivale automáticamente a un corte de suministro en clientes finales.** Los indicadores de continuidad (SAIDI/SAIFI) de la SEC y CNE requieren contabilizar clientes interrumpidos y tiempos efectivos de corte domiciliario, datos que no forman parte del reporte de eventos del CEN.
 
-**Archivo:** `data\raw\incidencias_alumbrado_2025_2026.csv`.
+2. **Tratamiento multicomuna:**
+   * La variable `Comuna` en el dataset CEN puede reportar múltiples comunas separadas por el delimitador `|` (por ejemplo, en líneas de transmisión que cruzan límites interurbanos).
+   * En la etapa F2 se construye una relación puente informe–comuna que no multiplica artificialmente el conteo nacional de fallas únicas.
 
-**Dimensiones:** 10,000 filas × 19 columnas.
+3. **Validez técnica de duraciones:**
+   * La duración se calcula únicamente a partir de informes cerrados que poseen tanto `Fecha Perturbación` como `Fecha Efectiva Fin`. Aquellos reportes con estado abierto o en investigación se analizan por separado en el perfil de completitud.
 
-**SHA-256:** `8ea54632a9e288a7b30e885bc6a68aacb1759c1f1280f0df9e3411c837d3f86f`.
+---
 
-**Campos omitidos al preparar el extracto por >60% NA:** location_type.
+## 3. Consideraciones éticas, privacidad y gobernanza
 
-**Tratamiento de datos:** no se crean registros ni se imputan valores; los campos conservados se mantienen como fueron publicados. La limpieza analítica se realizará por separado en Fase 2.
-
-**Privacidad:** no se solicitan nombres, correos, teléfonos ni direcciones postales de quienes contactaron al servicio 311. Antes de compartirlo públicamente, revisar el contenido textual de resolución.
-
-**Condiciones de uso:** verificar y citar los Términos de Uso del portal NYC Open Data y la ficha de origen.
-
-**Advertencia metodológica:** esta base refleja solicitudes de servicio, no fallas confirmadas de activos ni tiempos de reparación reales. El cierre administrativo de una solicitud no siempre equivale a una reparación.
-
-## Consultas reproducibles
-
-- https://data.cityofnewyork.us/resource/erm2-nwe9.csv?%24select=unique_key%2Ccreated_date%2Cclosed_date%2Cresolution_action_updated_date%2Cagency%2Cagency_name%2Ccomplaint_type%2Cdescriptor%2Cstatus%2Cresolution_description%2Cborough%2Ccommunity_board%2Ccity%2Cincident_zip%2Clatitude%2Clongitude%2Copen_data_channel_type%2Ccouncil_district%2Cpolice_precinct%2Clocation_type&%24where=complaint_type+%3D+%27Street+Light+Condition%27+AND+created_date+%3E%3D+%272025-01-01T00%3A00%3A00%27+AND+created_date+%3C+%272026-01-01T00%3A00%3A00%27&%24order=created_date+DESC%2Cunique_key+DESC&%24limit=5000
-- https://data.cityofnewyork.us/resource/erm2-nwe9.csv?%24select=unique_key%2Ccreated_date%2Cclosed_date%2Cresolution_action_updated_date%2Cagency%2Cagency_name%2Ccomplaint_type%2Cdescriptor%2Cstatus%2Cresolution_description%2Cborough%2Ccommunity_board%2Ccity%2Cincident_zip%2Clatitude%2Clongitude%2Copen_data_channel_type%2Ccouncil_district%2Cpolice_precinct%2Clocation_type&%24where=complaint_type+%3D+%27Street+Light+Condition%27+AND+created_date+%3E%3D+%272026-01-01T00%3A00%3A00%27+AND+created_date+%3C+%272026-11-01T00%3A00%3A00%27&%24order=created_date+DESC%2Cunique_key+DESC&%24limit=5000
+* **Naturaleza de los datos:** Son datos abiertos de infraestructura pública regulada.
+* **Privacidad:** No se procesa información personal sensible, nombres, RUTs ni domicilios particulares de consumidores.
+* **Reproducibilidad:** Los scripts y notebooks del repositorio permiten regenerar todo el procesamiento desde los archivos fuente mediante dependencias abiertas documentadas en `requirements.txt`.
