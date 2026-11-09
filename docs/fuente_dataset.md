@@ -1,39 +1,54 @@
-# Procedencia y delimitación del dataset — MCDI500
+# Procedencia de los datos — Proyecto MCDI500 · Grupo 7
 
-## 1. Identificación de fuentes oficiales
+El proyecto usa dos fuentes oficiales chilenas. Las dos se pueden descargar de nuevo y verificar con su SHA-256.
 
-### Fuente primaria: Coordinador Eléctrico Nacional (CEN)
-* **Organismo:** Coordinador Eléctrico Nacional (organismo técnico e independiente encargado de coordinar la operación del Sistema Eléctrico Nacional, SEN).
-* **Portal oficial:** [CEN - Desconexiones e Intervenciones](https://www.coordinador.cl/operacion/graficos/desconexiones-e-intervenciones/)
-* **Intervalo temporal:** Enero 2024 a Septiembre 2026 (33 publicaciones mensuales consolidadas).
-* **Archivos procesados:** `data/processed/cen_fallas_2024_2026_eventos.csv` (18.019 registros únicos por falla, 40 variables) y `cen_fallas_2024_2026_publicaciones.csv`.
-* **Variables fundamentales:** `id_falla`, `Comuna`, `Zona Afectada`, `Consumo`, `Estado`, `Causa Definitiva`, `Fecha Perturbación` y `Fecha Efectiva Fin`.
+| | Fuente 1: fallas del SEN | Fuente 2: población comunal |
+|---|---|---|
+| **Organismo** | Coordinador Eléctrico Nacional (CEN) | Instituto Nacional de Estadísticas (INE) |
+| **Conjunto** | *Desconexiones e intervenciones / informes de falla / limitaciones* (publicaciones mensuales) | Censo de Población y Vivienda 2024: *Población censada por sexo y edad en grupos quinquenales* |
+| **Página** | https://www.coordinador.cl/operacion/graficos/desconexiones-e-intervenciones/ | https://censo2024.ine.gob.cl/resultados/ |
+| **Período / corte** | Enero 2024 a septiembre 2026 (33 ZIP mensuales) | Censo 2024 (archivo publicado el 2025-12-04) |
+| **Se guarda en** | `data/raw/` (no se versiona; se descarga con un script) | `data/external/ine_censo2024_poblacion_comunal.xlsx` (versionado) |
+| **Cómo se obtiene** | `python src/descargar_cen.py` | Descarga directa (ver `data/external/README.md`) |
+| **Registro de versión** | `docs/descargas_cen.csv` (URL, bytes, SHA-256 y fecha de publicación de cada ZIP) | SHA-256 en `data/external/README.md` |
+| **Lo que se usa** | Solo el CSV `AAAA_MM_informe_fallas.csv` de cada ZIP | Hoja «2»: población censada por comuna, con código comunal |
 
-### Fuente secundaria: Instituto Nacional de Estadísticas (INE)
-* **Organismo:** Instituto Nacional de Estadísticas de Chile.
-* **Portal oficial:** [Resultados Oficiales Censo 2024](https://censo2024.ine.gob.cl/resultados/)
-* **Criterio de selección territorial:** Selección algorítmica de las **15 comunas con mayor población censada del país**. La selección es estrictamente poblacional (demográfica), no condicionada a la cantidad de fallas reportadas.
-* **Archivo de referencia:** `data/external/ine_censo2024_poblacion_comunal.xlsx`.
+## Flujo desde la fuente hasta los datos procesados
 
----
+```text
+Portal CEN ──src/descargar_cen.py──► data/raw/*.zip (33)
+                                         │
+                       src/consolidar_fallas_2024_2026.py
+                                         ▼
+                     data/processed/cen_fallas_2024_2026_{publicaciones,eventos}.csv
+                                         │
+Portal INE ──descarga──► data/external/ine_censo2024_poblacion_comunal.xlsx
+                                         │            data/reference/equivalencias_*.csv
+                                         ▼                 │
+                       F2 (normalización, homologación CEN–INE, preprocesamiento)
+                                         ▼
+                     data/processed/f2/*.csv + manifest_f2.json (SHA-256)
+                     data/processed/homologacion/*.csv
+```
 
-## 2. Tratamiento de datos y advertencias metodológicas
+## Verificación de reproducibilidad (2026-11-08)
 
-1. **Exposición operacional vs. Cortes de suministro:**
-   * La mención de una comuna en un informe del CEN documenta una **afectación o contingencia operacional** en la infraestructura de transporte o distribución.
-   * **No equivale automáticamente a un corte de suministro en clientes finales.** Los indicadores de continuidad (SAIDI/SAIFI) de la SEC y CNE requieren contabilizar clientes interrumpidos y tiempos efectivos de corte domiciliario, datos que no forman parte del reporte de eventos del CEN.
+Se descargaron de nuevo los 33 ZIP desde el portal del CEN, en Linux, y se ejecutó `src/consolidar_fallas_2024_2026.py`. Los dos consolidados reconstruidos son **idénticos en contenido** a los versionados: 18.019 registros, las mismas 34 y 40 columnas y **ninguna celda distinta**. La única diferencia está en los finales de línea (ver la decisión D-04 en `docs/decisiones.md`). El Excel del INE descargado de nuevo tiene el mismo SHA-256 que el del repo.
 
-2. **Tratamiento multicomuna:**
-   * La variable `Comuna` en el dataset CEN puede reportar múltiples comunas separadas por el delimitador `|` (por ejemplo, en líneas de transmisión que cruzan límites interurbanos).
-   * En la etapa F2 se construye una relación puente informe–comuna que no multiplica artificialmente el conteo nacional de fallas únicas.
+## Delimitación y advertencias
 
-3. **Validez técnica de duraciones:**
-   * La duración se calcula únicamente a partir de informes cerrados que poseen tanto `Fecha Perturbación` como `Fecha Efectiva Fin`. Aquellos reportes con estado abierto o en investigación se analizan por separado en el perfil de completitud.
+- **Unidad de registro:** un informe de falla (`Número` → `id_falla`). Los 18.019 informes **no son** 18.019 cortes de suministro ni eventos independientes con clientes afectados.
+- **Comuna:** el campo `Comuna` puede traer varias comunas separadas por `|`. Un informe con varias comunas genera varios **vínculos informe–comuna**, pero no nuevos informes.
+- **Población:** se usa para seleccionar las 15 comunas más pobladas y como denominador de comparación (D-06). **No representa clientes afectados.**
+- **Indicadores regulatorios:** sin datos de clientes e interrupciones efectivas no se calculan SAIDI ni SAIFI (CNE, 2024).
+- **Tratamiento:** no se crean registros ni se imputan valores. Los datos originales se conservan y las columnas derivadas se agregan aparte.
 
----
+## Historial
 
-## 3. Consideraciones éticas, privacidad y gobernanza
+Hasta el 2026-11-05 este documento describía un conjunto inicial de NYC 311 (reclamos de alumbrado público de Nueva York). Ese conjunto se descartó y se reemplazó por fuentes oficiales chilenas con información territorial (F1 §10.2; issue #1).
 
-* **Naturaleza de los datos:** Son datos abiertos de infraestructura pública regulada.
-* **Privacidad:** No se procesa información personal sensible, nombres, RUTs ni domicilios particulares de consumidores.
-* **Reproducibilidad:** Los scripts y notebooks del repositorio permiten regenerar todo el procesamiento desde los archivos fuente mediante dependencias abiertas documentadas en `requirements.txt`.
+## Referencias
+
+Coordinador Eléctrico Nacional. (s. f.). *Desconexiones e intervenciones / informes de falla / limitaciones* [Conjunto de datos]. https://www.coordinador.cl/operacion/graficos/desconexiones-e-intervenciones/
+
+Instituto Nacional de Estadísticas. (2025). *Censo de Población y Vivienda 2024: Población censada por sexo y edad en grupos quinquenales* [Conjunto de datos]. https://censo2024.ine.gob.cl/resultados/

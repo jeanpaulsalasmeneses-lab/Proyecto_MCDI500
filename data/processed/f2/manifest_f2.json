@@ -1,12 +1,12 @@
 {
     "proyecto": "Proyecto MCDI500 - Grupo 7",
     "fase": "F2 - Exploración y Preprocesamiento",
-    "objetivo": "Análisis del impacto operacional documentado de las fallas del Sistema Eléctrico Nacional sobre las 15 comunas prioritarias de Chile",
+    "objetivo": "Exposición operacional documentada de las 15 comunas más pobladas de Chile (Censo 2024) a las fallas del Sistema Eléctrico Nacional (2024-2026)",
     "fuentes": [
         "Coordinador Eléctrico Nacional",
         "Instituto Nacional de Estadísticas - Censo 2024"
     ],
-    "fecha_exportacion": "2026-11-06T20:52:16.958887-03:00",
+    "fecha_exportacion": "2026-11-08T13:00:57.765782-03:00",
     "codificacion": "utf-8-sig",
     "informes_originales": 18019,
     "asociaciones_territoriales": 23284,
@@ -25,56 +25,56 @@
             "archivo": "01_cen_documental_procesado.csv",
             "registros": 18019,
             "columnas": 51,
-            "tamano_bytes": 19844539,
-            "sha256": "cb4055af1ba1ecf0b0ed0ff815943c2b221e101c7682bf7a5906223d4e47a051",
+            "tamano_bytes": 19826519,
+            "sha256": "eb6a03bf6462ff1a1234cd8c6578b6c6f509599e155511c5b1606f7a954e1acb",
             "estado": "VALIDADO"
         },
         {
             "archivo": "02_cen_asociaciones_auditadas.csv",
             "registros": 23284,
             "columnas": 12,
-            "tamano_bytes": 2854620,
-            "sha256": "028fdbf8c05d359108667b1b44516e0d6667aef34b61434cd269c7369cc22013",
+            "tamano_bytes": 2831335,
+            "sha256": "b4f23c90b4360dd5158c9a2702639cf1d0e1bbb39f32b9508878534e60294541",
             "estado": "VALIDADO"
         },
         {
             "archivo": "03_cen_informes_prioritarios.csv",
             "registros": 1834,
             "columnas": 51,
-            "tamano_bytes": 2068337,
-            "sha256": "06ae28b95d178e2e2d69f36a5acb1716c384a5fc708a2d3e74e7c799d5c16439",
+            "tamano_bytes": 2066502,
+            "sha256": "450b5d2fd45a071f6036b23022f39c63556dbfc79f8a81a81dcc18b4cd655e10",
             "estado": "VALIDADO"
         },
         {
             "archivo": "04_cen_fallas_comunas_integrado.csv",
             "registros": 1915,
             "columnas": 41,
-            "tamano_bytes": 729282,
-            "sha256": "57507427a7262ee9ff33e6f606d6ff0af596777dd04c0246f42a9b0a6448df06",
+            "tamano_bytes": 727366,
+            "sha256": "0ef5d569837435781c796c5583423845e7c95574c89ac0beb3e4b02887636a22",
             "estado": "VALIDADO"
         },
         {
             "archivo": "05_cen_perfiles_15_comunas.csv",
             "registros": 15,
             "columnas": 20,
-            "tamano_bytes": 1940,
-            "sha256": "29394f598c2c62bb24d5b16cb3fe1075b632178040d56dd4134770d278af7bc9",
+            "tamano_bytes": 1924,
+            "sha256": "dd94bdb7163ed30fb1e9c0a42161951ec68e902d08c1c89f0de16d1cf5533deb",
             "estado": "VALIDADO"
         },
         {
             "archivo": "06_cen_recurrencia_causal_comunal.csv",
             "registros": 181,
             "columnas": 7,
-            "tamano_bytes": 12903,
-            "sha256": "37b0e708f406a96cc25ec0712aa9612cff727da7a89d4ddbc85e0db572fd2997",
+            "tamano_bytes": 12721,
+            "sha256": "b0043dacb9d635bf6e113f6d4a106fb13be6c0eebfbaa7e39331ee537ce9934b",
             "estado": "VALIDADO"
         },
         {
             "archivo": "07_cen_validaciones_tecnicas.csv",
             "registros": 40,
             "columnas": 5,
-            "tamano_bytes": 4844,
-            "sha256": "5efa267aaf710f379b978c79360b11d9b15d3668ab98ef05ee274a003af43b4b",
+            "tamano_bytes": 4803,
+            "sha256": "1e04f6f14e0a167c8249396e45e95c46e731651592c6e79bbc8c3599ea9e9ac3",
             "estado": "VALIDADO"
         }
     ]
