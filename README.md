@@ -3,7 +3,7 @@
 ## Análisis del impacto operacional documentado de las fallas del SEN sobre comunas prioritarias de Chile
 
 **Curso:** Programación para la Ciencia de Datos · Magíster en Ciencia de Datos e Inteligencia Artificial · UNAB  
-**Grupo 7:** Jairo Barraza Salazar · Javier Huamanni Barrera · Jean Salas Meneses · Pavel Chávez San Martín
+**Grupo 7:** Jairo Barraza Salazar · Javier Huamani Barrera · Jean Salas Meneses · Pavel Chávez San Martín
 
 ### Propósito y pregunta
 
