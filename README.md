@@ -3,7 +3,8 @@
 ## Exposición operacional documentada de las 15 comunas más pobladas de Chile a las fallas del SEN (2024–2026)
 
 **Curso:** Programación para la Ciencia de Datos · Magíster en Ciencia de Datos e Inteligencia Artificial · UNAB  
-**Grupo 7:** Jairo Barraza Salazar · Javier Huamanni Barrera · Jean Salas Meneses · Pavel Chávez San Martín
+**Grupo 7:** Jairo Barraza Salazar ([@jbarraza36](https://github.com/jbarraza36)) · Javier Huamani Barrera ([@jav195](https://github.com/jav195)) · Jean Paul Salas Meneses ([@jeanpaulsalasmeneses-lab](https://github.com/jeanpaulsalasmeneses-lab)) · Pavel Chávez San Martín ([@pavelchavez](https://github.com/pavelchavez))
+
 
 ### Propósito y pregunta
 
@@ -76,6 +77,7 @@ Los consolidados del CEN ya vienen en `data/processed/`, así que basta con clon
    python -m venv .venv
    .\.venv\Scripts\Activate.ps1
    python -m pip install -r requirements.txt
+   nbstripout --install
    ```
 
    **Linux / macOS (bash o zsh):**
@@ -84,6 +86,7 @@ Los consolidados del CEN ya vienen en `data/processed/`, así que basta con clon
    python3 -m venv .venv
    source .venv/bin/activate
    python -m pip install -r requirements.txt
+   nbstripout --install
    ```
 
    `pywinpty` solo se instala en Windows; en Linux y macOS pip lo omite automáticamente.
