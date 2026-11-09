@@ -60,8 +60,10 @@ INTEGRANTES = {   # nombre de autor en Git -> integrante
     "Pavel Chávez San Martín": "Pavel Chávez San Martín",
     "Girosmedia": "Pavel Chávez San Martín",
     "girosmedia": "Pavel Chávez San Martín",
+    "Javier Huamani": "Javier Huamani Barrera",
+    "jav195": "Javier Huamani Barrera",
 }
-EQUIPO = ["Jairo Barraza Salazar", "Javier Huamanni Barrera", "Jean Salas Meneses",
+EQUIPO = ["Jairo Barraza Salazar", "Javier Huamani Barrera", "Jean Salas Meneses",
           "Pavel Chávez San Martín"]
 
 

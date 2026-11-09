@@ -7,7 +7,7 @@ La rúbrica de la Sumativa 1 (criterio 5) pide **comprobar en un segundo equipo*
 | Fecha | Integrante | Sistema | Python | Commit verificado | F1 | F2 | Dependencias | SHA-256 de F2 | Observaciones |
 |---|---|---|---|---|---|---|---|---|---|
 | 2026-11-08 | Pavel Chávez | Linux (Fedora 44) | 3.13.12 | `a1cfb26` y siguientes | OK, ejecución 1→n | OK, ejecución 1→n | 106 de 106 (pywinpty se omite en Linux) | 7 de 7 coinciden | Clon limpio, sin los ZIP de `data/raw/`. Además se reconstruyeron los consolidados desde los 33 ZIP del CEN: contenido idéntico (`docs/fuente_dataset.md`). |
-| | Javier Huamanni | Windows | | | | | | | *Pendiente* |
+| 2026-11-09 | Javier Huamani Barrera | Windows (x64) | 3.12.8 | `7e20d27` y dev-javier | OK, ejecución 1→n | OK, ejecución 1→n | 107 de 107 (incluye pywinpty y nbstripout) | 7 de 7 coinciden | Verificación del ecosistema completo (Guía Parte V) en Windows con .venv. Dependencias y kernel validados. |
 
 ## Procedimiento (Windows, PowerShell)
 
