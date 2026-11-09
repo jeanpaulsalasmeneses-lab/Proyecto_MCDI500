@@ -3,7 +3,8 @@
 ## Análisis del impacto operacional documentado de las fallas del SEN sobre comunas prioritarias de Chile
 
 **Curso:** Programación para la Ciencia de Datos · Magíster en Ciencia de Datos e Inteligencia Artificial · UNAB  
-**Grupo 7:** Jairo Barraza Salazar · Javier Huamani Barrera · Jean Salas Meneses · Pavel Chávez San Martín
+**Grupo 7:** Jairo Barraza Salazar ([@jbarraza36](https://github.com/jbarraza36)) · Javier Huamani Barrera ([@jav195](https://github.com/jav195)) · Jean Paul Salas Meneses ([@jeanpaulsalasmeneses-lab](https://github.com/jeanpaulsalasmeneses-lab)) · Pavel Chávez San Martín ([@pavelchavez](https://github.com/pavelchavez))
+
 
 ### Propósito y pregunta
 
@@ -24,7 +25,7 @@ Caracterizar la **exposición operacional documentada** en las **15 comunas con 
 | Fase | Alcance | Estado |
 |---|---|---|
 | **F1** | Planteamiento territorial, objetivos, verificación de campos, pruebas y mapa conceptual | Notebook reformulado; **requiere ejecución con datos locales** |
-| **F2** | Exploración, limpieza, códigos comunales INE, tabla informe–comuna y validación | **Pendiente de implementación** |
+| **F2** | Exploración, limpieza, códigos comunales INE, tabla informe–comuna y validación | **Implementado en F2** |
 | **F3** | Indicadores comunales y comparaciones por período, consumo, causa y duración | Proyectado |
 | **F4** | Visualizaciones, informe, conclusiones y límites de inferencia | Proyectado |
 
@@ -63,6 +64,7 @@ Los consolidados del CEN ya vienen en `data/processed/`, así que basta con clon
    python -m venv .venv
    .\.venv\Scripts\Activate.ps1
    python -m pip install -r requirements.txt
+   nbstripout --install
    ```
 
    **Linux / macOS (bash o zsh):**
@@ -71,6 +73,7 @@ Los consolidados del CEN ya vienen en `data/processed/`, así que basta con clon
    python3 -m venv .venv
    source .venv/bin/activate
    python -m pip install -r requirements.txt
+   nbstripout --install
    ```
 
    `pywinpty` solo se instala en Windows; en Linux y macOS pip lo omite automáticamente.
