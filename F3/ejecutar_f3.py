@@ -10,11 +10,14 @@ import sys
 
 import pandas as pd
 
-from modulos.nucleo import NucleoAnalitico
+# El núcleo vive en src/: se importa desde la raíz del proyecto.
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from modulos.indicadores import construir_panel_integrado
+from src.nucleo import NucleoAnalitico
 
-from modulos.recorridos import (
+from src.indicadores import construir_panel_integrado
+
+from src.recorridos import (
     construir_jerarquia,
     sumar_asociaciones_recursivo,
     sumar_asociaciones_iterativo
@@ -712,7 +715,8 @@ ruta_reproducida = (
 panel.to_csv(
     ruta_reproducida,
     index=False,
-    encoding="utf-8-sig"
+    encoding="utf-8-sig",
+    lineterminator="\n"   # mismo archivo en Windows y Linux (D-04)
 )
 
 assert ruta_reproducida.is_file()

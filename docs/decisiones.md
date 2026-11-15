@@ -21,7 +21,7 @@ Cada decisión metodológica o técnica que cambie datos, resultados o la forma 
 
 ## D-02 · Homologación de comunas mediante tablas versionadas
 
-- **Fecha:** 2026-11-06 (Jean, en el código de F2) · 2026-11-08 (se pasa a archivos) · **Estado:** Propuesta (issue #11)
+- **Fecha:** 2026-11-06 (Jean, en el código de F2) · 2026-11-08 (se pasa a archivos) · **Estado:** Aceptada (issue #11; integrada a `main` y evaluada en la Sumativa 1)
 - **Contexto:** 4 nombres del CEN no calzan textualmente con el INE (156 vínculos): Llay Llay, San Vicente de Tagua Tagua, Treguaco y Paiguano.
 - **Decisión:** las equivalencias viven en `data/reference/equivalencias_comunas.csv` y `equivalencias_regiones.csv`, y F2 las lee. Una equivalencia solo se aplica si la región del INE coincide con la `Zona Afectada` del CEN. Lo que no calce se exporta como no homologado, sin asignarle comuna.
 - **Alternativas:** coincidencia aproximada automática (fuzzy matching), descartada porque podría unir comunas distintas con nombres parecidos; diccionario dentro del código, que era la versión anterior y obligaba a ejecutar el notebook para conocer las reglas.
@@ -37,14 +37,14 @@ Cada decisión metodológica o técnica que cambie datos, resultados o la forma 
 
 ## D-04 · Los CSV se guardan sin conversión de saltos de línea
 
-- **Fecha:** 2026-11-08 · **Estado:** Propuesta (PR de feedback de la Formativa)
+- **Fecha:** 2026-11-08 · **Estado:** Aceptada (PR de feedback de la Formativa; integrada a `main` y evaluada en la Sumativa 1)
 - **Contexto:** Git en Windows cambiaba `\r\n` por `\n` dentro de los CSV al hacer commit, y el SHA-256 de `manifest_f2.json` no coincidía en otro equipo.
 - **Decisión:** `.gitattributes` con `*.csv -text`, y `lineterminator="\n"` en todos los `to_csv`.
 - **Motivo:** que la prueba de ejecución en un segundo equipo dé archivos idénticos byte a byte.
 
 ## D-05 · La duración solo se calcula con informes finalizados; los anulados se excluyen
 
-- **Fecha:** 2026-11-08 · **Estado:** Propuesta (issue #10) · **Evidencia:** F2 §6.10.5
+- **Fecha:** 2026-11-08 · **Estado:** Aceptada (issue #10; integrada a `main` y evaluada en la Sumativa 1) · **Evidencia:** F2 §6.10.5
 - **Contexto:** el 40 % de los informes no tiene `Fecha Efectiva Fin`. El profe pidió analizar el patrón antes de decidir.
 - **Evidencia:** la ausencia la explica por completo el estado. Finalizados: 10.802 con fecha y 0 sin fecha. Pendientes: 0 con fecha y 6.138 sin fecha. Anulados: 3 con fecha y 1.076 sin fecha. En 2025 hay un 51 % de pendientes, por el apagón del 25-02-2025 (83,5 % de sus 218 informes prioritarios sigue pendiente). La duración es muy asimétrica: mediana de 1,6 h, promedio de 6,7 h y máximo de 1.073 h.
 - **Decisión propuesta:**
@@ -61,7 +61,7 @@ Cada decisión metodológica o técnica que cambie datos, resultados o la forma 
 
 ## D-06 · Denominador para comparar la exposición entre comunas
 
-- **Fecha:** 2026-11-08 · **Estado:** Propuesta, **requiere decisión del grupo** (issue #9) · **Evidencia:** F2 §6.13.7
+- **Fecha:** 2026-11-08 · **Estado:** Aceptada (issue #9; implementada en F3 como `frecuencia_100k_hab_anio` y validada en la retroalimentación de la Sumativa 1) · **Evidencia:** F2 §6.13.7
 - **Contexto:** el conteo de informes por comuna es absoluto. El profe pidió definir un denominador para comparar.
 - **Evidencia:** el conteo no crece con la población (Spearman = −0,27). Con la tasa por 100.000 hab-año, 10 de 15 comunas cambian de posición; Puente Alto baja del 3.º al 8.º lugar y Antofagasta es 1.ª en ambos.
 - **Decisión propuesta:**
@@ -73,11 +73,11 @@ Cada decisión metodológica o técnica que cambie datos, resultados o la forma 
   - Solo tasa: oculta que la exposición se concentra donde hay infraestructura.
   - Instalaciones o clientes por comuna: es el ideal, pero no está en las fuentes actuales.
 - **Motivo:** responde el feedback sin ocultar que el ranking depende del denominador. La población es el mismo criterio con que se eligieron las comunas y es un dato oficial; no se interpreta como clientes afectados.
-- **Pregunta abierta:** ¿la tasa es el indicador principal y el conteo el contexto, o al revés?
+- **Resolución:** la tasa es el indicador de comparación y el conteo anual se informa como contexto (F3 §7.1, panel integrado).
 
 ## D-07 · Título y pregunta analítica alineados con el criterio de selección
 
-- **Fecha:** 2026-11-08 · **Estado:** Propuesta (issue #8)
+- **Fecha:** 2026-11-08 · **Estado:** Aceptada (issue #8; integrada a `main` y evaluada en la Sumativa 1)
 - **Contexto:** el título decía «impacto» y «comunas prioritarias». El proyecto no mide impacto, y el único criterio de selección es la población. La entrega solo mostraba la pregunta metodológica del mapa.
 - **Decisión:** el título pasa a ser «Exposición operacional documentada de las 15 comunas más pobladas de Chile a las fallas del Sistema Eléctrico Nacional (2024–2026)». «Comunas prioritarias» se mantiene en el texto como término definido: designa **solo** a las 15 comunas más pobladas. Se agrega una pregunta analítica explícita (F1 §3), distinta de la pregunta metodológica del mapa (§9.1).
 - **Alternativas:** reemplazar «prioritarias» en todo F2 (cientos de apariciones en código y texto, con mucho riesgo y poco beneficio); definir prioridad con otro criterio (vulnerabilidad, criticidad), que no tiene un indicador externo verificable (F1 §4.2).
@@ -85,7 +85,7 @@ Cada decisión metodológica o técnica que cambie datos, resultados o la forma 
 
 ## D-08 · Los intervalos atípicos se conservan y la duración se resume con la mediana
 
-- **Fecha:** 2026-11-08 · **Estado:** Propuesta · **Evidencia:** F2 §6.10.6
+- **Fecha:** 2026-11-08 · **Estado:** Aceptada (integrada a `main` y evaluada en la Sumativa 1) · **Evidencia:** F2 §6.10.6
 - **Contexto:** la duración documental de los informes finalizados es muy asimétrica. La guía de la Sumativa pide diagnosticar los atípicos y comparar alternativas antes de decidir.
 - **Evidencia:**
   - Regla IQR (Q3 + 1,5 × IQR): 1.076 de 10.802 intervalos son atípicos en el conjunto completo (10,0 %), y 69 de 954 en las 15 comunas (7,2 %).
@@ -99,7 +99,7 @@ Cada decisión metodológica o técnica que cambie datos, resultados o la forma 
 
 ## D-09 · Rol y selección de las 28 variables originales; categóricas como `category`, sin one-hot
 
-- **Fecha:** 2026-11-08 · **Estado:** Propuesta (concilia el issue #7) · **Evidencia:** F2 §4.5, `docs/diccionario_variables.csv`
+- **Fecha:** 2026-11-08 · **Estado:** Aceptada (concilia el issue #7; integrada a `main` y evaluada en la Sumativa 1) · **Evidencia:** F2 §4.5, `docs/diccionario_variables.csv`
 - **Contexto:** la propuesta de Jairo («Depuración data 06.11.26») sugería qué columnas conservar. F2 no tenía una selección documentada por rol, y la guía de la Sumativa pide transformar según el rol de cada variable.
 - **Decisión propuesta:**
   - Cada una de las 28 columnas originales queda con rol, perfil medido (% de nulos, valores distintos) y decisión: 10 se analizan, 6 se conservan como propuesta para F3, 11 se descartan del análisis y 1 queda como procedencia.
@@ -111,3 +111,48 @@ Cada decisión metodológica o técnica que cambie datos, resultados o la forma 
   - `Tipo Causa`: distingue la causa presunta de la definitiva (§6.12).
   - `Causa Definitiva`: es la base de la recurrencia causal (§6.12–6.13).
 - **Motivo:** decidir columna por columna con evidencia, y conservar las propuestas de análisis de Jairo para F3 (empresa, subestación, tabla 9-3 de la NTSyCS).
+
+---
+
+# Decisiones de la Fase 3 (Sumativa 2)
+
+## D-10 · El código del núcleo vive solo en `src/`, y los notebooks lo importan
+
+- **Fecha:** 2026-11-15 · **Estado:** Propuesta (issue #31) · **Evidencia:** F3 §8.2
+- **Contexto:** las 16 funciones y clases de F3 existían dos veces: en las celdas del notebook y en una versión condensada distinta en `F3/modulos/`. La guía de la S2 pide un notebook que importe el código, sin copiarlo.
+- **Decisión:** una sola versión en `src/` (`indicadores`, `nucleo`, `recorridos`, `medicion`), tomada del notebook porque es la que produjo los resultados documentados. F3 y `ejecutar_f3.py` la importan.
+- **Efecto medido:** los 4 CSV de `F3/resultados/` son idénticos byte a byte antes y después. La celda de §3 pasó de 633 a 212 líneas.
+- **Alternativa descartada:** conservar `F3/modulos/`. Las dos versiones podían divergir sin que nadie lo notara.
+
+## D-11 · `requirements.txt` declara solo lo que importa el proyecto
+
+- **Fecha:** 2026-11-15 · **Estado:** Propuesta (issue #35)
+- **Contexto:** la retroalimentación de la S1 pide declarar «solo lo que su código importa, con versión fija». El archivo era un volcado de 107 paquetes, y `nbstripout` estaba sin versión y borraba las salidas de los notebooks.
+- **Decisión:** 9 dependencias con versión fija, y se quita `nbstripout`.
+- **Efecto medido:** con un entorno nuevo construido solo con esas 9, F1, F2 y F3 corren completos. La prueba destapó una dependencia oculta: el Spearman de F2 necesitaba `scipy`. Se calcula ahora como la correlación de los rangos, con el mismo resultado (−0,27).
+
+## D-12 · Clases solo donde el componente aprende de los datos (patrón Template Method)
+
+- **Fecha:** 2026-11-15 · **Estado:** Propuesta (issue #32) · **Evidencia:** F3 §8.4, `src/transformadores.py`
+- **Contexto:** la guía de la S2 pide clases solo para los componentes que necesitan recordar algo entre una llamada y otra.
+- **Decisión:**
+  - `HomologadorComunal`, que aprende las 346 comunas del INE y las 4 equivalencias, y `NormalizadorPoblacional`, que aprende la población, heredan de `Transformador`.
+  - `Transformador` fija con *Template Method* el algoritmo común: validar, aprender, exigir el ajuste previo y trabajar sobre una copia.
+  - Las operaciones sin estado (normalizar nombres, separar vínculos) siguen siendo funciones.
+- **Efecto medido:** el pipeline reorganizado reproduce **exactamente** el resultado de F2 (23.284 × 8, idéntico a `02_cen_asociaciones_auditadas.csv`) y la tasa del panel de F3 en las 15 comunas.
+- **Alternativas descartadas:**
+  - Convertir todo en clases: agrega estado donde no lo hay.
+  - *Strategy* u *Observer*: no hay estrategias intercambiables ni eventos que observar en este flujo. Se prefirió un patrón bien justificado a varios mencionados.
+
+## D-13 · La separación de vínculos usa la versión vectorizada
+
+- **Fecha:** 2026-11-15 · **Estado:** Propuesta · **Evidencia:** F3 §5.5
+- **Decisión:** el pipeline usa `separar_vinculos_vectorizado`, que tiene el mismo resultado que el bucle de F2.
+- **Efecto medido:** de 1,8 a 1,9 veces más rápida (≈ 145 frente a ≈ 76-80 ms) y ≈ 36 % menos memoria pico (5,3 frente a 8,3 MB), con los datos reales (18.019 informes). La complejidad es la misma, O(n·k); la mejora viene de calcular la clave solo para los 320 nombres distintos.
+
+## D-14 · Recursividad: comparativa, no estructural
+
+- **Fecha:** 2026-11-15 · **Estado:** Propuesta (issue #28, propuesta de Jairo) · **Evidencia:** F3 §2.4.4, §4 y §5.4
+- **Contexto:** la guía de la S2 indica usar recursión solo si el problema tiene un caso natural (estructuras anidadas o jerarquías de profundidad variable). Los datos del proyecto son tabulares, y la única jerarquía (región → comuna → tipo de instalación) tiene profundidad fija de 3 niveles.
+- **Decisión:** la recursión se implementa solo para compararla con la versión iterativa (§4), y el núcleo usa estrategias iterativas y vectorizadas.
+- **Efecto medido:** la versión iterativa fue más rápida en 5 de 6 escalas (§5.4), y evita depender del límite de profundidad de Python.

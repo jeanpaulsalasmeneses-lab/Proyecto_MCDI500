@@ -23,7 +23,7 @@ python -m pip install -r requirements.txt
 
 1. Abrir la carpeta en VS Code y seleccionar el kernel `.venv`.
 2. Abrir `F1/F1_Definición.ipynb` y usar **Restart Kernel and Run All Cells**. Revisar que:
-   - la celda §8.1.1 diga «107 de 107 coinciden» (en Windows se suma `pywinpty`);
+   - la celda §8.1.1 diga «9 de 9 coinciden» (todas las dependencias declaradas en `requirements.txt`);
    - el notebook termine sin errores, con la numeración de ejecución continua.
 3. Repetir con `F2/F2_Exploracion_y_Preprocesamiento.ipynb`. La celda §6.15.5 debe decir «Las huellas SHA-256 coinciden».
 4. En una terminal, comprobar que los datos procesados quedaron idénticos:

@@ -1,7 +1,7 @@
 {
     "proyecto": "MCDI500 - Grupo 7",
     "fase": "F3",
-    "python": "3.13.5",
+    "python": "3.13.12",
     "pandas": "3.1.0",
     "informes_unicos": 1834,
     "asociaciones_documentales": 1915,
@@ -9,9 +9,8 @@
     "intervalos_unicos_elegibles": 954,
     "asociaciones_temporales_elegibles": 980,
     "panel_analitico_equivalente": true,
-    "integridad_sha256_confirmada": false,
+    "integridad_sha256_confirmada": true,
     "estados_sha256": [
-        "COINCIDE",
-        "DIFIERE"
+        "COINCIDE"
     ]
 }

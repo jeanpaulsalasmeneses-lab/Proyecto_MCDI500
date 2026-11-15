@@ -3,7 +3,7 @@
 ## Exposición operacional documentada de las 15 comunas más pobladas de Chile a las fallas del SEN (2024–2026)
 
 **Curso:** Programación para la Ciencia de Datos · Magíster en Ciencia de Datos e Inteligencia Artificial · UNAB  
-**Grupo 7:** Jairo Barraza Salazar ([@jbarraza36](https://github.com/jbarraza36)) · Javier Huamani Barrera ([@jav195](https://github.com/jav195)) · Jean Paul Salas Meneses ([@jeanpaulsalasmeneses-lab](https://github.com/jeanpaulsalasmeneses-lab)) · Pavel Chávez San Martín ([@pavelchavez](https://github.com/pavelchavez))
+**Grupo 7:** Jairo Barraza Salazar ([@jbarraza36](https://github.com/jbarraza36)) · Javier Huamani Barrera ([@jav195](https://github.com/jav195)) · Jean Paul Salas Meneses ([@jeanpaulsalasmeneses-lab](https://github.com/jeanpaulsalasmeneses-lab)) · Pavel Chávez San Martín ([@Girosmedia](https://github.com/Girosmedia))
 
 
 ### Propósito y pregunta
@@ -26,7 +26,7 @@ Caracterizar la **exposición operacional documentada** en las **15 comunas con 
 |---|---|---|
 | **F1** | Planteamiento territorial, objetivos, verificación del entorno, pruebas y mapa conceptual | **Desarrollada** · corre completa con *Restart & Run All* |
 | **F2** | Obtención, exploración, limpieza, homologación INE (100 %), transformación y 40 pruebas | **Desarrollada** · exporta 7 CSV con SHA-256 a `data/processed/f2/` |
-| **F3** | Indicadores comunales y comparaciones por período, consumo, causa y duración | Proyectado |
+| **F3** | Núcleo algorítmico: código en `src/`, clases que aprenden de los datos, pipeline, eficiencia medida y equivalencia exacta con F2 | **Desarrollada** · `F3/F3_Nucleo_Algoritmico.ipynb` y `F3/ejecutar_f3.py` |
 | **F4** | Visualizaciones, informe, conclusiones y límites de inferencia | Proyectado |
 
 ### Archivos y organización
@@ -37,13 +37,22 @@ Proyecto_MCDI500/
 │   └── F1_Definición.ipynb
 ├── F2/
 │   └── F2_Exploracion_y_Preprocesamiento.ipynb
-├── src/
+├── F3/
+│   ├── F3_Nucleo_Algoritmico.ipynb  # núcleo algorítmico, POO, eficiencia; importa src/
+│   ├── ejecutar_f3.py               # ejecución independiente del núcleo (sin notebook)
+│   ├── figuras/  ·  resultados/     # salidas de F3
+├── src/                             # código del proyecto: una sola versión, los notebooks lo importan
 │   ├── descargar_cen.py             # paso 0: descarga los 33 ZIP del CEN a data/raw/
-│   ├── consolidar_fallas_2024_2026.py  # paso 1: ZIP → data/processed/
-│   └── trazabilidad.py              # entorno, versiones, commit y semilla (lo usan F1 y F2)
+│   ├── consolidar_fallas_2024_2026.py  # paso 1: ZIP → data/processed/ (funciones + main)
+│   ├── trazabilidad.py              # entorno, versiones, commit y semilla (F1, F2 y F3)
+│   ├── territorio.py                # normalización de comunas, separación de vínculos, maestro INE
+│   ├── transformadores.py           # Transformador (abstracta), HomologadorComunal, NormalizadorPoblacional
+│   ├── pipeline.py                  # Pipeline y ejecutar(): flujo completo en una llamada
+│   ├── indicadores.py · nucleo.py · recorridos.py · medicion.py  # núcleo de F3
+├── tests/                           # pruebas: python -m unittest discover tests
 ├── docs/
 │   ├── fuente_dataset.md            # procedencia de las fuentes CEN e INE
-│   ├── decisiones.md                # registro de decisiones (D-01 a D-09)
+│   ├── decisiones.md                # registro de decisiones (D-01 a D-14)
 │   ├── diccionario_variables.csv    # rol y decisión de las 28 variables originales
 │   ├── verificacion_entorno.md      # registro de ejecuciones en un segundo equipo
 │   ├── descargas_cen.csv            # URL, SHA-256 y fecha de cada ZIP descargado
@@ -60,7 +69,8 @@ Proyecto_MCDI500/
 │       ├── cen_fallas_2024_2026_publicaciones.csv  # todas las filas publicadas
 │       ├── f2/                      # salidas de F2 + manifest_f2.json (SHA-256)
 │       └── homologacion/            # nombres homologados por equivalencia / no homologados
-├── requirements.txt
+├── requirements.txt                 # 9 dependencias del proyecto, con versión fija
+├── .mailmap                         # una identidad de Git por integrante
 └── README.md
 ```
 
@@ -77,7 +87,6 @@ Los consolidados del CEN ya vienen en `data/processed/`, así que basta con clon
    python -m venv .venv
    .\.venv\Scripts\Activate.ps1
    python -m pip install -r requirements.txt
-   nbstripout --install
    ```
 
    **Linux / macOS (bash o zsh):**
@@ -86,14 +95,22 @@ Los consolidados del CEN ya vienen en `data/processed/`, así que basta con clon
    python3 -m venv .venv
    source .venv/bin/activate
    python -m pip install -r requirements.txt
-   nbstripout --install
    ```
 
-   `pywinpty` solo se instala en Windows; en Linux y macOS pip lo omite automáticamente.
+   `requirements.txt` declara solo las librerías que importa el proyecto, con versión fija. pip resuelve sus dependencias, incluidas las propias de cada sistema operativo.
+
+   > Los notebooks se versionan **con sus salidas**, porque la entrega exige notebooks ejecutados. No usar `nbstripout`: si se instaló antes, desactivarlo con `nbstripout --uninstall`.
 
 3. Abrir `F1/F1_Definición.ipynb`, seleccionar el kernel `.venv` y usar **Restart Kernel and Run All Cells**. La figura del mapa conceptual se genera en `docs/`.
-4. Repetir con `F2/F2_Exploracion_y_Preprocesamiento.ipynb`.
-5. *(Opcional)* Reconstruir los consolidados **desde la fuente original**:
+4. Repetir con `F2/F2_Exploracion_y_Preprocesamiento.ipynb` y después con `F3/F3_Nucleo_Algoritmico.ipynb`. F3 importa el núcleo desde `src/` y, en su §8.4, verifica que el pipeline reorganizado reproduce exactamente los resultados de F2.
+5. Ejecutar el núcleo de F3 sin el notebook, y las pruebas:
+
+   ```bash
+   python F3/ejecutar_f3.py                 # reproduce el panel de F3 y verifica sus SHA-256
+   python -m unittest discover tests -v     # 35 pruebas: casos normales, límite y excepciones
+   ```
+
+6. *(Opcional)* Reconstruir los consolidados **desde la fuente original**:
 
    ```bash
    python src/descargar_cen.py                 # 33 ZIP (~80 MB) → data/raw/ y docs/descargas_cen.csv
