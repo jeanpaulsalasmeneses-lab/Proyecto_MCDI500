@@ -1,0 +1,547 @@
+# ==========================================================
+# FASE 3 - EJECUCIÓN INDEPENDIENTE
+# PROYECTO MCDI500 - GRUPO 7
+# ==========================================================
+
+from pathlib import Path
+import hashlib
+import json
+import sys
+
+import pandas as pd
+
+from modulos.nucleo import NucleoAnalitico
+
+from modulos.indicadores import construir_panel_integrado
+
+from modulos.recorridos import (
+    construir_jerarquia,
+    sumar_asociaciones_recursivo,
+    sumar_asociaciones_iterativo
+)
+
+
+# ==========================================================
+# 1. LOCALIZAR DIRECTORIOS
+# ==========================================================
+
+CARPETA_F3 = Path(__file__).resolve().parent
+
+RAIZ = CARPETA_F3.parent
+
+CARPETA_DATOS = RAIZ / "data" / "processed" / "f2"
+
+CARPETA_RESULTADOS = CARPETA_F3 / "resultados"
+
+CARPETA_RESULTADOS.mkdir(
+    parents=True,
+    exist_ok=True
+)
+
+
+# ==========================================================
+# 2. IDENTIFICAR ARCHIVOS DE ENTRADA
+# ==========================================================
+
+archivos = {
+
+    "informes":
+        "03_cen_informes_prioritarios.csv",
+
+    "asociaciones":
+        "04_cen_fallas_comunas_integrado.csv",
+
+    "comunas":
+        "05_cen_perfiles_15_comunas.csv"
+}
+
+
+# ==========================================================
+# 3. FUNCIÓN DE LECTURA
+# ==========================================================
+
+def cargar_csv(nombre):
+
+    ruta = CARPETA_DATOS / nombre
+
+    if not ruta.is_file():
+
+        raise FileNotFoundError(
+            f"No se encontró: {ruta}"
+        )
+
+    encabezado = pd.read_csv(
+        ruta,
+        encoding="utf-8-sig",
+        nrows=0
+    )
+
+    tipos = {
+        columna: "string"
+        for columna in [
+            "id_falla",
+            "codigo_comuna"
+        ]
+        if columna in encabezado.columns
+    }
+
+    return pd.read_csv(
+        ruta,
+        encoding="utf-8-sig",
+        dtype=tipos,
+        low_memory=False
+    )
+
+
+# ==========================================================
+# 4. COMPROBAR HUELLAS DE ARCHIVOS F2
+# ==========================================================
+
+ruta_manifiesto = CARPETA_DATOS / "manifest_f2.json"
+
+if ruta_manifiesto.exists():
+
+    manifiesto = json.loads(
+        ruta_manifiesto.read_text(
+            encoding="utf-8"
+        )
+    )
+
+    registros = {
+        elemento["archivo"]: elemento
+        for elemento in manifiesto["archivos"]
+    }
+
+    for nombre in archivos.values():
+
+        if nombre not in registros:
+
+            raise ValueError(
+                f"Archivo ausente del manifiesto: {nombre}"
+            )
+
+        ruta = CARPETA_DATOS / nombre
+
+        huella = hashlib.sha256(
+            ruta.read_bytes()
+        ).hexdigest()
+
+        assert huella == registros[nombre]["sha256"], (
+            f"Huella SHA-256 inconsistente: {nombre}"
+        )
+
+    print("[OK] Integridad SHA-256 de F2 verificada.")
+
+
+# ==========================================================
+# 5. CARGAR INFORMACIÓN
+# ==========================================================
+
+informes = cargar_csv(
+    archivos["informes"]
+)
+
+asociaciones = cargar_csv(
+    archivos["asociaciones"]
+)
+
+comunas = cargar_csv(
+    archivos["comunas"]
+)
+
+
+# ==========================================================
+# 6. VERIFICAR DIMENSIONES
+# ==========================================================
+
+assert len(informes) == 1834
+
+assert len(asociaciones) == 1915
+
+assert len(comunas) == 15
+
+assert informes["id_falla"].is_unique
+
+assert comunas["codigo_comuna"].is_unique
+
+assert not asociaciones.duplicated(
+    ["id_falla", "codigo_comuna"]
+).any()
+
+print("[OK] Archivos de F2 cargados correctamente.")
+
+
+# ==========================================================
+# 7. RECONSTRUIR VARIABLES TEMPORALES
+# ==========================================================
+
+columnas_temporales = [
+    "id_falla",
+    "estado_normalizado",
+    "fecha_termino_dt",
+    "intervalo_documental_horas",
+    "validacion_temporal"
+]
+
+faltantes = (
+    set(columnas_temporales) - set(informes.columns)
+)
+
+if faltantes:
+
+    raise ValueError(
+        f"Faltan variables temporales: {faltantes}"
+    )
+
+temporal = informes[
+    columnas_temporales
+].copy()
+
+temporal["estado_analisis"] = (
+    temporal["estado_normalizado"]
+    .astype("string")
+    .str.strip()
+    .str.upper()
+)
+
+temporal["intervalo_horas"] = pd.to_numeric(
+    temporal["intervalo_documental_horas"],
+    errors="coerce"
+)
+
+temporal["fecha_fin_disponible"] = (
+    pd.to_datetime(
+        temporal["fecha_termino_dt"],
+        errors="coerce",
+        format="mixed"
+    ).notna()
+)
+
+temporal["intervalo_elegible"] = (
+    temporal["estado_analisis"].eq("FINALIZADO")
+    &
+    temporal["validacion_temporal"].eq(
+        "INTERVALO_NO_NEGATIVO"
+    )
+    &
+    temporal["fecha_fin_disponible"]
+    &
+    temporal["intervalo_horas"].ge(0)
+).fillna(False)
+
+assert int(
+    temporal["intervalo_elegible"].sum()
+) == 954
+
+print("[OK] Intervalos documentales reconstruidos.")
+
+
+# ==========================================================
+# 8. RECONSTRUIR ASOCIACIONES TEMPORALES
+# ==========================================================
+
+tiempos = (
+    asociaciones[
+        [
+            "id_falla",
+            "codigo_comuna"
+        ]
+    ]
+    .merge(
+        temporal[
+            [
+                "id_falla",
+                "intervalo_horas",
+                "intervalo_elegible"
+            ]
+        ],
+        on="id_falla",
+        how="left",
+        validate="many_to_one"
+    )
+)
+
+assert len(tiempos) == 1915
+
+assert int(
+    tiempos["intervalo_elegible"].sum()
+) == 980
+
+print("[OK] Asociaciones temporales verificadas.")
+
+
+# ==========================================================
+# 9. INSTANCIAR NÚCLEO MODULAR
+# ==========================================================
+
+nucleo = NucleoAnalitico(
+    asociaciones=asociaciones,
+    comunas=comunas,
+    tiempos=tiempos,
+    meses_observados=33
+)
+
+
+# ==========================================================
+# 10. EJECUTAR DIMENSIONES ANALÍTICAS
+# ==========================================================
+
+resultados = nucleo.ejecutar()
+
+frecuencia = resultados["frecuencia"]
+
+recurrencia = resultados["recurrencia"]
+
+duracion = resultados["duracion"]
+
+assert len(frecuencia) == 15
+
+assert len(duracion) == 15
+
+print("[OK] Núcleo orientado a objetos ejecutado.")
+
+
+# ==========================================================
+# 11. VERIFICAR ALGORITMOS JERÁRQUICOS
+# ==========================================================
+
+columnas_jerarquicas = [
+    "id_falla",
+    "codigo_comuna",
+    "tipo_instalacion"
+]
+
+columnas_territoriales = [
+    "codigo_comuna",
+    "region_oficial"
+]
+
+jerarquico = (
+    asociaciones[
+        columnas_jerarquicas
+    ]
+    .merge(
+        comunas[
+            columnas_territoriales
+        ],
+        on="codigo_comuna",
+        how="left",
+        validate="many_to_one"
+    )
+)
+
+jerarquico["tipo_instalacion"] = (
+    jerarquico["tipo_instalacion"]
+    .astype("string")
+    .str.strip()
+    .fillna("SIN_DATO")
+)
+
+jerarquico.loc[
+    jerarquico["tipo_instalacion"].eq(""),
+    "tipo_instalacion"
+] = "SIN_DATO"
+
+assert jerarquico[
+    "region_oficial"
+].notna().all()
+
+agrupado = (
+    jerarquico
+    .groupby(
+        [
+            "region_oficial",
+            "codigo_comuna",
+            "tipo_instalacion"
+        ],
+        as_index=False
+    )
+    .agg(
+        asociaciones=("id_falla", "size")
+    )
+)
+
+arbol = construir_jerarquia(
+    agrupado
+)
+
+resultado_recursivo = (
+    sumar_asociaciones_recursivo(arbol)
+)
+
+resultado_iterativo = (
+    sumar_asociaciones_iterativo(arbol)
+)
+
+assert resultado_recursivo == 1915
+
+assert resultado_iterativo == 1915
+
+print("[OK] Algoritmos recursivo e iterativo equivalentes.")
+
+
+# ==========================================================
+# 12. RECONSTRUIR PANEL INTEGRADO
+# ==========================================================
+
+panel = construir_panel_integrado(
+    frecuencia=frecuencia,
+    recurrencia=recurrencia,
+    duracion=duracion,
+    asociaciones=asociaciones
+)
+
+assert len(panel) == 15
+
+assert panel["codigo_comuna"].is_unique
+
+assert int(
+    panel["asociaciones_documentales"].sum()
+) == 1915
+
+assert int(
+    panel["informes_validos"].sum()
+) == 980
+
+print("[OK] Panel de las 15 comunas reconstruido.")
+
+
+# ==========================================================
+# 13. COMPARAR CON PANEL ORIGINAL DE F3
+# ==========================================================
+
+ruta_original = (
+    CARPETA_RESULTADOS
+    / "F3_701_Panel_Integrado_Comunal.csv"
+)
+
+if not ruta_original.is_file():
+
+    raise FileNotFoundError(
+        "No se encontró el panel del apartado 7.1."
+    )
+
+panel_original = pd.read_csv(
+    ruta_original,
+    encoding="utf-8-sig",
+    dtype={"codigo_comuna": "string"}
+)
+
+# Comparar sin alterar el archivo original.
+
+panel_comparacion = panel.copy()
+
+panel_comparacion["codigo_comuna"] = (
+    panel_comparacion["codigo_comuna"]
+    .astype("string")
+)
+
+columnas = list(panel_original.columns)
+
+assert set(columnas) == set(
+    panel_comparacion.columns
+)
+
+panel_comparacion = panel_comparacion[
+    columnas
+]
+
+pd.testing.assert_frame_equal(
+    panel_comparacion.reset_index(drop=True),
+    panel_original.reset_index(drop=True),
+    check_dtype=False,
+    check_exact=False,
+    rtol=1e-9,
+    atol=1e-8
+)
+
+print("[OK] Panel reproducido coincide con F3/7.1.")
+
+
+# ==========================================================
+# 14. EXPORTAR PANEL REPRODUCIDO
+# ==========================================================
+
+ruta_reproducida = (
+    CARPETA_RESULTADOS
+    / "F3_803_Panel_Reproducido.csv"
+)
+
+panel.to_csv(
+    ruta_reproducida,
+    index=False,
+    encoding="utf-8-sig"
+)
+
+assert ruta_reproducida.is_file()
+
+
+# ==========================================================
+# 15. REGISTRAR ENTORNO COMPUTACIONAL
+# ==========================================================
+
+entorno = {
+    "proyecto": "MCDI500 - Grupo 7",
+    "fase": "F3",
+    "python": sys.version.split()[0],
+    "pandas": pd.__version__,
+    "informes": len(informes),
+    "asociaciones": len(asociaciones),
+    "comunas": len(comunas),
+    "intervalos_unicos": int(
+        temporal["intervalo_elegible"].sum()
+    ),
+    "asociaciones_temporales": int(
+        tiempos["intervalo_elegible"].sum()
+    ),
+    "panel_equivalente": True
+}
+
+ruta_entorno = (
+    CARPETA_RESULTADOS
+    / "F3_803_Entorno_Reproducibilidad.json"
+)
+
+ruta_entorno.write_text(
+    json.dumps(
+        entorno,
+        ensure_ascii=False,
+        indent=4
+    ),
+    encoding="utf-8"
+)
+
+
+# ==========================================================
+# 16. PRESENTAR RESULTADOS
+# ==========================================================
+
+print()
+print("=" * 65)
+print("FASE 3 - REPRODUCIBILIDAD INDEPENDIENTE")
+print("=" * 65)
+
+print("Informes únicos:", len(informes))
+
+print("Asociaciones documentales:", len(asociaciones))
+
+print("Comunas:", len(comunas))
+
+print(
+    "Informes con intervalos elegibles:",
+    int(temporal["intervalo_elegible"].sum())
+)
+
+print(
+    "Asociaciones temporales elegibles:",
+    int(tiempos["intervalo_elegible"].sum())
+)
+
+print()
+print("[OK] Datos cargados desde F2.")
+print("[OK] Módulos Python independientes ejecutados.")
+print("[OK] Variables temporales reconstruidas.")
+print("[OK] Algoritmos jerárquicos validados.")
+print("[OK] Indicadores analíticos reproducidos.")
+print("[OK] Panel integrado equivalente.")
+print("[OK] Reproducibilidad del núcleo verificada.")
