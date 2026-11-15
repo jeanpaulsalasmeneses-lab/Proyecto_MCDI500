@@ -1,39 +1,69 @@
+"""
+Núcleo orientado a objetos de la Fase 3.
+
+- FuenteDatos (abstracta) -> FuenteCEN y FuenteINE: herencia y polimorfismo
+  (cada fuente implementa validar() y tipo_fuente()).
+- AnalizadorDuracion y NucleoAnalitico: encapsulan los datos y coordinan los
+  indicadores de src/indicadores.py.
+"""
 
 from abc import ABC, abstractmethod
+
 import pandas as pd
 
 from .indicadores import (
-    verificar_columnas,
+    calcular_duracion_comunal,
     calcular_frecuencia_comunal,
     calcular_recurrencia_comunal,
-    calcular_duracion_comunal
+    verificar_columnas,
 )
 
 
 class FuenteDatos(ABC):
-    """Clase abstracta de gestión de datos."""
+    """
+    Clase base abstracta para gestionar conjuntos
+    de datos previamente procesados.
+    """
 
     def __init__(self, datos):
 
         if not isinstance(datos, pd.DataFrame):
-            raise TypeError("Se requiere un DataFrame.")
+            raise TypeError(
+                "La fuente debe recibir un DataFrame."
+            )
+
+        # Encapsulamiento del conjunto de datos.
 
         self.__datos = datos.copy(deep=True)
 
     def obtener_datos(self):
+        """
+        Devuelve una copia para evitar
+        modificaciones externas.
+        """
+
         return self.__datos.copy(deep=True)
 
     @abstractmethod
     def validar(self):
+        """
+        Verifica la integridad de la fuente.
+        """
         pass
 
     @abstractmethod
     def tipo_fuente(self):
+        """
+        Identifica el origen de los datos.
+        """
         pass
 
 
 class FuenteCEN(FuenteDatos):
-    """Gestiona asociaciones documentales CEN."""
+    """
+    Gestiona las asociaciones documentales
+    provenientes del CEN.
+    """
 
     def validar(self):
 
@@ -53,12 +83,18 @@ class FuenteCEN(FuenteDatos):
         if datos[
             ["id_falla", "codigo_comuna"]
         ].isna().any().any():
-            raise ValueError("Identificadores CEN faltantes.")
+
+            raise ValueError(
+                "Existen identificadores CEN faltantes."
+            )
 
         if datos.duplicated(
             ["id_falla", "codigo_comuna"]
         ).any():
-            raise ValueError("Asociaciones CEN duplicadas.")
+
+            raise ValueError(
+                "Existen asociaciones CEN duplicadas."
+            )
 
         return True
 
@@ -67,7 +103,10 @@ class FuenteCEN(FuenteDatos):
 
 
 class FuenteINE(FuenteDatos):
-    """Gestiona datos territoriales INE."""
+    """
+    Gestiona información territorial y
+    población censada.
+    """
 
     def validar(self):
 
@@ -89,16 +128,22 @@ class FuenteINE(FuenteDatos):
         )
 
         if datos["codigo_comuna"].isna().any():
-            raise ValueError("Códigos comunales faltantes.")
+
+            raise ValueError(
+                "Existen códigos comunales faltantes."
+            )
 
         if datos["codigo_comuna"].duplicated().any():
-            raise ValueError("Comunas duplicadas.")
 
-        if (
-            poblacion.isna().any()
-            or poblacion.le(0).any()
-        ):
-            raise ValueError("Población inválida.")
+            raise ValueError(
+                "Existen comunas duplicadas."
+            )
+
+        if poblacion.isna().any() or poblacion.le(0).any():
+
+            raise ValueError(
+                "La población censada no es válida."
+            )
 
         return True
 
@@ -107,11 +152,18 @@ class FuenteINE(FuenteDatos):
 
 
 class AnalizadorDuracion:
-    """Analiza intervalos documentales elegibles."""
+    """
+    Gestiona el análisis de intervalos
+    documentales de falla.
+
+    Reutiliza la función estructurada
+    previamente validada.
+    """
 
     def __init__(self, tiempos, comunas):
 
         self.__tiempos = tiempos.copy(deep=True)
+
         self.__comunas = comunas.copy(deep=True)
 
     def calcular(self):
@@ -134,7 +186,10 @@ class AnalizadorDuracion:
 
 
 class NucleoAnalitico:
-    """Integra los componentes analíticos."""
+    """
+    Integra las fuentes de datos y los
+    principales analizadores del proyecto.
+    """
 
     def __init__(
         self,
@@ -145,11 +200,21 @@ class NucleoAnalitico:
     ):
 
         if meses_observados <= 0:
-            raise ValueError("Periodo inválido.")
+            raise ValueError(
+                "El período debe ser positivo."
+            )
 
-        self.__fuente_cen = FuenteCEN(asociaciones)
+        # Composición de las fuentes.
 
-        self.__fuente_ine = FuenteINE(comunas)
+        self.__fuente_cen = FuenteCEN(
+            asociaciones
+        )
+
+        self.__fuente_ine = FuenteINE(
+            comunas
+        )
+
+        # Composición del analizador temporal.
 
         self.__analizador_duracion = AnalizadorDuracion(
             tiempos,
@@ -162,10 +227,13 @@ class NucleoAnalitico:
 
     def validar_fuentes(self):
 
-        for fuente in [
+        fuentes = [
             self.__fuente_cen,
             self.__fuente_ine
-        ]:
+        ]
+
+        for fuente in fuentes:
+
             fuente.validar()
 
         return True
@@ -190,6 +258,9 @@ class NucleoAnalitico:
         return self.__analizador_duracion.calcular()
 
     def ejecutar(self):
+        """
+        Ejecuta las tres dimensiones analíticas.
+        """
 
         return {
             "frecuencia": self.analizar_frecuencia(),
