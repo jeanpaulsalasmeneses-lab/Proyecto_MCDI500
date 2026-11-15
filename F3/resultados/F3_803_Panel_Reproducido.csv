@@ -1,0 +1,16 @@
+﻿codigo_comuna,comuna_oficial,poblacion_2024,informes_no_anulados,frecuencia_100k_hab_anio,asociaciones_documentales,causa_mas_recurrente,informes_causa_principal,porcentaje_causa_principal,informes_validos,mediana_horas,percentil_75_horas,cobertura_temporal_pct
+02101,Antofagasta,401096.0,503,45.6,547,Desconexión debido a falla en instalaciones de terceros.,118,21.57,307,2.05,5.466666666666667,56.12
+15101,Arica,241653.0,161,24.23,180,Balckout del sistema,14,7.78,98,0.55,1.7125,54.44
+06101,Rancagua,257744.0,141,19.89,148,Desconexión debido a falla en instalaciones de terceros.,27,18.24,78,1.275,3.625,52.7
+04102,Coquimbo,263719.0,120,16.55,128,Desconexión debido a falla en instalaciones de terceros.,22,17.19,77,1.3666666666666667,6.116666666666666,60.16
+04101,La Serena,250141.0,101,14.68,106,Balckout del sistema,9,8.49,41,1.3666666666666667,4.783333333333333,38.68
+09101,Temuco,292518.0,101,12.56,107,Desconexión debido a falla en instalaciones de terceros.,26,24.3,61,0.3,3.8833333333333333,57.01
+05101,Valparaíso,284938.0,97,12.38,105,Balckout del sistema,15,14.29,40,3.4749999999999996,6.620833333333334,38.1
+13201,Puente Alto,568086.0,150,9.6,157,Desconexión debido a falla en instalaciones de terceros.,10,6.37,84,2.85,4.85,53.5
+13401,San Bernardo,306371.0,72,8.55,75,Baja frecuencia,5,6.67,36,0.7916666666666667,3.3375000000000004,48.0
+13110,La Florida,374836.0,82,7.95,88,Balckout del sistema,6,6.82,53,3.066666666666667,6.433333333333334,60.23
+05109,Viña del Mar,334871.0,67,7.28,68,Balckout del sistema,6,8.82,21,1.6666666666666667,3.033333333333333,30.88
+10101,Puerto Montt,277040.0,54,7.09,59,Baja frecuencia,16,27.12,30,0.725,1.0875,50.85
+13101,Santiago,438856.0,65,5.39,73,Baja frecuencia,8,10.96,32,2.5250000000000004,6.141666666666667,43.84
+13114,Las Condes,296134.0,35,4.3,38,Baja frecuencia,4,10.53,9,2.0,3.9166666666666665,23.68
+13119,Maipú,503635.0,35,2.53,36,Baja frecuencia,5,13.89,13,1.5,1.7833333333333334,36.11

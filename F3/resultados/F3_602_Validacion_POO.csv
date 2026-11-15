@@ -1,0 +1,14 @@
+﻿prueba,categoria,estado,detalle
+Herencia y polimorfismo,Normal,APROBADA,Comportamiento esperado
+Equivalencia estructurada y POO,Normal,APROBADA,Comportamiento esperado
+Encapsulamiento de datos,Normal,APROBADA,Comportamiento esperado
+Integridad documental y temporal,Normal,APROBADA,Comportamiento esperado
+Ausencia de intervalos elegibles,Límite,APROBADA,Comportamiento esperado
+Comuna sin asociaciones,Límite,APROBADA,Comportamiento esperado
+Población negativa,Excepción,APROBADA,Comportamiento esperado
+Asociaciones duplicadas,Excepción,APROBADA,Comportamiento esperado
+Columna documental faltante,Excepción,APROBADA,Comportamiento esperado
+Intervalo documental negativo,Excepción,APROBADA,Comportamiento esperado
+Período de referencia inválido,Excepción,APROBADA,Comportamiento esperado
+Cantidad de recurrencias inválida,Excepción,APROBADA,Comportamiento esperado
+Instanciación de clase abstracta,Excepción,APROBADA,Comportamiento esperado

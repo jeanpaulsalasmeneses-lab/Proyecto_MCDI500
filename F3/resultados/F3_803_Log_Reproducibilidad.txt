@@ -1,0 +1,45 @@
+FASE 3 - REPRODUCIBILIDAD
+
+Intérprete: c:\Users\jeanp\OneDrive\00. MAGISTER CIA\M1_Programación para la Ciencia de Datos\Proyecto_MCDI500\.venv\Scripts\python.exe
+Código de salida: 0
+
+SALIDA ESTÁNDAR
+[SHA-256] 03_cen_informes_prioritarios.csv: COINCIDE
+[SHA-256] 04_cen_fallas_comunas_integrado.csv: DIFIERE
+[SHA-256] 05_cen_perfiles_15_comunas.csv: DIFIERE
+[ADVERTENCIA] La integridad binaria de F2 presenta diferencias o referencias no verificables.
+[INFO] Se continuará con la validación independiente de los datos y resultados.
+[INFO] La discrepancia queda registrada para su revisión posterior.
+[OK] Integridad documental verificada.
+[OK] 1.834 informes, 1.915 asociaciones y 15 comunas.
+[OK] 954 informes únicos con intervalos elegibles.
+[OK] 980 asociaciones temporales elegibles.
+[OK] Frecuencia documental reproducida.
+[OK] Recurrencia causal reproducida.
+[OK] Duración documental reproducida.
+[OK] Recursividad e iteración: 1.915 asociaciones.
+[OK] Panel analítico de 15 comunas reconstruido.
+[OK] Panel reproducido equivalente al resultado del apartado 7.1.
+
+=================================================================
+FASE 3 - REPRODUCIBILIDAD INDEPENDIENTE
+=================================================================
+Informes únicos: 1834
+Asociaciones documentales: 1915
+Comunas: 15
+Informes con intervalos elegibles: 954
+Asociaciones temporales elegibles: 980
+
+[OK] Datos cargados directamente desde F2.
+[OK] Módulos independientes ejecutados.
+[OK] Variables temporales reconstruidas.
+[OK] Algoritmos jerárquicos verificados.
+[OK] Indicadores analíticos reproducidos.
+[OK] Panel integrado equivalente.
+[PENDIENTE] Aclarar diferencias SHA-256 registradas en la auditoría.
+
+[OK] Reproducibilidad funcional del núcleo verificada.
+
+
+MENSAJES Y ERRORES
+

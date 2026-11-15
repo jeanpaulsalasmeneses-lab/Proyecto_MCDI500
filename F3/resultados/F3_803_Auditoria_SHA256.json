@@ -1,0 +1,20 @@
+[
+    {
+        "archivo": "03_cen_informes_prioritarios.csv",
+        "sha256_manifiesto": "450b5d2fd45a071f6036b23022f39c63556dbfc79f8a81a81dcc18b4cd655e10",
+        "sha256_actual": "450b5d2fd45a071f6036b23022f39c63556dbfc79f8a81a81dcc18b4cd655e10",
+        "estado": "COINCIDE"
+    },
+    {
+        "archivo": "04_cen_fallas_comunas_integrado.csv",
+        "sha256_manifiesto": "0ef5d569837435781c796c5583423845e7c95574c89ac0beb3e4b02887636a22",
+        "sha256_actual": "57507427a7262ee9ff33e6f606d6ff0af596777dd04c0246f42a9b0a6448df06",
+        "estado": "DIFIERE"
+    },
+    {
+        "archivo": "05_cen_perfiles_15_comunas.csv",
+        "sha256_manifiesto": "dd94bdb7163ed30fb1e9c0a42161951ec68e902d08c1c89f0de16d1cf5533deb",
+        "sha256_actual": "29394f598c2c62bb24d5b16cb3fe1075b632178040d56dd4134770d278af7bc9",
+        "estado": "DIFIERE"
+    }
+]

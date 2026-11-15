@@ -1,0 +1,16 @@
+﻿prueba,categoria,estado,detalle
+Conservación de registros,Integridad documental,APROBADA,Resultado consistente
+Unicidad documental y territorial,Integridad documental,APROBADA,Resultado consistente
+Correspondencia CEN-INE,Integridad territorial,APROBADA,Resultado consistente
+Población comunal válida,Integridad territorial,APROBADA,Resultado consistente
+Conteos documentales independientes,Consistencia analítica,APROBADA,Resultado consistente
+Frecuencia poblacional normalizada,Consistencia analítica,APROBADA,Resultado consistente
+Elegibilidad de intervalos documentales,Consistencia temporal,APROBADA,Resultado consistente
+Medianas y percentiles documentales,Consistencia temporal,APROBADA,Resultado consistente
+Cobertura temporal por comuna,Consistencia temporal,APROBADA,Resultado consistente
+Rangos admisibles de indicadores,Consistencia analítica,APROBADA,Resultado consistente
+Equivalencia recursiva e iterativa,Equivalencia algorítmica,APROBADA,Resultado consistente
+Equivalencia programación estructurada-POO,Equivalencia algorítmica,APROBADA,Resultado consistente
+Reejecución determinista del núcleo,Reproducibilidad,APROBADA,Resultado consistente
+Conservación del panel integrado,Integridad documental,APROBADA,Resultado consistente
+Integridad de benchmarks,Eficiencia algorítmica,APROBADA,Resultado consistente
