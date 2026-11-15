@@ -712,7 +712,8 @@ ruta_reproducida = (
 panel.to_csv(
     ruta_reproducida,
     index=False,
-    encoding="utf-8-sig"
+    encoding="utf-8-sig",
+    lineterminator="\n"   # mismo archivo en Windows y Linux (D-04)
 )
 
 assert ruta_reproducida.is_file()
