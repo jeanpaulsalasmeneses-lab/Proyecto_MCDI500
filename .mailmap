@@ -1,0 +1,7 @@
+# Unifica las identidades de Git de cada integrante (git shortlog, git log --use-mailmap).
+# Formato: Nombre canónico <correo con que se hicieron los commits>
+# No reescribe el historial: solo cambia cómo Git muestra al autor.
+Jean Salas Meneses <jeanpaulsalasmeneses@gmail.com>
+Jairo Barraza Salazar <jbarrazas@yahoo.com>
+Javier Huamani Barrera <javierhbr195@gmail.com>
+Pavel Chávez San Martín <87590726+Girosmedia@users.noreply.github.com>
