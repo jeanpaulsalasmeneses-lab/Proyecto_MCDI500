@@ -77,7 +77,6 @@ Los consolidados del CEN ya vienen en `data/processed/`, así que basta con clon
    python -m venv .venv
    .\.venv\Scripts\Activate.ps1
    python -m pip install -r requirements.txt
-   nbstripout --install
    ```
 
    **Linux / macOS (bash o zsh):**
@@ -86,10 +85,11 @@ Los consolidados del CEN ya vienen en `data/processed/`, así que basta con clon
    python3 -m venv .venv
    source .venv/bin/activate
    python -m pip install -r requirements.txt
-   nbstripout --install
    ```
 
-   `pywinpty` solo se instala en Windows; en Linux y macOS pip lo omite automáticamente.
+   `requirements.txt` declara solo las librerías que importa el proyecto, con versión fija. pip resuelve sus dependencias, incluidas las propias de cada sistema operativo.
+
+   > Los notebooks se versionan **con sus salidas**, porque la entrega exige notebooks ejecutados. No usar `nbstripout`: si se instaló antes, desactivarlo con `nbstripout --uninstall`.
 
 3. Abrir `F1/F1_Definición.ipynb`, seleccionar el kernel `.venv` y usar **Restart Kernel and Run All Cells**. La figura del mapa conceptual se genera en `docs/`.
 4. Repetir con `F2/F2_Exploracion_y_Preprocesamiento.ipynb`.
