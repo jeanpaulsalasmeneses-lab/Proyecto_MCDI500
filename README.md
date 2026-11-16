@@ -135,6 +135,10 @@ python docs/entregas/sumativa1/generar_informe.py
 
 Estas dos dependencias están separadas de `requirements.txt` porque los notebooks no las usan.
 
+### Informe de la Sumativa 2 (Fase 3)
+
+El borrador está en `docs/entregas/sumativa2/`: el texto en `informe_sumativa2.md` y el PDF (`f3_s02_entregable_grupo7.pdf`) se genera con `python docs/entregas/sumativa2/generar_informe.py`. Antes de entregar, el contenido se traslada a la plantilla institucional «UNAB Online» y se regenera desde el último commit de `main`, para que las cifras coincidan con el repositorio.
+
 ### Criterios de calidad
 
 - Conservar `id_falla` y procedencia documental, diferenciar ocurrencia y publicación.
