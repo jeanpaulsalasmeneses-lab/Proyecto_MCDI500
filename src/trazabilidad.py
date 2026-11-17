@@ -88,7 +88,8 @@ def estado_git(raiz):
     def git(*args):
         try:
             return subprocess.run(
-                ["git", *args], cwd=raiz, capture_output=True, text=True, check=True
+                ["git", *args], cwd=raiz, capture_output=True, text=True, encoding="utf-8",
+                check=True,
             ).stdout.strip()
         except (OSError, subprocess.CalledProcessError):
             return None
