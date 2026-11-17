@@ -186,11 +186,11 @@ Se evaluaron y se descartaron otros patrones (D-12): no hay estrategias intercam
 
 # VI. Bibliografía
 
-Barker, M., Chue Hong, N. P., Katz, D. S., Lamprecht, A.-L., Martinez-Ortiz, C., Psomopoulos, F., Harrow, J., Castro, L. J. G., Gruenpeter, M., Martinez, P. A., & Honeyman, T. (2022). Introducing the FAIR principles for research software. *Scientific Data, 9*, artículo 622. https://doi.org/10.1038/s41597-022-01710-x
+Barker, M., Chue Hong, N. P., Katz, D. S., Lamprecht, A.-L., Martinez-Ortiz, C., Psomopoulos, F., Harrow, J., Castro, L. J. G., Gruenpeter, M., Martinez, P. A., & Honeyman, T. (2022). Introducing the FAIR principles for research software. *Scientific Data*, *9*, Artículo 622. https://doi.org/10.1038/s41597-022-01710-x
 
 Gamma, E., Helm, R., Johnson, R., & Vlissides, J. (1994). *Design patterns: Elements of reusable object-oriented software*. Addison-Wesley.
 
-Jean-Quartier, C., Jeanquartier, F., Stryeck, S., Simon, J., Söser, B., & Hasani-Mavriqi, I. (2025). Sharing practices of software artefacts and source code for reproducible research. *International Journal of Data Science and Analytics, 20*(3), 2539–2550. https://doi.org/10.1007/s41060-024-00617-7
+Jean-Quartier, C., Jeanquartier, F., Stryeck, S., Simon, J., Söser, B., & Hasani-Mavriqi, I. (2025). Sharing practices of software artefacts and source code for reproducible research. *International Journal of Data Science and Analytics*, *20*(3), 2539–2550. https://doi.org/10.1007/s41060-024-00617-7
 
 Python Software Foundation. (s. f.-a). *abc — Abstract Base Classes*. Python documentation. https://docs.python.org/3/library/abc.html
 
