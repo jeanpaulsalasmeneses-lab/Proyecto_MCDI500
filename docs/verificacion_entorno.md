@@ -43,3 +43,12 @@ python -m pip install -r requirements.txt
    ```
 
    Después, abrir el pull request en GitHub. No hacer commit de los notebooks reejecutados: la evidencia es la fila de la tabla.
+
+---
+
+## Registro de ejecuciones — Fase 3 (Sumativa 2)
+
+| Fecha | Integrante | Sistema | Python | Commit verificado | Pruebas unitarias | Núcleo F3 | Dependencias | Observaciones |
+|---|---|---|---|---|---|---|---|---|
+| 2026-11-16 | Javier Huamani Barrera | Windows 11 (x64) | 3.12.8 | `f3-javier` | 35 de 35 OK | OK (`ejecutar_f3.py`) | 9 de 9 (`requirements.txt`) | Verificación independiente del núcleo algorítmico, POO y pruebas automatizadas en Windows 11 con .venv. |
+
