@@ -50,7 +50,7 @@ python -m pip install -r requirements.txt
 
 | Fecha | Integrante | Sistema | Python | Commit verificado | Pruebas unitarias | Núcleo F3 | Dependencias | Observaciones |
 |---|---|---|---|---|---|---|---|---|
-| 2026-11-16 | Javier Huamani Barrera | Windows 11 (x64) | 3.12.8 | `f3-javier` | 35 de 35 OK | OK (`ejecutar_f3.py`) | 9 de 9 (`requirements.txt`) | Verificación independiente del núcleo algorítmico, POO y pruebas automatizadas en Windows 11 con .venv. |
+| 2026-11-16 | Javier Huamani Barrera | Windows 11 (x64) | 3.12.8 | `c1c143b` | 35 de 35 OK | OK (`ejecutar_f3.py`) | 9 de 9 (`requirements.txt`) | Verificación independiente del núcleo algorítmico, POO y pruebas automatizadas en Windows 11 con .venv. |
 
 ### Procedimiento de verificación (Windows, PowerShell) — Fase 3
 
@@ -70,4 +70,5 @@ Para comprobar de forma independiente la Fase 3 en Windows:
    ```bash
    python F3/ejecutar_f3.py
    ```
-   *Criterio de éxito:* Debe confirmar la reproducibilidad funcional (`[OK] Reproducibilidad funcional del núcleo verificada`), reconstruyendo las 1.915 asociaciones, 15 comunas y los 954 intervalos temporales elegibles.
+   *Criterio de éxito:* Debe confirmar la reproducibilidad funcional (`[OK] Reproducibilidad funcional del núcleo verificada`), reconstruyendo las 1.915 asociaciones, 15 comunas, 954 informes únicos con intervalos elegibles y 980 asociaciones temporales elegibles.
+   
