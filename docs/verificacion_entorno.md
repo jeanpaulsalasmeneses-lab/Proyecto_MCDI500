@@ -52,3 +52,22 @@ python -m pip install -r requirements.txt
 |---|---|---|---|---|---|---|---|---|
 | 2026-11-16 | Javier Huamani Barrera | Windows 11 (x64) | 3.12.8 | `f3-javier` | 35 de 35 OK | OK (`ejecutar_f3.py`) | 9 de 9 (`requirements.txt`) | Verificación independiente del núcleo algorítmico, POO y pruebas automatizadas en Windows 11 con .venv. |
 
+### Procedimiento de verificación (Windows, PowerShell) — Fase 3
+
+Para comprobar de forma independiente la Fase 3 en Windows:
+
+1. Activar el entorno virtual `.venv` y asegurar las 9 dependencias fijas:
+   ```bash
+   python -m pip install -r requirements.txt
+   ```
+2. Ejecutar la suite de 35 pruebas unitarias automatizadas (POO, transformadores y excepciones):
+   ```bash
+   python -m unittest discover tests
+   ```
+   *Criterio de éxito:* Deben aprobarse las 35 pruebas unitarias sin fallos (`Ran 35 tests ... OK`).
+
+3. Ejecutar el script de verificación del núcleo analítico sin notebook:
+   ```bash
+   python F3/ejecutar_f3.py
+   ```
+   *Criterio de éxito:* Debe confirmar la reproducibilidad funcional (`[OK] Reproducibilidad funcional del núcleo verificada`), reconstruyendo las 1.915 asociaciones, 15 comunas y los 954 intervalos temporales elegibles.
