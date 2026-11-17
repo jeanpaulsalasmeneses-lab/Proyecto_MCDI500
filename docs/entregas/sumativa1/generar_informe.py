@@ -112,8 +112,10 @@ def registrar_fuentes():
 # ==========================================================
 
 def git(*args):
+    # Git entrega UTF-8. Sin encoding explícito, Python decodifica con la codificación
+    # del sistema (cp1252 en Windows) y «Chávez» deja de coincidir con INTEGRANTES.
     return subprocess.run(["git", *args], cwd=RAIZ, capture_output=True, text=True,
-                          check=True).stdout.strip()
+                          encoding="utf-8", check=True).stdout.strip()
 
 
 def tabla_commits():
