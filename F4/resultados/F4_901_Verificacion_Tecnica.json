@@ -1,0 +1,59 @@
+{
+    "proyecto": "MCDI500 - Grupo 7",
+    "fase": "F4",
+    "apartado": "9.9",
+    "fecha": "2026-11-21T14:20:18",
+    "python": "3.13.5",
+    "interprete": "c:\\Users\\jeanp\\OneDrive\\00. MAGISTER CIA\\M1_Programación para la Ciencia de Datos\\Proyecto_MCDI500\\.venv\\Scripts\\python.exe",
+    "version_pandas": "3.1.0",
+    "version_numpy": "2.5.4",
+    "version_matplotlib": "3.11.2",
+    "directorios": {
+        "F1": true,
+        "F2": true,
+        "F3": true,
+        "F4": true,
+        "src": true,
+        "tests": true,
+        "data/processed": true,
+        "docs": true
+    },
+    "modulos": {
+        "__init__.py": true,
+        "consolidar_fallas_2024_2026.py": true,
+        "descargar_cen.py": true,
+        "indicadores.py": true,
+        "medicion.py": true,
+        "nucleo.py": true,
+        "pipeline.py": true,
+        "recorridos.py": true,
+        "territorio.py": true,
+        "transformadores.py": true,
+        "trazabilidad.py": true
+    },
+    "archivos_referencia": {
+        "Panel integrado F3": true,
+        "Perfiles comunales F2": true,
+        "Dependencias": true,
+        "Documentación": true
+    },
+    "tablas": {
+        "F4_Tabla_401_Frecuencia_Comunal.csv": true,
+        "F4_Tabla_402_Recurrencia_Causal.csv": true,
+        "F4_Tabla_403_Duracion_Cobertura.csv": true
+    },
+    "figuras": {
+        "F4_Figura_501_Frecuencia_Comunal.png": true,
+        "F4_Figura_502_Recurrencia_Causal.png": true,
+        "F4_Figura_503_Duracion_Cobertura.png": true,
+        "F4_Figura_504_Consumo_Reportado.png": true
+    },
+    "resumen": {
+        "Entorno virtual": true,
+        "Directorios": true,
+        "Módulos": true,
+        "Archivos principales": true,
+        "Tablas F4": true,
+        "Figuras F4": true
+    }
+}
