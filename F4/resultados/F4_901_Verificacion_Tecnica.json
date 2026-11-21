@@ -1,7 +1,8 @@
 {
     "proyecto": "MCDI500 - Grupo 7",
     "fase": "F4",
-    "fecha": "2026-11-21T00:52:11",
+    "apartado": "9.9",
+    "fecha": "2026-11-21T14:20:18",
     "python": "3.13.5",
     "interprete": "c:\\Users\\jeanp\\OneDrive\\00. MAGISTER CIA\\M1_Programación para la Ciencia de Datos\\Proyecto_MCDI500\\.venv\\Scripts\\python.exe",
     "version_pandas": "3.1.0",
@@ -31,7 +32,8 @@
         "trazabilidad.py": true
     },
     "archivos_referencia": {
-        "Panel F3": true,
+        "Panel integrado F3": true,
+        "Perfiles comunales F2": true,
         "Dependencias": true,
         "Documentación": true
     },
@@ -43,7 +45,8 @@
     "figuras": {
         "F4_Figura_501_Frecuencia_Comunal.png": true,
         "F4_Figura_502_Recurrencia_Causal.png": true,
-        "F4_Figura_503_Duracion_Cobertura.png": true
+        "F4_Figura_503_Duracion_Cobertura.png": true,
+        "F4_Figura_504_Consumo_Reportado.png": true
     },
     "resumen": {
         "Entorno virtual": true,
