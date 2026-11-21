@@ -1,0 +1,38 @@
+{
+    "proyecto": "MCDI500 - Grupo 7",
+    "fase": "F4",
+    "apartado": "9.17",
+    "fecha": "2026-11-21T00:55:26",
+    "git_disponible": true,
+    "repositorio_valido": true,
+    "rama_actual": "F4-JPSM-nueva",
+    "ultimo_commit": "bb70bb6",
+    "cambios_pendientes": [
+        "M README.md",
+        " M requirements.txt",
+        "?? F4/"
+    ],
+    "documentacion": {
+        "README.md": true,
+        "requirements.txt": true,
+        "CHANGELOG.md": false,
+        "changelog.md": false,
+        "docs/changelog.md": false
+    },
+    "historial_reciente": [
+        "bb70bb6 | 2026-11-17 | Jean Salas Meneses | Merge branch 'main' of https://github.com/jeanpaulsalasmeneses-lab/Proyecto_MCDI500",
+        "3f0fb18 | 2026-11-17 | Jean Salas Meneses | Actualización de archivos",
+        "dddc2be | 2026-11-17 | jeanpaulsalasmeneses-lab | Merge pull request #46 from jeanpaulsalasmeneses-lab/docs/f3-cifras-eficiencia-y-pruebas",
+        "ccdd295 | 2026-11-17 | Pavel Chávez San Martín | docs: alinear las cifras de eficiencia y pruebas de F3 (§5.4 y §9) con las salidas del notebook",
+        "fc6c7fb | 2026-11-17 | jeanpaulsalasmeneses-lab | Merge pull request #45 from jeanpaulsalasmeneses-lab/F3_comentarios_informe_avance"
+    ],
+    "productos_f4": {
+        "F4/F4_Comunicacion_Resultados.ipynb": true,
+        "F4/resultados/F4_Tabla_401_Frecuencia_Comunal.csv": true,
+        "F4/resultados/F4_Tabla_402_Recurrencia_Causal.csv": true,
+        "F4/resultados/F4_Tabla_403_Duracion_Cobertura.csv": true,
+        "F4/figuras/F4_Figura_501_Frecuencia_Comunal.png": true,
+        "F4/figuras/F4_Figura_502_Recurrencia_Causal.png": true,
+        "F4/figuras/F4_Figura_503_Duracion_Cobertura.png": true
+    }
+}

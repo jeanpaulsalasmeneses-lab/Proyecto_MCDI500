@@ -27,7 +27,7 @@ Caracterizar la **exposición operacional documentada** en las **15 comunas con 
 | **F1** | Planteamiento territorial, objetivos, verificación del entorno, pruebas y mapa conceptual | **Desarrollada** · corre completa con *Restart & Run All* |
 | **F2** | Obtención, exploración, limpieza, homologación INE (100 %), transformación y 40 pruebas | **Desarrollada** · exporta 7 CSV con SHA-256 a `data/processed/f2/` |
 | **F3** | Núcleo algorítmico: código en `src/`, clases que aprenden de los datos, pipeline, eficiencia medida y equivalencia exacta con F2 | **Desarrollada** · `F3/F3_Nucleo_Algoritmico.ipynb` y `F3/ejecutar_f3.py` |
-| **F4** | Visualizaciones, informe, conclusiones y límites de inferencia | Proyectado |
+| **F4** | Visualizaciones, interpretación de resultados, conclusiones y verificación técnica | **En desarrollo** · Notebook con 3 tablas, 3 figuras y verificaciones técnicas satisfactorias; informe final y presentación audiovisual pendientes |
 
 ### Archivos y organización
 
@@ -41,6 +41,10 @@ Proyecto_MCDI500/
 │   ├── F3_Nucleo_Algoritmico.ipynb  # núcleo algorítmico, POO, eficiencia; importa src/
 │   ├── ejecutar_f3.py               # ejecución independiente del núcleo (sin notebook)
 │   ├── figuras/  ·  resultados/     # salidas de F3
+├── F4/
+│   ├── F4_Comunicacion_Resultados.ipynb  # Visualizaciones, interpretación y verificaciones    técnicas
+│   ├── figuras/                          # Tres visualizaciones exportadas en PNG
+│   └── resultados/                       # Tres tablas CSV y evidencias de verificación
 ├── src/                             # código del proyecto: una sola versión, los notebooks lo importan
 │   ├── descargar_cen.py             # paso 0: descarga los 33 ZIP del CEN a data/raw/
 │   ├── consolidar_fallas_2024_2026.py  # paso 1: ZIP → data/processed/ (funciones + main)
@@ -69,7 +73,7 @@ Proyecto_MCDI500/
 │       ├── cen_fallas_2024_2026_publicaciones.csv  # todas las filas publicadas
 │       ├── f2/                      # salidas de F2 + manifest_f2.json (SHA-256)
 │       └── homologacion/            # nombres homologados por equivalencia / no homologados
-├── requirements.txt                 # 9 dependencias del proyecto, con versión fija
+├── requirements.txt                 # 10 dependencias del proyecto, con versión fija
 ├── .mailmap                         # una identidad de Git por integrante
 └── README.md
 ```
@@ -102,12 +106,19 @@ Los consolidados del CEN ya vienen en `data/processed/`, así que basta con clon
    > Los notebooks se versionan **con sus salidas**, porque la entrega exige notebooks ejecutados. No usar `nbstripout`: si se instaló antes, desactivarlo con `nbstripout --uninstall`.
 
 3. Abrir `F1/F1_Definición.ipynb`, seleccionar el kernel `.venv` y usar **Restart Kernel and Run All Cells**. La figura del mapa conceptual se genera en `docs/`.
-4. Repetir con `F2/F2_Exploracion_y_Preprocesamiento.ipynb` y después con `F3/F3_Nucleo_Algoritmico.ipynb`. F3 importa el núcleo desde `src/` y, en su §8.4, verifica que el pipeline reorganizado reproduce exactamente los resultados de F2.
+4. Ejecutar los notebooks en el siguiente orden, utilizando el kernel `.venv` y la opción **Restart Kernel and Run All Cells**:
+
+   - `F2/F2_Exploracion_y_Preprocesamiento.ipynb`: ejecuta el procesamiento y la preparación de datos.
+   - `F3/F3_Nucleo_Algoritmico.ipynb`: ejecuta el núcleo algorítmico y verifica su correspondencia con los resultados de F2.
+   - `F4/F4_Comunicacion_Resultados.ipynb`: recupera el panel integrado de F3, genera las tres tablas y las tres visualizaciones, verifica la consistencia de los indicadores y ejecuta las comprobaciones técnicas documentadas.
+
+   La ejecución debe respetar este orden, debido a que cada fase utiliza resultados generados durante las etapas anteriores.
 5. Ejecutar el núcleo de F3 sin el notebook, y las pruebas:
 
    ```bash
    python F3/ejecutar_f3.py                 # reproduce el panel de F3 y verifica sus SHA-256
    python -m unittest discover tests -v     # 35 pruebas: casos normales, límite y excepciones
+   python -m pytest tests -q -p no:cacheprovider  # Verificación F4 mediante pytest
    ```
 
 6. *(Opcional)* Reconstruir los consolidados **desde la fuente original**:

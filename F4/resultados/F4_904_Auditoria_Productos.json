@@ -1,0 +1,66 @@
+{
+    "proyecto": "MCDI500 - Grupo 7",
+    "fase": "F4",
+    "apartado": "9.15",
+    "fecha": "2026-11-21T00:53:47",
+    "panel_origen": "C:\\Users\\jeanp\\OneDrive\\00. MAGISTER CIA\\M1_Programación para la Ciencia de Datos\\Proyecto_MCDI500\\F3\\resultados\\F3_701_Panel_Integrado_Comunal.csv",
+    "sha256_panel_f3": "a58addc332a552aea0361a2a21cf9edbb32994275652cf217b02072f73fc8dcc",
+    "tablas": {
+        "F4_Tabla_401_Frecuencia_Comunal.csv": {
+            "archivo": "F4_Tabla_401_Frecuencia_Comunal.csv",
+            "existe": true,
+            "coincide_con_panel_f3": true,
+            "filas": 15,
+            "sha256": "7325d23e16274c755c13f67d7e5734c3a11237c58cdf77c13a51b3c03be472ea",
+            "observacion": "Contenido consistente con F3"
+        },
+        "F4_Tabla_402_Recurrencia_Causal.csv": {
+            "archivo": "F4_Tabla_402_Recurrencia_Causal.csv",
+            "existe": true,
+            "coincide_con_panel_f3": true,
+            "filas": 15,
+            "sha256": "3327cef3e79502a6c11cfb82eb85c832841c2a0d634aecd9ac5397546469b3f1",
+            "observacion": "Contenido consistente con F3"
+        },
+        "F4_Tabla_403_Duracion_Cobertura.csv": {
+            "archivo": "F4_Tabla_403_Duracion_Cobertura.csv",
+            "existe": true,
+            "coincide_con_panel_f3": true,
+            "filas": 15,
+            "sha256": "20ea18ad6723fa897aa9c1811284491427b8486c3b6e00e9af6e9c57f0c04f4e",
+            "observacion": "Contenido consistente con F3"
+        }
+    },
+    "figuras": {
+        "F4_Figura_501_Frecuencia_Comunal.png": {
+            "archivo": "F4_Figura_501_Frecuencia_Comunal.png",
+            "existe": true,
+            "formato_png_valido": true,
+            "ancho_pixeles": 3564,
+            "alto_pixeles": 2386,
+            "tamano_bytes": 243255,
+            "sha256": "99529beef4f448c7550d854e09ecec4f7a4feb18126853245ba375bf9191c26c"
+        },
+        "F4_Figura_502_Recurrencia_Causal.png": {
+            "archivo": "F4_Figura_502_Recurrencia_Causal.png",
+            "existe": true,
+            "formato_png_valido": true,
+            "ancho_pixeles": 4002,
+            "alto_pixeles": 2558,
+            "tamano_bytes": 353784,
+            "sha256": "241b4e9152acd55452be856c9fa69e5e0a23415f8a36b7d34b06b8e487a9baee"
+        },
+        "F4_Figura_503_Duracion_Cobertura.png": {
+            "archivo": "F4_Figura_503_Duracion_Cobertura.png",
+            "existe": true,
+            "formato_png_valido": true,
+            "ancho_pixeles": 4042,
+            "alto_pixeles": 2501,
+            "tamano_bytes": 386729,
+            "sha256": "5b729758117022fc0de8e71f430f683abe20197875156c0862b44bb29d5a80a2"
+        }
+    },
+    "tablas_correctas": 3,
+    "figuras_correctas": 3,
+    "resultado_general": "CONFORME"
+}

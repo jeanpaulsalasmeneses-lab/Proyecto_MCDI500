@@ -15,3 +15,4 @@ ipython==9.18.1        # IPython.display en F1, F2 y F3
 ipykernel==7.4.0       # kernel del entorno virtual
 jupyterlab==4.6.5      # abrir y ejecutar los notebooks
 nbconvert==7.17.2      # ejecución completa desde la terminal (Restart & Run All)
+pytest==9.2.0

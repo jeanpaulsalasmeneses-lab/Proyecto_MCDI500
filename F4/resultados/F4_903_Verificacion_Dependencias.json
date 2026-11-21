@@ -1,0 +1,73 @@
+{
+    "proyecto": "MCDI500 - Grupo 7",
+    "fase": "F4",
+    "apartado": "9.13",
+    "fecha": "2026-11-21T00:52:14",
+    "interprete": "c:\\Users\\jeanp\\OneDrive\\00. MAGISTER CIA\\M1_Programación para la Ciencia de Datos\\Proyecto_MCDI500\\.venv\\Scripts\\python.exe",
+    "versiones_bibliotecas": {
+        "pandas": "3.1.0",
+        "numpy": "2.5.4",
+        "matplotlib": "3.11.2",
+        "pytest": "9.2.0"
+    },
+    "requirements_existe": true,
+    "dependencias_evaluadas": [
+        {
+            "nombre": "pandas",
+            "version_instalada": "3.1.0",
+            "estado": "CORRECTO"
+        },
+        {
+            "nombre": "numpy",
+            "version_instalada": "2.5.4",
+            "estado": "CORRECTO"
+        },
+        {
+            "nombre": "matplotlib",
+            "version_instalada": "3.11.2",
+            "estado": "CORRECTO"
+        },
+        {
+            "nombre": "openpyxl",
+            "version_instalada": "3.1.5",
+            "estado": "CORRECTO"
+        },
+        {
+            "nombre": "packaging",
+            "version_instalada": "26.3",
+            "estado": "CORRECTO"
+        },
+        {
+            "nombre": "ipython",
+            "version_instalada": "9.18.1",
+            "estado": "CORRECTO"
+        },
+        {
+            "nombre": "ipykernel",
+            "version_instalada": "7.4.0",
+            "estado": "CORRECTO"
+        },
+        {
+            "nombre": "jupyterlab",
+            "version_instalada": "4.6.5",
+            "estado": "CORRECTO"
+        },
+        {
+            "nombre": "nbconvert",
+            "version_instalada": "7.17.2",
+            "estado": "CORRECTO"
+        },
+        {
+            "nombre": "pytest",
+            "version_instalada": "9.2.0",
+            "estado": "CORRECTO"
+        }
+    ],
+    "lineas_no_evaluadas": [],
+    "pytest_declarado_directamente": true,
+    "readme_existe": true,
+    "readme_menciona_dependencias": true,
+    "readme_menciona_pruebas": true,
+    "pip_check_correcto": true,
+    "salida_pip_check": "No broken requirements found."
+}
