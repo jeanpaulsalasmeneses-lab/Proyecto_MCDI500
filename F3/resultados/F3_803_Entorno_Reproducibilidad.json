@@ -1,7 +1,6 @@
 {
     "proyecto": "MCDI500 - Grupo 7",
     "fase": "F3",
-    "python": "3.13.12",
     "pandas": "3.1.0",
     "informes_unicos": 1834,
     "asociaciones_documentales": 1915,

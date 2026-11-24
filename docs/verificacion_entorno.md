@@ -32,7 +32,7 @@ python -m pip install -r requirements.txt
    git status --short data/
    ```
 
-   Solo debería aparecer `data/processed/f2/manifest_f2.json`, que cambia por la fecha de exportación. Si aparece un CSV, avisar en el grupo.
+   No debería aparecer ningún archivo: el manifiesto de F2 ya no guarda la fecha de exportación. Si aparece un CSV o el manifiesto, avisar en el grupo.
 5. Completar la fila en la tabla de arriba y subirla:
 
    ```powershell

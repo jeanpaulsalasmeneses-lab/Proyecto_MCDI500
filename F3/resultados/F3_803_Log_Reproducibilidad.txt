@@ -1,6 +1,5 @@
 FASE 3 - REPRODUCIBILIDAD
 
-Intérprete: /home/girosmedia/Magister/MCDI500_Programacion/Proyecto_MCDI500/.venv/bin/python
 Código de salida: 0
 
 SALIDA ESTÁNDAR

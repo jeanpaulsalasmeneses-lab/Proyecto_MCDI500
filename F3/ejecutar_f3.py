@@ -729,7 +729,8 @@ assert ruta_reproducida.is_file()
 entorno = {
     "proyecto": "MCDI500 - Grupo 7",
     "fase": "F3",
-    "python": sys.version.split()[0],
+    # Sin la versión exacta de Python, que varía entre equipos; pandas
+    # está fijado en requirements.txt.
     "pandas": pd.__version__,
     "informes_unicos": len(informes),
     "asociaciones_documentales": len(asociaciones),
