@@ -161,6 +161,10 @@ Estas dos dependencias están separadas de `requirements.txt` porque los noteboo
 
 El borrador está en `docs/entregas/sumativa2/`: el texto en `informe_sumativa2.md` y el PDF (`f3_s02_entregable_grupo7.pdf`) se genera con `python docs/entregas/sumativa2/generar_informe.py`. Antes de entregar, el contenido se traslada a la plantilla institucional «UNAB Online» y se regenera desde el último commit de `main`, para que las cifras coincidan con el repositorio.
 
+### Informe final (Sumativa 3, Fase 4)
+
+El borrador está en `docs/entregas/sumativa3/`: el texto en `informe_sumativa3.md` y el PDF (`f4_s04_grupo7.pdf`) se genera con `python docs/entregas/sumativa3/generar_informe.py`. El script verifica que el PDF no supere las 10 páginas que pide la guía y que todo el texto esté en 11 pt o más. Antes de entregar, el contenido se traslada a la plantilla institucional.
+
 ### Criterios de calidad
 
 - Conservar `id_falla` y procedencia documental, diferenciar ocurrencia y publicación.
