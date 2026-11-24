@@ -156,3 +156,15 @@ Cada decisión metodológica o técnica que cambie datos, resultados o la forma 
 - **Contexto:** la guía de la S2 indica usar recursión solo si el problema tiene un caso natural (estructuras anidadas o jerarquías de profundidad variable). Los datos del proyecto son tabulares, y la única jerarquía (región → comuna → tipo de instalación) tiene profundidad fija de 3 niveles.
 - **Decisión:** la recursión se implementa solo para compararla con la versión iterativa (§4), y el núcleo usa estrategias iterativas y vectorizadas.
 - **Efecto medido:** la versión iterativa fue más rápida en 5 de 6 escalas (§5.4), y evita depender del límite de profundidad de Python.
+
+## D-15 · Las descripciones causales con errores de escritura se corrigen con una tabla versionada, en F4
+
+- **Fecha:** 2026-11-24 · **Estado:** Propuesta (PR de este cambio) · **Responsable:** Pavel · **Evidencia:** `data/reference/equivalencias_causas.csv`, `src/causas.py`, `tests/test_causas.py`, F4 §4 y §5.2
+- **Contexto:** el CEN publica descripciones con errores de escritura: «Balckout del sistema» (110 vínculos), «Error de personal u opeador» (15) y «Falla debido accidentes» (2). La retroalimentación de F3 (punto 3) pidió normalizarlas con una tabla de equivalencias versionada, como las comunas (D-02), y no solo en la leyenda de la figura.
+- **Decisión:** una tabla escrita a mano en `data/reference/equivalencias_causas.csv`, con la descripción del CEN, la corregida y el motivo. `src/causas.py` la carga y la valida (sin claves repetidas, sin cadenas ni celdas vacías), y F4 la aplica a la copia analítica del panel (Tabla 4.2 y Figura 5.2) y a la auditoría contra F3.
+- **Alternativas:**
+  - Corregir en F2: cambiaría los CSV de F2 y sus SHA-256, y obligaría a reejecutar F3, con lo que cambiarían los tiempos ya citados.
+  - Corregir solo la leyenda: es lo que el profesor observó en F3.
+  - Agrupar causas parecidas, como «Flash - over en línea» y «Flashover/arco eléctrico»: son categorías distintas del CEN, y unirlas sería una decisión analítica, no una corrección.
+- **Motivo:** se corrige donde se comunica, sin perder la trazabilidad a la fuente. F2 y F3 conservan el texto tal como lo publica el CEN, y la tabla documenta cada corrección.
+- **Efecto:** en F4 cambia la descripción predominante de 5 comunas (Valparaíso, Viña del Mar, La Serena, Arica y La Florida). Los conteos y porcentajes no cambian, y la auditoría F4 contra F3 sigue conforme.
