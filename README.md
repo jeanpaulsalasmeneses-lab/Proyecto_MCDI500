@@ -27,7 +27,7 @@ Caracterizar la **exposición operacional documentada** en las **15 comunas con 
 | **F1** | Planteamiento territorial, objetivos, verificación del entorno, pruebas y mapa conceptual | **Desarrollada** · corre completa con *Restart & Run All* |
 | **F2** | Obtención, exploración, limpieza, homologación INE (100 %), transformación y 40 pruebas | **Desarrollada** · exporta 7 CSV con SHA-256 a `data/processed/f2/` |
 | **F3** | Núcleo algorítmico: código en `src/`, clases que aprenden de los datos, pipeline, eficiencia medida y equivalencia exacta con F2 | **Desarrollada** · `F3/F3_Nucleo_Algoritmico.ipynb` y `F3/ejecutar_f3.py` |
-| **F4** | Visualizaciones, incertidumbre de los indicadores (intervalo exacto de Poisson y bootstrap de la mediana), evolución mensual y peso del apagón del 25-02-2025, interpretación, conclusiones y verificación técnica | **Desarrollada** · dos notebooks, 7 figuras (501 a 507) y 7 tablas (401 a 403 y 405 a 408) |
+| **F4** | Visualizaciones, incertidumbre de los indicadores (intervalo exacto de Poisson y bootstrap de la mediana), evolución mensual y peso del apagón del 25-02-2025, sensibilidad a Antofagasta, interpretación, conclusiones y verificación técnica | **Desarrollada** · tres notebooks, 8 figuras (501 a 508) y 10 tablas (401 a 403 y 405 a 411) |
 
 ### Archivos y organización
 
@@ -44,8 +44,9 @@ Proyecto_MCDI500/
 ├── F4/
 │   ├── F4_Comunicacion_Resultados.ipynb           # tablas 401-403, figuras 501-504, interpretación y verificaciones
 │   ├── F4_Incertidumbre_y_Evolucion_Temporal.ipynb # intervalos de confianza, evolución mensual, figuras 505-507, tablas 405-408
-│   ├── figuras/                                   # 7 figuras en PNG
-│   └── resultados/                                # 7 tablas CSV (las evidencias F4_90x se generan al ejecutar y no se versionan)
+│   ├── F4_Sensibilidad_Antofagasta.ipynb          # concentración, persistencia y panel con y sin Antofagasta, figura 508, tablas 409-411
+│   ├── figuras/                                   # 8 figuras en PNG
+│   └── resultados/                                # 10 tablas CSV (las evidencias F4_90x se generan al ejecutar y no se versionan)
 ├── src/                             # código del proyecto: una sola versión, los notebooks lo importan
 │   ├── descargar_cen.py             # paso 0: descarga los 33 ZIP del CEN a data/raw/
 │   ├── consolidar_fallas_2024_2026.py  # paso 1: ZIP → data/processed/ (funciones + main)
@@ -58,10 +59,11 @@ Proyecto_MCDI500/
 │   ├── incertidumbre.py             # F4: intervalo exacto de Poisson, bootstrap de la mediana, baja precisión
 │   ├── temporal.py                  # F4: matriz comuna × mes, mapa de calor y peso de un día (apagón)
 │   ├── causas.py                    # F4: tabla de equivalencias de causas («Balckout» → «Blackout», D-15)
-├── tests/                           # 68 pruebas: python -m unittest discover tests
+│   ├── sensibilidad.py              # F4: concentración por instalación, frecuencia anual y panel con y sin una comuna (D-19)
+├── tests/                           # 79 pruebas: python -m unittest discover tests
 ├── docs/
 │   ├── fuente_dataset.md            # procedencia de las fuentes CEN e INE
-│   ├── decisiones.md                # registro de decisiones (D-01 a D-18)
+│   ├── decisiones.md                # registro de decisiones (D-01 a D-19)
 │   ├── diccionario_variables.csv    # rol y decisión de las 28 variables originales
 │   ├── verificacion_entorno.md      # registro de ejecuciones en un segundo equipo
 │   ├── descargas_cen.csv            # URL, SHA-256 y fecha de cada ZIP descargado
@@ -118,14 +120,15 @@ Los consolidados del CEN ya vienen en `data/processed/`, así que basta con clon
    - `F3/F3_Nucleo_Algoritmico.ipynb`: ejecuta el núcleo algorítmico y verifica su correspondencia con los resultados de F2.
    - `F4/F4_Comunicacion_Resultados.ipynb`: recupera el panel integrado de F3, genera las tablas 401 a 403 y las figuras 501 a 504, verifica la consistencia de los indicadores contra F3 y ejecuta las comprobaciones técnicas.
    - `F4/F4_Incertidumbre_y_Evolucion_Temporal.ipynb`: agrega la incertidumbre de los indicadores (intervalo exacto de Poisson y bootstrap de la mediana), la evolución mensual por comuna y el peso del apagón del 25-02-2025 (figuras 505 a 507 y tablas 405 a 408).
+   - `F4/F4_Sensibilidad_Antofagasta.ipynb`: revisa si la frecuencia de Antofagasta depende de pocas instalaciones o de un período, y compara los indicadores de las 15 comunas con y sin ella (figura 508 y tablas 409 a 411).
 
    La ejecución debe respetar este orden, debido a que cada fase utiliza resultados generados durante las etapas anteriores.
 5. Ejecutar el núcleo de F3 sin el notebook, y las pruebas:
 
    ```bash
    python F3/ejecutar_f3.py                 # reproduce el panel de F3 y verifica sus SHA-256
-   python -m unittest discover tests -v     # 68 pruebas: casos normales, límite y excepciones
-   python -m pytest tests -q -p no:cacheprovider  # las mismas 68 pruebas con pytest (las usa F4 §9)
+   python -m unittest discover tests -v     # 79 pruebas: casos normales, límite y excepciones
+   python -m pytest tests -q -p no:cacheprovider  # las mismas 79 pruebas con pytest (las usa F4 §9)
    ```
 
 6. *(Opcional)* Reconstruir los consolidados **desde la fuente original**:
