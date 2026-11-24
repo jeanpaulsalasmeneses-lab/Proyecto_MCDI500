@@ -239,15 +239,18 @@ def duracion_con_intervalo(asociaciones, repeticiones=2000, nivel=0.95,
         inferior, superior = intervalo_bootstrap_mediana(
             valores, repeticiones, nivel, semilla
         )
+        # Un mismo conteo para la columna publicada y para la marca de
+        # precisión (cada vínculo informe-comuna es único en la comuna).
+        elegibles = int(grupo["id_falla"].nunique())
         filas.append({
             "codigo_comuna": codigo,
             "comuna_oficial": comuna,
-            "intervalos_elegibles": int(grupo["id_falla"].nunique()),
+            "intervalos_elegibles": elegibles,
             "mediana_horas": float(valores.median()),
             "percentil_75_horas": float(valores.quantile(0.75)),
             "ic_inferior": inferior,
             "ic_superior": superior,
-            "baja_precision": marcar_baja_precision(len(valores), umbral),
+            "baja_precision": marcar_baja_precision(elegibles, umbral),
         })
 
     resultado = pd.DataFrame(filas)
