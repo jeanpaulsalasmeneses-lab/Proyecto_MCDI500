@@ -33,7 +33,7 @@ Portal INE ──descarga──► data/external/ine_censo2024_poblacion_comunal
 
 ## Verificación de reproducibilidad (2026-11-08)
 
-Se descargaron de nuevo los 33 ZIP desde el portal del CEN, en Linux, y se ejecutó `src/consolidar_fallas_2024_2026.py`. Los dos consolidados reconstruidos son **idénticos en contenido** a los versionados: 18.019 registros, las mismas 34 y 40 columnas y **ninguna celda distinta**. La única diferencia está en los finales de línea (ver la decisión D-04 en `docs/decisiones.md`). El Excel del INE descargado de nuevo tiene el mismo SHA-256 que el del repo.
+Se descargaron de nuevo los 33 ZIP desde el portal del CEN, en Linux, y se ejecutó `src/consolidar_fallas_2024_2026.py`. Los dos consolidados reconstruidos son **idénticos en contenido** a los versionados: 18.019 registros, las mismas 34 y 40 columnas y **ninguna celda distinta**. La única diferencia está en los finales de línea (ver la decisión D-04 en `docs/decisiones.md`). Desde el 2026-11-24 esta comparación está versionada y se reproduce con `python src/verificar_consolidacion.py`, que reconstruye los consolidados en una carpeta temporal y entrega el estado de cada archivo (`COINCIDE`, `FIN_DE_LINEA` o `DIFIERE`). El Excel del INE descargado de nuevo tiene el mismo SHA-256 que el del repo.
 
 ## Delimitación y advertencias
 
