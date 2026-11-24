@@ -24,3 +24,10 @@ data/raw/*
 
 # data/processed/: SÍ se versiona. Contiene el consolidado que leen F1 y F2,
 # para que cualquier integrante pueda ejecutar los notebooks tras clonar.
+
+# --- Evidencias de ejecución de F4 ---
+# El notebook F4 las regenera en cada ejecución con la fecha, el intérprete y el
+# estado de Git del equipo que lo corre. No se versionan, para que ejecutar el
+# notebook no modifique archivos versionados (retroalimentación de F3, punto 5).
+F4/resultados/F4_90*_*.json
+F4/resultados/F4_902_Salida_Pruebas.txt
