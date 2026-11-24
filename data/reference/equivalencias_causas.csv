@@ -1,0 +1,4 @@
+descripcion_cen,descripcion_normalizada,motivo
+Balckout del sistema,Blackout del sistema,"Error de escritura del CEN: letras transpuestas («Balckout»)"
+Error de personal u opeador,Error de personal u operador,"Error de escritura del CEN: falta una letra («opeador»)"
+Falla debido accidentes,Falla debido a accidentes,"Error de escritura del CEN: falta la preposición «a»"
