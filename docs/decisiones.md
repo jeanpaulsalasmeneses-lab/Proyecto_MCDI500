@@ -195,3 +195,17 @@ Cada decisión metodológica o técnica que cambie datos, resultados o la forma 
 - **Decisión:** los registros versionados guardan solo lo que depende de los datos. Las evidencias de ejecución de F4 (`F4_90x`) se generan pero no se versionan (`.gitignore`).
 - **Alternativas:** mover todos los registros a una carpeta ignorada, lo que haría perder la evidencia versionada de F3 que el informe ya cita.
 - **Efecto:** tras ejecutar F1 a F4 en un clon limpio, solo cambian los notebooks, las dos figuras de eficiencia de F3 (el tiempo y la memoria varían en cada ejecución) y el PDF del mapa de F1 (depende de las fuentes instaladas en cada equipo).
+
+## D-19 · Las cifras del conjunto de las 15 comunas se informan también sin Antofagasta
+
+- **Fecha:** 2026-11-24 · **Estado:** Propuesta (PR #67, issue #58) · **Responsable:** Pavel · **Evidencia:** `src/sensibilidad.py`, `tests/test_sensibilidad.py`, `F4/F4_Sensibilidad_Antofagasta.ipynb`, Figura 508 y tablas 409 a 411
+- **Contexto:** la retroalimentación de F3 (punto 3) pidió revisar si la frecuencia de Antofagasta depende de pocas instalaciones o de un período acotado, y mostrar el panel con y sin esa comuna para que no domine la lectura nacional.
+- **Hallazgos:**
+  - **No depende de pocas instalaciones:** es la comuna menos concentrada de las 15 (85 subestaciones y 51 empresas; las 5 más frecuentes reúnen el 46,5 % y el 59,0 %).
+  - **No depende de un período:** es primera en 2024, 2025 y 2026, y en 21 de los 33 meses.
+  - **Sí pesa en el agregado:** tiene el 7,9 % de la población y el 28,2 % de los vínculos, y sin ella la frecuencia agregada baja un 22,1 % (de 12,74 a 9,93).
+- **Decisión:** toda cifra del conjunto de las 15 comunas (frecuencia agregada, promedio de las frecuencias, participación causal y mediana del intervalo) se informa también sin Antofagasta (Tabla 411). Las cifras por comuna no cambian, porque cada una se calcula por separado.
+- **Alternativas:**
+  - Excluir Antofagasta del análisis: ocultaría a la comuna con más informes, y el patrón es persistente, no un episodio.
+  - Informar solo el agregado: una sola comuna mueve más de una quinta parte del resultado.
+- **Límite:** el CEN registra la subestación y la empresa que informan la falla, no necesariamente el equipo que la originó. Las cifras describen con qué frecuencia algo aparece en los informes; no explican su causa física.

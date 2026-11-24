@@ -6,13 +6,13 @@
 
 Este archivo registra los cambios significativos de F1 a F4: la **fecha**, la **descripción**, el **commit** y la **justificación técnica**. Cada hash se puede verificar con `git show <hash>`. El historial completo está en `git log`, y `git shortlog -sn --no-merges` muestra los aportes por integrante; `.mailmap` unifica las identidades.
 
-Las decisiones metodológicas citadas (D-01 a D-18) están detalladas en [`docs/decisiones.md`](docs/decisiones.md).
+Las decisiones metodológicas citadas (D-01 a D-19) están detalladas en [`docs/decisiones.md`](docs/decisiones.md).
 
 ---
 
 ## 1. Observaciones formativas y acciones de mejora
 
-Cada observación recibida, qué se hizo y dónde quedó. Las observaciones de la Formativa 1 se registraron en los issues #8 a #13, y las de la Sumativa 1, en los issues #30 a #40.
+Cada observación recibida, qué se hizo y dónde quedó. Las observaciones se registraron como issues: las de la Formativa 1 en los #8 a #13, las de la Sumativa 1 en los #30 a #40 y las de la Sumativa 2 en los #55 a #66 (etiqueta `feedback-f3`). Cada PR que resuelve una observación la cierra con «Closes #N».
 
 ### Formativa 1 (retroalimentación del 2026-11-07)
 
@@ -41,18 +41,18 @@ Cada observación recibida, qué se hizo y dónde quedó. Las observaciones de l
 
 | Punto | Observación | Acción | Commit (PR) | Impacto |
 |---|---|---|---|---|
-| 1 | Incertidumbre de tasas, medianas y rankings | Intervalo exacto de Poisson, bootstrap de la mediana y marca de baja precisión bajo 30 intervalos | `35d2a40`, `a21d803` (#49, Javier), D-16 | Solo Antofagasta se distingue del resto; Las Condes, Maipú y Viña del Mar quedan como de baja precisión |
-| 2 | Dimensión temporal e indicadores con y sin el apagón | Mapa de calor comuna × mes y peso del 25-02-2025 en F4; gráficas sin el apagón en F2 | `a21d803` (#49, Javier); `8f4643d`, `aeee7c9` (#48, Jairo), D-17 | El día aporta 220 informes; sin él solo cambian de puesto Viña del Mar y Puerto Montt |
-| 3 | «Balckout» se corregía solo en la leyenda | Tabla versionada `data/reference/equivalencias_causas.csv` y `src/causas.py` | `3706d40` (#51), D-15 | Tres errores de escritura del CEN corregidos en F4, con F2 y F3 intactos |
-| 3 | Antofagasta: ¿pocas instalaciones o un período? Panel con y sin la comuna | **Pendiente** | — | — |
-| 4 | Visualizaciones con IC, promedio, n por comuna, mapa de calor y títulos con el hallazgo | Figuras 505, 506 y 507 | `a21d803`, `1470a84` (#49) | Los títulos dicen el hallazgo; la paleta es apta para daltonismo |
-| 5 | Funciones de F4 en `src/` con pruebas de casos conocidos | `src/incertidumbre.py` y `src/temporal.py`, con 16 pruebas | `35d2a40` (#49) | Conteo cero → límite inferior 0; un intervalo → baja precisión |
-| 5 | Versionar la comparación del script de consolidación | `src/verificar_consolidacion.py` y 6 pruebas | `c8e6209` (#53) | Inventario idéntico byte a byte; consolidados idénticos salvo el fin de línea (D-04) |
-| 5 | La ejecución modificaba archivos versionados | Evidencias de F4 fuera de Git; manifiesto de F2 sin fecha; registros de F3 sin intérprete ni versión de Python | `90ce3e6` (#47), `639b3d3` (#50), D-18 | Un clon limpio solo cambia los notebooks y las salidas que dependen del equipo |
-| 5 | D-10 a D-14 seguían como «Propuesta» | Pasan a «Aceptada» | `bfe91cf` (#52) | Registro de decisiones al día |
-| 6 | Aportes de código propios de Jairo y Javier | PR #48 (Jairo) y PR #49 (Javier, con `src/` y pruebas) | #48, #49 | Los cuatro integrantes tienen commits en F4 |
-| 7 | Informe final con «cómo leer este informe» y tabla de hallazgos | En elaboración | — | — |
-| 8 | Video de 5 a 8 minutos con los cuatro integrantes | En elaboración | — | — |
+| 1 (#55) | Incertidumbre de tasas, medianas y rankings | Intervalo exacto de Poisson, bootstrap de la mediana y marca de baja precisión bajo 30 intervalos | `35d2a40`, `a21d803` (#49, Javier), D-16 | Solo Antofagasta se distingue del resto; Las Condes, Maipú y Viña del Mar quedan como de baja precisión |
+| 2 (#56) | Dimensión temporal e indicadores con y sin el apagón | Mapa de calor comuna × mes y peso del 25-02-2025 en F4; gráficas sin el apagón en F2 | `a21d803` (#49, Javier); `8f4643d`, `aeee7c9` (#48, Jairo), D-17 | El día aporta 220 informes; sin él solo cambian de puesto Viña del Mar y Puerto Montt |
+| 3 (#57) | «Balckout» se corregía solo en la leyenda | Tabla versionada `data/reference/equivalencias_causas.csv` y `src/causas.py` | `3706d40` (#51), D-15 | Tres errores de escritura del CEN corregidos en F4, con F2 y F3 intactos |
+| 3 (#58) | Antofagasta: ¿pocas instalaciones o un período? Panel con y sin la comuna | Concentración por subestación y empresa, frecuencia anual y panel con y sin la comuna (`src/sensibilidad.py`, Figura 508, tablas 409 a 411) | `e94186c` (#67), D-19 | Es la comuna menos concentrada y la primera en los tres años; sin ella, la frecuencia agregada baja un 22,1 % |
+| 4 (#59) | Visualizaciones con IC, promedio, n por comuna, mapa de calor y títulos con el hallazgo | Figuras 505, 506 y 507 | `a21d803`, `1470a84` (#49) | Los títulos dicen el hallazgo; la paleta es apta para daltonismo |
+| 5 (#60) | Funciones de F4 en `src/` con pruebas de casos conocidos | `src/incertidumbre.py` y `src/temporal.py`, con 16 pruebas | `35d2a40` (#49) | Conteo cero → límite inferior 0; un intervalo → baja precisión |
+| 5 (#61) | Versionar la comparación del script de consolidación | `src/verificar_consolidacion.py` y 6 pruebas | `c8e6209` (#53) | Inventario idéntico byte a byte; consolidados idénticos salvo el fin de línea (D-04) |
+| 5 (#62) | La ejecución modificaba archivos versionados | Evidencias de F4 fuera de Git; manifiesto de F2 sin fecha; registros de F3 sin intérprete ni versión de Python | `90ce3e6` (#47), `639b3d3` (#50), D-18 | Un clon limpio solo cambia los notebooks y las salidas que dependen del equipo |
+| 5 (#63) | D-10 a D-14 seguían como «Propuesta» | Pasan a «Aceptada» | `bfe91cf` (#52) | Registro de decisiones al día |
+| 6 (#64) | Aportes de código propios de Jairo y Javier | PR #48 (Jairo) y PR #49 (Javier, con `src/` y pruebas) | #48, #49 | Los cuatro integrantes tienen commits en F4 |
+| 7 (#65) | Informe final con «cómo leer este informe» y tabla de hallazgos | En elaboración | — | — |
+| 8 (#66) | Video de 5 a 8 minutos con los cuatro integrantes | En elaboración | — | — |
 
 ---
 
@@ -123,6 +123,7 @@ Cada observación recibida, qué se hizo y dónde quedó. Las observaciones de l
 | 2026-11-24 | `3706d40` | Pavel | Tabla versionada de equivalencias de causas (PR #51) | Punto 3 de la retroalimentación de F3 (D-15) |
 | 2026-11-24 | `bfe91cf` | Pavel | README con F4 completo; D-10 a D-14 aceptadas; D-16 a D-18 (PR #52) | Punto 5 de la retroalimentación de F3 |
 | 2026-11-24 | `c8e6209` | Pavel | Comparación versionada del script de consolidación (PR #53) | Punto 5 de la retroalimentación de F3 |
+| 2026-11-24 | `e94186c` | Pavel | Sensibilidad a Antofagasta: `src/sensibilidad.py`, 11 pruebas, Figura 508 y tablas 409 a 411 (PR #67) | Punto 3 de la retroalimentación de F3 (D-19) |
 
 ---
 
@@ -130,10 +131,10 @@ Cada observación recibida, qué se hizo y dónde quedó. Las observaciones de l
 
 | Dimensión | Antes | Ahora | Evidencia |
 |---|---|---|---|
-| **Modularidad** | Lógica de F2 y F3 dentro de las celdas; script de consolidación sin funciones | 14 módulos en `src/` (una sola versión) que los notebooks importan; script de consolidación en 13 funciones | `ad0eba6`, `1de57ae`, `35d2a40`, `3706d40` |
+| **Modularidad** | Lógica de F2 y F3 dentro de las celdas; script de consolidación sin funciones | 15 módulos en `src/` (una sola versión) que los notebooks importan; script de consolidación en 13 funciones | `ad0eba6`, `1de57ae`, `35d2a40`, `3706d40`, `e94186c` |
 | **POO** | Clases que no guardaban estado | Dos jerarquías abstractas (`Transformador` con Template Method y `FuenteDatos`), clases solo donde se aprende de los datos | `b71e6fe`, D-12 |
 | **Rendimiento** | Bucle fila a fila de F2 | Versión vectorizada 1,83 veces más rápida y con 36 % menos memoria, con resultado idéntico | `a84a15d`, D-13 |
-| **Validación** | Sin pruebas automatizadas | 68 pruebas (casos normales, límite y excepciones), equivalencia exacta con F2 y comparación versionada de la consolidación | `1de57ae`, `b71e6fe`, `35d2a40`, `3706d40`, `c8e6209` |
+| **Validación** | Sin pruebas automatizadas | 79 pruebas (casos normales, límite y excepciones), equivalencia exacta con F2 y comparación versionada de la consolidación | `1de57ae`, `b71e6fe`, `35d2a40`, `3706d40`, `c8e6209`, `e94186c` |
 | **Reproducibilidad** | 107 paquetes congelados; CSV distintos entre sistemas; ejecución que dejaba archivos modificados | 10 dependencias fijas; CSV idénticos entre sistemas; un clon limpio ejecuta F1 a F4 sin errores y sin dejar cambios espurios | `8630a8f`, `f839b57`, `639b3d3` |
-| **Comunicación** | Figuras sin incertidumbre y con títulos que describen el tema | Figuras con intervalos de confianza, n por comuna, baja precisión marcada y títulos que dicen el hallazgo | `a21d803`, `1470a84` |
-| **Documentación y colaboración** | Commits directos a `main` y mensajes vagos | 18 decisiones registradas; cambios por PR, la mayoría aprobados por otro integrante; aportes de los cuatro integrantes en F4 | `docs/decisiones.md`; PR #41 a #53 |
+| **Comunicación** | Figuras sin incertidumbre y con títulos que describen el tema; lectura conjunta dominada por una comuna sin advertirlo | Figuras con intervalos de confianza, n por comuna, baja precisión marcada y títulos que dicen el hallazgo; cifras del conjunto con y sin Antofagasta | `a21d803`, `1470a84`, `e94186c` |
+| **Documentación y colaboración** | Commits directos a `main` y mensajes vagos | 19 decisiones registradas; cambios por PR, la mayoría aprobados por otro integrante; aportes de los cuatro integrantes en F4 | `docs/decisiones.md`; PR #41 a #67 |
