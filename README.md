@@ -49,6 +49,7 @@ Proyecto_MCDI500/
 ├── src/                             # código del proyecto: una sola versión, los notebooks lo importan
 │   ├── descargar_cen.py             # paso 0: descarga los 33 ZIP del CEN a data/raw/
 │   ├── consolidar_fallas_2024_2026.py  # paso 1: ZIP → data/processed/ (funciones + main)
+│   ├── verificar_consolidacion.py   # compara el script de consolidación con los CSV versionados
 │   ├── trazabilidad.py              # entorno, versiones, commit y semilla (F1, F2 y F3)
 │   ├── territorio.py                # normalización de comunas, separación de vínculos, maestro INE
 │   ├── transformadores.py           # Transformador (abstracta), HomologadorComunal, NormalizadorPoblacional
@@ -57,7 +58,7 @@ Proyecto_MCDI500/
 │   ├── incertidumbre.py             # F4: intervalo exacto de Poisson, bootstrap de la mediana, baja precisión
 │   ├── temporal.py                  # F4: matriz comuna × mes, mapa de calor y peso de un día (apagón)
 │   ├── causas.py                    # F4: tabla de equivalencias de causas («Balckout» → «Blackout», D-15)
-├── tests/                           # 62 pruebas: python -m unittest discover tests
+├── tests/                           # 68 pruebas: python -m unittest discover tests
 ├── docs/
 │   ├── fuente_dataset.md            # procedencia de las fuentes CEN e INE
 │   ├── decisiones.md                # registro de decisiones (D-01 a D-18)
@@ -123,8 +124,8 @@ Los consolidados del CEN ya vienen en `data/processed/`, así que basta con clon
 
    ```bash
    python F3/ejecutar_f3.py                 # reproduce el panel de F3 y verifica sus SHA-256
-   python -m unittest discover tests -v     # 62 pruebas: casos normales, límite y excepciones
-   python -m pytest tests -q -p no:cacheprovider  # las mismas 62 pruebas con pytest (las usa F4 §9)
+   python -m unittest discover tests -v     # 68 pruebas: casos normales, límite y excepciones
+   python -m pytest tests -q -p no:cacheprovider  # las mismas 68 pruebas con pytest (las usa F4 §9)
    ```
 
 6. *(Opcional)* Reconstruir los consolidados **desde la fuente original**:
@@ -132,9 +133,10 @@ Los consolidados del CEN ya vienen en `data/processed/`, así que basta con clon
    ```bash
    python src/descargar_cen.py                 # 33 ZIP (~80 MB) → data/raw/ y docs/descargas_cen.csv
    python src/consolidar_fallas_2024_2026.py   # data/raw/ → data/processed/
+   python src/verificar_consolidacion.py       # compara la reconstrucción con lo versionado, sin sobrescribirlo
    ```
 
-   El 2026-11-08 esta reconstrucción dio un contenido idéntico al versionado (ver `docs/fuente_dataset.md`). El Excel del INE ya viene en `data/external/`; su origen y su SHA-256 están en `data/external/README.md`.
+   La comparación con los archivos versionados se reproduce con `python src/verificar_consolidacion.py`: reconstruye los consolidados en una carpeta temporal y compara su SHA-256. Hoy el inventario coincide byte a byte, y los dos consolidados son idénticos salvo el fin de línea (D-04; ver `docs/fuente_dataset.md`). El Excel del INE ya viene en `data/external/`; su origen y su SHA-256 están en `data/external/README.md`.
 
 ### Informe técnico (Sumativa 1)
 
