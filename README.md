@@ -27,7 +27,7 @@ Caracterizar la **exposición operacional documentada** en las **15 comunas con 
 | **F1** | Planteamiento territorial, objetivos, verificación del entorno, pruebas y mapa conceptual | **Desarrollada** · corre completa con *Restart & Run All* |
 | **F2** | Obtención, exploración, limpieza, homologación INE (100 %), transformación y 40 pruebas | **Desarrollada** · exporta 7 CSV con SHA-256 a `data/processed/f2/` |
 | **F3** | Núcleo algorítmico: código en `src/`, clases que aprenden de los datos, pipeline, eficiencia medida y equivalencia exacta con F2 | **Desarrollada** · `F3/F3_Nucleo_Algoritmico.ipynb` y `F3/ejecutar_f3.py` |
-| **F4** | Visualizaciones, interpretación de resultados, conclusiones y verificación técnica | **En desarrollo** · Notebook con 3 tablas, 3 figuras y verificaciones técnicas satisfactorias; informe final y presentación audiovisual pendientes |
+| **F4** | Visualizaciones, incertidumbre de los indicadores (intervalo exacto de Poisson y bootstrap de la mediana), evolución mensual y peso del apagón del 25-02-2025, interpretación, conclusiones y verificación técnica | **Desarrollada** · dos notebooks, 7 figuras (501 a 507) y 7 tablas (401 a 403 y 405 a 408) |
 
 ### Archivos y organización
 
@@ -42,9 +42,10 @@ Proyecto_MCDI500/
 │   ├── ejecutar_f3.py               # ejecución independiente del núcleo (sin notebook)
 │   ├── figuras/  ·  resultados/     # salidas de F3
 ├── F4/
-│   ├── F4_Comunicacion_Resultados.ipynb  # Visualizaciones, interpretación y verificaciones    técnicas
-│   ├── figuras/                          # Tres visualizaciones exportadas en PNG
-│   └── resultados/                       # Tres tablas CSV y evidencias de verificación
+│   ├── F4_Comunicacion_Resultados.ipynb           # tablas 401-403, figuras 501-504, interpretación y verificaciones
+│   ├── F4_Incertidumbre_y_Evolucion_Temporal.ipynb # intervalos de confianza, evolución mensual, figuras 505-507, tablas 405-408
+│   ├── figuras/                                   # 7 figuras en PNG
+│   └── resultados/                                # 7 tablas CSV (las evidencias F4_90x se generan al ejecutar y no se versionan)
 ├── src/                             # código del proyecto: una sola versión, los notebooks lo importan
 │   ├── descargar_cen.py             # paso 0: descarga los 33 ZIP del CEN a data/raw/
 │   ├── consolidar_fallas_2024_2026.py  # paso 1: ZIP → data/processed/ (funciones + main)
@@ -53,21 +54,25 @@ Proyecto_MCDI500/
 │   ├── transformadores.py           # Transformador (abstracta), HomologadorComunal, NormalizadorPoblacional
 │   ├── pipeline.py                  # Pipeline y ejecutar(): flujo completo en una llamada
 │   ├── indicadores.py · nucleo.py · recorridos.py · medicion.py  # núcleo de F3
-├── tests/                           # pruebas: python -m unittest discover tests
+│   ├── incertidumbre.py             # F4: intervalo exacto de Poisson, bootstrap de la mediana, baja precisión
+│   ├── temporal.py                  # F4: matriz comuna × mes, mapa de calor y peso de un día (apagón)
+│   ├── causas.py                    # F4: tabla de equivalencias de causas («Balckout» → «Blackout», D-15)
+├── tests/                           # 62 pruebas: python -m unittest discover tests
 ├── docs/
 │   ├── fuente_dataset.md            # procedencia de las fuentes CEN e INE
-│   ├── decisiones.md                # registro de decisiones (D-01 a D-14)
+│   ├── decisiones.md                # registro de decisiones (D-01 a D-18)
 │   ├── diccionario_variables.csv    # rol y decisión de las 28 variables originales
 │   ├── verificacion_entorno.md      # registro de ejecuciones en un segundo equipo
 │   ├── descargas_cen.csv            # URL, SHA-256 y fecha de cada ZIP descargado
 │   ├── mapa_conceptual_F1_impacto_comunal.png  # Generado ejecutando F1
 │   └── entregas/
 │       ├── formativa1/              # PDF entregado en la Formativa 1
-│       └── sumativa1/               # informe técnico (fuente .md, generador y PDF)
+│       ├── sumativa1/               # informe técnico (fuente .md, generador y PDF)
+│       └── sumativa2/               # informe de la Fase 3
 ├── data/
 │   ├── raw/                         # ZIP mensuales CEN: NO se versionan (ver data/raw/README.md)
 │   ├── external/                    # Censo 2024 INE (ver data/external/README.md)
-│   ├── reference/                   # Tablas de equivalencias CEN↔INE (las lee F2)
+│   ├── reference/                   # Tablas de equivalencias: comunas y regiones (F2), causas (F4)
 │   └── processed/                   # SÍ se versiona: lo leen F1 y F2
 │       ├── cen_fallas_2024_2026_eventos.csv        # un registro por id_falla
 │       ├── cen_fallas_2024_2026_publicaciones.csv  # todas las filas publicadas
@@ -110,15 +115,16 @@ Los consolidados del CEN ya vienen en `data/processed/`, así que basta con clon
 
    - `F2/F2_Exploracion_y_Preprocesamiento.ipynb`: ejecuta el procesamiento y la preparación de datos.
    - `F3/F3_Nucleo_Algoritmico.ipynb`: ejecuta el núcleo algorítmico y verifica su correspondencia con los resultados de F2.
-   - `F4/F4_Comunicacion_Resultados.ipynb`: recupera el panel integrado de F3, genera las tres tablas y las tres visualizaciones, verifica la consistencia de los indicadores y ejecuta las comprobaciones técnicas documentadas.
+   - `F4/F4_Comunicacion_Resultados.ipynb`: recupera el panel integrado de F3, genera las tablas 401 a 403 y las figuras 501 a 504, verifica la consistencia de los indicadores contra F3 y ejecuta las comprobaciones técnicas.
+   - `F4/F4_Incertidumbre_y_Evolucion_Temporal.ipynb`: agrega la incertidumbre de los indicadores (intervalo exacto de Poisson y bootstrap de la mediana), la evolución mensual por comuna y el peso del apagón del 25-02-2025 (figuras 505 a 507 y tablas 405 a 408).
 
    La ejecución debe respetar este orden, debido a que cada fase utiliza resultados generados durante las etapas anteriores.
 5. Ejecutar el núcleo de F3 sin el notebook, y las pruebas:
 
    ```bash
    python F3/ejecutar_f3.py                 # reproduce el panel de F3 y verifica sus SHA-256
-   python -m unittest discover tests -v     # 35 pruebas: casos normales, límite y excepciones
-   python -m pytest tests -q -p no:cacheprovider  # Verificación F4 mediante pytest
+   python -m unittest discover tests -v     # 62 pruebas: casos normales, límite y excepciones
+   python -m pytest tests -q -p no:cacheprovider  # las mismas 62 pruebas con pytest (las usa F4 §9)
    ```
 
 6. *(Opcional)* Reconstruir los consolidados **desde la fuente original**:

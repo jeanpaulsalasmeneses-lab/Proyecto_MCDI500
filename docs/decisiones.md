@@ -118,7 +118,7 @@ Cada decisión metodológica o técnica que cambie datos, resultados o la forma 
 
 ## D-10 · El código del núcleo vive solo en `src/`, y los notebooks lo importan
 
-- **Fecha:** 2026-11-15 · **Estado:** Propuesta (issue #31) · **Evidencia:** F3 §8.2
+- **Fecha:** 2026-11-15 · **Estado:** Aceptada (PR #41, aprobado por Jean; evaluada en la Sumativa 2) · issue #31 · **Evidencia:** F3 §8.2
 - **Contexto:** las 16 funciones y clases de F3 existían dos veces: en las celdas del notebook y en una versión condensada distinta en `F3/modulos/`. La guía de la S2 pide un notebook que importe el código, sin copiarlo.
 - **Decisión:** una sola versión en `src/` (`indicadores`, `nucleo`, `recorridos`, `medicion`), tomada del notebook porque es la que produjo los resultados documentados. F3 y `ejecutar_f3.py` la importan.
 - **Efecto medido:** los 4 CSV de `F3/resultados/` son idénticos byte a byte antes y después. La celda de §3 pasó de 633 a 212 líneas.
@@ -126,14 +126,14 @@ Cada decisión metodológica o técnica que cambie datos, resultados o la forma 
 
 ## D-11 · `requirements.txt` declara solo lo que importa el proyecto
 
-- **Fecha:** 2026-11-15 · **Estado:** Propuesta (issue #35)
+- **Fecha:** 2026-11-15 · **Estado:** Aceptada (PR #41, aprobado por Jean; evaluada en la Sumativa 2) · issue #35
 - **Contexto:** la retroalimentación de la S1 pide declarar «solo lo que su código importa, con versión fija». El archivo era un volcado de 107 paquetes, y `nbstripout` estaba sin versión y borraba las salidas de los notebooks.
 - **Decisión:** 9 dependencias con versión fija, y se quita `nbstripout`.
 - **Efecto medido:** con un entorno nuevo construido solo con esas 9, F1, F2 y F3 corren completos. La prueba destapó una dependencia oculta: el Spearman de F2 necesitaba `scipy`. Se calcula ahora como la correlación de los rangos, con el mismo resultado (−0,27).
 
 ## D-12 · Clases solo donde el componente aprende de los datos (patrón Template Method)
 
-- **Fecha:** 2026-11-15 · **Estado:** Propuesta (issue #32) · **Evidencia:** F3 §8.4, `src/transformadores.py`
+- **Fecha:** 2026-11-15 · **Estado:** Aceptada (PR #41, aprobado por Jean; evaluada en la Sumativa 2) · issue #32 · **Evidencia:** F3 §8.4, `src/transformadores.py`
 - **Contexto:** la guía de la S2 pide clases solo para los componentes que necesitan recordar algo entre una llamada y otra.
 - **Decisión:**
   - `HomologadorComunal`, que aprende las 346 comunas del INE y las 4 equivalencias, y `NormalizadorPoblacional`, que aprende la población, heredan de `Transformador`.
@@ -146,20 +146,20 @@ Cada decisión metodológica o técnica que cambie datos, resultados o la forma 
 
 ## D-13 · La separación de vínculos usa la versión vectorizada
 
-- **Fecha:** 2026-11-15 · **Estado:** Propuesta · **Evidencia:** F3 §5.5
+- **Fecha:** 2026-11-15 · **Estado:** Aceptada (PR #41, aprobado por Jean; evaluada en la Sumativa 2) · **Evidencia:** F3 §5.5
 - **Decisión:** el pipeline usa `separar_vinculos_vectorizado`, que tiene el mismo resultado que el bucle de F2.
 - **Efecto medido:** de 1,8 a 1,9 veces más rápida (≈ 145 frente a ≈ 76-80 ms) y ≈ 36 % menos memoria pico (5,3 frente a 8,3 MB), con los datos reales (18.019 informes). La complejidad es la misma, O(n·k); la mejora viene de calcular la clave solo para los 320 nombres distintos.
 
 ## D-14 · Recursividad: comparativa, no estructural
 
-- **Fecha:** 2026-11-15 · **Estado:** Propuesta (issue #28, propuesta de Jairo) · **Evidencia:** F3 §2.4.4, §4 y §5.4
+- **Fecha:** 2026-11-15 · **Estado:** Aceptada (PR #41, aprobado por Jean; evaluada en la Sumativa 2) · issue #28, propuesta de Jairo · **Evidencia:** F3 §2.4.4, §4 y §5.4
 - **Contexto:** la guía de la S2 indica usar recursión solo si el problema tiene un caso natural (estructuras anidadas o jerarquías de profundidad variable). Los datos del proyecto son tabulares, y la única jerarquía (región → comuna → tipo de instalación) tiene profundidad fija de 3 niveles.
 - **Decisión:** la recursión se implementa solo para compararla con la versión iterativa (§4), y el núcleo usa estrategias iterativas y vectorizadas.
 - **Efecto medido:** la versión iterativa fue más rápida en 5 de 6 escalas (§5.4), y evita depender del límite de profundidad de Python.
 
 ## D-15 · Las descripciones causales con errores de escritura se corrigen con una tabla versionada, en F4
 
-- **Fecha:** 2026-11-24 · **Estado:** Propuesta (PR de este cambio) · **Responsable:** Pavel · **Evidencia:** `data/reference/equivalencias_causas.csv`, `src/causas.py`, `tests/test_causas.py`, F4 §4 y §5.2
+- **Fecha:** 2026-11-24 · **Estado:** Propuesta (PR #51) · **Responsable:** Pavel · **Evidencia:** `data/reference/equivalencias_causas.csv`, `src/causas.py`, `tests/test_causas.py`, F4 §4 y §5.2
 - **Contexto:** el CEN publica descripciones con errores de escritura: «Balckout del sistema» (110 vínculos), «Error de personal u opeador» (15) y «Falla debido accidentes» (2). La retroalimentación de F3 (punto 3) pidió normalizarlas con una tabla de equivalencias versionada, como las comunas (D-02), y no solo en la leyenda de la figura.
 - **Decisión:** una tabla escrita a mano en `data/reference/equivalencias_causas.csv`, con la descripción del CEN, la corregida y el motivo. `src/causas.py` la carga y la valida (sin claves repetidas, sin cadenas ni celdas vacías), y F4 la aplica a la copia analítica del panel (Tabla 4.2 y Figura 5.2) y a la auditoría contra F3.
 - **Alternativas:**
@@ -168,3 +168,30 @@ Cada decisión metodológica o técnica que cambie datos, resultados o la forma 
   - Agrupar causas parecidas, como «Flash - over en línea» y «Flashover/arco eléctrico»: son categorías distintas del CEN, y unirlas sería una decisión analítica, no una corrección.
 - **Motivo:** se corrige donde se comunica, sin perder la trazabilidad a la fuente. F2 y F3 conservan el texto tal como lo publica el CEN, y la tabla documenta cada corrección.
 - **Efecto:** en F4 cambia la descripción predominante de 5 comunas (Valparaíso, Viña del Mar, La Serena, Arica y La Florida). Los conteos y porcentajes no cambian, y la auditoría F4 contra F3 sigue conforme.
+
+## D-16 · Cada indicador comunal se informa con su incertidumbre
+
+- **Fecha:** 2026-11-23 · **Estado:** Aceptada (PR #49, aprobado por Pavel) · **Responsable:** Javier · **Evidencia:** `src/incertidumbre.py`, `tests/test_aportes_f4.py`, F4 (incertidumbre) §3 y §4, tablas 407 y 408, figuras 506 y 507
+- **Contexto:** la retroalimentación de F3 (punto 1, prioridad alta) advirtió que las tasas y las medianas se calculan sobre pocos registros en varias comunas (9 intervalos en Las Condes, 13 en Maipú), y que comparar posiciones del ranking sin incertidumbre puede inducir a error.
+- **Decisión:**
+  - **Frecuencia por 100.000 hab.-año:** intervalo exacto de Poisson al 95 % (Garwood) sobre el conteo de informes no anulados.
+  - **Mediana de los intervalos documentales:** intervalo bootstrap por percentiles al 95 %, con 2.000 remuestreos y semilla 500.
+  - **Baja precisión:** se marcan las comunas con menos de 30 intervalos elegibles (Las Condes, Maipú y Viña del Mar).
+  - **Rankings:** si los intervalos de dos comunas se superponen, se informa que no se distinguen.
+- **Alternativas:** intervalo normal aproximado, que falla con conteos bajos y da límites negativos con conteo cero; usar SciPy, que no está en las dependencias (el intervalo exacto se obtiene por bisección con la biblioteca estándar).
+- **Efecto:** Antofagasta [41,7–49,8] es la única comuna cuya frecuencia se distingue del resto. Las pruebas cubren los casos que pidió el profesor: un conteo cero da un límite inferior cero, y un solo intervalo queda marcado como de baja precisión.
+
+## D-17 · Los indicadores se muestran también sin el apagón nacional del 25-02-2025
+
+- **Fecha:** 2026-11-23 · **Estado:** Aceptada (PR #48 y #49) · **Responsables:** Jairo (F2 §6.11, gráficas 1B a 3B) y Javier (F4, Tabla 406 y Figura 506) · **Evidencia:** `src/temporal.py` (`peso_de_un_dia`), F4 (incertidumbre) §2.1
+- **Contexto:** la retroalimentación de F3 (punto 2) pidió mostrar los indicadores con y sin los meses atípicos, para ver cuánto pesa un solo episodio. El apagón del 25-02-2025 aparece en las 15 comunas a la vez.
+- **Decisión:** se informa la frecuencia con y sin ese día, por comuna, sin eliminarlo de los datos. Ambos notebooks usan la misma fecha de exclusión.
+- **Efecto:** el día aporta 220 informes en las 15 comunas, entre el 6,1 % y el 19,6 % de los informes de cada una. Sin él, solo Viña del Mar y Puerto Montt cambian de puesto en el ranking. Antofagasta baja de 45,6 a 39,4, pero sigue primera.
+
+## D-18 · Ejecutar los notebooks no modifica archivos versionados
+
+- **Fecha:** 2026-11-24 · **Estado:** Propuesta (PR #50; las evidencias de F4, en el PR #47) · **Responsable:** Pavel
+- **Contexto:** la retroalimentación de F3 (punto 5) observó que al ejecutar desde un clon quedaban cambios pendientes en archivos cuyo contenido no cambia: la fecha del manifiesto de F2, la ruta del intérprete y la versión exacta de Python en los registros de F3, y las evidencias de F4, que además guardaban rutas locales.
+- **Decisión:** los registros versionados guardan solo lo que depende de los datos. Las evidencias de ejecución de F4 (`F4_90x`) se generan pero no se versionan (`.gitignore`).
+- **Alternativas:** mover todos los registros a una carpeta ignorada, lo que haría perder la evidencia versionada de F3 que el informe ya cita.
+- **Efecto:** tras ejecutar F1 a F4 en un clon limpio, solo cambian los notebooks, las dos figuras de eficiencia de F3 (el tiempo y la memoria varían en cada ejecución) y el PDF del mapa de F1 (depende de las fuentes instaladas en cada equipo).
